@@ -9,6 +9,7 @@ import UserProfilePage from './pages/profil/profil.jsx';
 import Contact from './pages/contact/contact.jsx';
 import FilterFilm from './pages/search_page/searchPage.jsx';
 import Home from './pages/homepage.jsx';
+import GenreList from './components/GenreList.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,7 +19,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} >
           <Route path="/" element={<Home />} />
-          <Route path="/film/:id" element={<DetailFilm />} />
+          <Route path="/genre/:genreId" element={<DetailFilm />} />
+          <Route path="/genres" component={GenreList} />
           <Route path="/filter" element={<FilterFilm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfilePage />} />
