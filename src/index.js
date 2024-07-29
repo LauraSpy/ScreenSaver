@@ -6,8 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DetailFilm from './pages/detail/detail.jsx';
 import UserProfilePage from './pages/profil/profil.jsx';
-import ContactPage from './pages/contact/contact.jsx';
-import filterFilm from './pages/search_page/searchPage.jsx';
+import Contact from './pages/contact/contact.jsx';
+import FilterFilm from './pages/search_page/searchPage.jsx';
 import Home from './pages/homepage.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,8 +19,8 @@ root.render(
         <Route path="/" element={<App />} >
           <Route path="/" element={<Home />} />
           <Route path="/film/:id" element={<DetailFilm />} />
-          <Route path="/film/filter" element={<filterFilm />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/filter" element={<FilterFilm />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfilePage />} />
         </ Route >
       </Routes>
