@@ -9,8 +9,6 @@ import UserProfilePage from './pages/profil/profil.jsx';
 import ContactPage from './pages/contact/contact.jsx';
 import filterFilm from './pages/search_page/searchPage.jsx';
 import Home from './pages/homepage.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

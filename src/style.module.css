@@ -1,0 +1,9 @@
+
+/* COLOR */
+
+.gradientAngularColor {
+    background-image: var(--main-gradient);
+    width: 200px;
+    height: 200px;
+  }
+

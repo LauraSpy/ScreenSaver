@@ -1,13 +1,37 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+/* Typographie */
+
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+:h1 {
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+:h2 {
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* COLORS */
+
+:root {
+  --light-blue: #A2EDFD;
+  --light-green: #A8FDA2;
+  --pastel-pink: #CE66AE;
+  --white-pink: #FFE8F8;
+  --bg-dark: #040623;
+  --bg-light: #170220;
+  --medium-bg: #53033E;
+  --bright-bg: #6C014B;
+  --angular-gradient: conic-gradient(from 175deg at 50% 50%, var(--light-blue) 11%, var(--pink) 53%);
+  --diamond-gradient: radial-gradient(75% 75% at 50% 50%, #FFE8F8 0%, #CE66AE 100%);
 }
