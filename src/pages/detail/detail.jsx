@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { getGenres } from '../../api/api-tmdb';
+import { getMoviesByGenre } from '../../api/api-tmdb'; // Import the correct function
 import { GenreContext } from '../../contexts/GenreContext';
 
 const DetailFilm = () => {
@@ -22,7 +22,7 @@ const DetailFilm = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const data = await getGenres(genreId, currentPage);
+            const data = await getMoviesByGenre(genreId, currentPage); // Use the correct API function
             if (data && data.results) {
                 setMovies(data.results);
                 setTotalPages(data.total_pages);

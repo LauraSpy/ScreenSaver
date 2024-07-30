@@ -17,14 +17,14 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} >
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<App />}>
+          {/* <Route index element={<Home />} />  Default route for the base path */}
           <Route path="/genre/:genreId" element={<DetailFilm />} />
-          <Route path="/genres" component={GenreList} />
+          <Route path="/genres" element={<GenreList />} />
           <Route path="/filter" element={<FilterFilm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfilePage />} />
-        </ Route >
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
