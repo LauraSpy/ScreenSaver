@@ -11,6 +11,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 5%;
+    padding-top: 1.5%;
 }
 
 .logoSite img {
@@ -70,7 +71,23 @@ header {
     width: 80%;
 }
 
-nav {
+.nav-links {
+    color: var(--white-pink);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;   
+}
+
+.nav-links li {
+    list-style-type: none;
+    padding: 2%;
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
     color: var(--white-pink);
 }
 
