@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
+import ellipse from '../../images/icon/ellipsis.svg';
+import DropdownMenu from '../dropdownMenu/dropdownMenu';
 
 const Sliders = ({ title, items = [], type }) => {
-    console.log(`${type} in Sliders:`, items);
     const navigate = useNavigate();
+    const [activeDropdown, setActiveDropdown] = useState(null);
 
     const handleItemClick = (itemId) => {
         navigate(`/details/${type}/${itemId}`);
+    };
+
+    const toggleDropdown = (itemId) => {
+        setActiveDropdown(activeDropdown === itemId ? null : itemId);
     };
 
     return (
@@ -21,9 +27,19 @@ const Sliders = ({ title, items = [], type }) => {
                         <div
                             key={item.id}
                             className={s.sliderItem}
-                            onClick={() => handleItemClick(item.id)}
-                            style={{cursor: 'pointer'}}
-                        >
+                        >   
+                            <button
+                                onClick={() => toggleDropdown(item.id)}
+                                className={s.ellipseButton}
+                            >
+                                <img className={s.ellipse} src={ellipse} alt="bouton des détails" />
+                            </button>
+                            {activeDropdown === item.id && (
+                                <DropdownMenu
+                                    onClose={() => setActiveDropdown(null)}
+                                    onViewDetails={() => handleItemClick(item.id)}
+                                />
+                            )}
                             <div className={s.itemCard}>
                                 <img 
                                     src={item.poster_path

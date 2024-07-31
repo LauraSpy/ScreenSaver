@@ -10,8 +10,7 @@ body {
 
 
 /* Typographie */
-
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
 
 :h1 {
   font-family: "Red Hat Display", sans-serif;
@@ -25,6 +24,14 @@ body {
   font-size: 1.5rem;
 }
 
+:subtitle {
+  font-family: "Red Hat Mono", monospace;
+}
+
+:p {
+  font-family: "Red Hat Text", sans-serif;
+}
+
 /* COLORS */
 
 :root {
@@ -36,6 +43,8 @@ body {
   --bg-light: #170220;
   --medium-bg: #53033E;
   --bright-bg: #6C014B;
-  --angular-gradient: conic-gradient(from 175deg at 50% 50%, var(--light-blue) 11%, var(--pink) 53%);
+  --angular-gradient: conic-gradient(from 175deg at 50% 50%, #A2EDFD 11%, #CE66AE 53%);
   --diamond-gradient: radial-gradient(75% 75% at 50% 50%, #FFE8F8 0%, #CE66AE 100%);
+  --linear-gradient: linear-gradient(90deg, rgba(162,237,253,0.9) 0%, rgba(255,232,248,1) 100%);
+  --linear-gradient-dark: linear-gradient(0deg, rgba(108,1,75,1) 0%, rgba(23,2,32,1) 100%);
 }

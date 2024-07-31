@@ -1,0 +1,29 @@
+.dropdownMenu {
+    display: flex;
+    flex-direction: column;
+    height: 35vh;
+    padding: 15% 5%;
+    background-image: var(--linear-gradient-dark);
+    border-radius: 15px;
+}
+
+.dropdownMenu button {
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    margin: 5%;
+    font-family: "Red Hat Text", sans-serif;
+    cursor: pointer;
+}
+
+.icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 5%;
+}
+
+.icon img {
+    width: 50px;
+    height: auto;
+}

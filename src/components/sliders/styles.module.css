@@ -17,6 +17,10 @@
 .sliderTitle h1 {
     color: white;
     margin-bottom: 2%;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
 }
 
 .sliderMap {
@@ -51,6 +55,8 @@
 .itemCard {
     width: 15vw;
     margin-bottom: 10%;
+    padding: 5%;
+    position: relative;
 }
 
 .itemCard img {
@@ -61,5 +67,55 @@
 }
 
 .itemCardBodyTitle {
+    padding-top: 5%;
+    color: transparent;
+    background-clip: text;
+    background-image: var(--linear-gradient);
+    font-family: "Red Hat Display", sans-serif;
+    text-transform: uppercase;
+    font-size: medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.sliderItem {
+    position: relative;
+}
+
+.ellipseButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 20;
+}
+
+.dropdownMenu button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background: none;
+    border: none;
     color: white;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdownMenu button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }

@@ -38,6 +38,9 @@ body {
   margin-top: 45%;
   margin-left: -65%;
   box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 2.6px;
+  font-family: "Red Hat Text", sans-serif;
+  font-weight: 600;
+  font-size: large;
 }
 
 .viewDetailsButton:active {
@@ -110,12 +113,15 @@ body {
 }
 
 .title {
-    text-transform: uppercase;
-    background-image: conic-gradient(from 210deg at 43% 10%, #00FFFF 11%, #FF69B4 53%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  background-image: conic-gradient(from 210deg at 43% 10%, #00FFFF 11%, #FF69B4 53%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .title::before {
@@ -137,6 +143,8 @@ body {
   width: 50%;
   margin: auto;
   color: white;
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: regular;
 }
 
 .discoverCarousel {
@@ -150,7 +158,6 @@ body {
   width: 100%;
   background: rgb(255,255,255);
   background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(83,3,62,1) 100%);
-  margin-bottom: -3%; {/* a ajusté pour le responsive, gros décalage sinon */}
 }
 
 .carouselItem {
@@ -191,12 +198,17 @@ body {
 
 .itemTitle {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 50%;
+  /* avec Left à 50% et cette option, je place le titre au milieu du conteneur */
+  left: 50%;
+  transform: translateX(-50%); 
   color: white;
-  background: rgba(0,0,0,0.7);
+  background: rgba(23, 2, 32, 0.45);
   padding: 5px 10px;
   border-radius: 4px;
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: bold;
+  font-size: 1.5vw;
 }
 
 .prevButton, .nextButton {
@@ -221,8 +233,13 @@ body {
 
 .buttonChangeState {
   color: white;
+  font-family: "Red Hat Mono", monospace;
+  font-size: larger;
+  transition: all ease-in-out 0.3s;
 }
 
 .buttonChangeState:hover {
+  transition: ease-in-out 0.3s;
   cursor: pointer;
+  letter-spacing: -1px;
 }

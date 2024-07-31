@@ -112,7 +112,7 @@ const Hero = () => {
                 <button className={s.nextButton} onClick={nextSlide}>&#10095;</button>
             </div>
             <button onClick={toggleItemType} className={s.buttonChangeState}>
-                    Ou préfères-tu {itemType === 'movie' ? 'une série' : 'un film'} pour ce soir ?
+                Ou préfères-tu {itemType === 'movie' ? 'une série' : 'un film'} pour ce soir ?
             </button>
         </div>
     );
