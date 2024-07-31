@@ -5,8 +5,18 @@
     margin: 5% 10%;
 }
 
-.slider h1 {
+.sliderTitle {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2%;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(90deg, rgba(255,216,243,0.5) 0%, rgba(255,216,243,0.5) 25%, rgba(255,216,243,0.5) 75%, rgba(4,6,35,1) 100%) 1;
+    border-image-slice: 0 0 1 0;
+}
+
+.sliderTitle h1 {
     color: white;
+    margin-bottom: 2%;
 }
 
 .sliderMap {
@@ -15,19 +25,41 @@
     margin-top: 2%;
     width: 100%;
     overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f100; /* Couleur du thumb et du track */
 }
 
-.movieCard {
+/* Styles pour Webkit (Chrome, Safari, etc.) */
+.sliderMap::-webkit-scrollbar {
+    height: 8px; /* Hauteur de la scrollbar */
+}
+
+.sliderMap::-webkit-scrollbar-track {
+    background: #333; /* Couleur de fond de la piste */
+}
+
+.sliderMap::-webkit-scrollbar-thumb {
+    background-color: #888; /* Couleur du thumb */
+    border-radius: 4px; /* Coins arrondis pour le thumb */
+}
+
+.sliderMap::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Couleur du thumb au survol */
+}
+
+.itemCard {
     width: 15vw;
+    margin-bottom: 10%;
 }
 
-.movieCard img {
+.itemCard img {
     width: 100%;
     height: auto;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
-.movieCardBodyTitle {
+.itemCardBodyTitle {
     color: white;
 }

@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import logoSite from '../../images/logo/logo.svg';
 import { getDiscover } from '../../api/api-tmdb';
 import s from './styles.module.css';
+import ellipse1 from '../../images/bulles/Ellipse4.svg';
+import ellipse2 from '../../images/bulles/Ellipse5.svg';
+import ellipse3 from '../../images/bulles/doubleEllipse.svg';
 
 const Hero = () => {
     const navigate = useNavigate(); //utiliser la navigation pour accéder à la page de détail du film quand on clique dessus
     const [discoverItems, setDiscoverItems] = useState([]); //notation générique pour "discover", permet ensuite de naviguer soit entre film ou série
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemType, setItemType] = useState('movie'); // permet d'alterner entre 'movie' ou 'tv'
+
+    //ajout de l'utilisation des "ref" pour créer un effet de parallax pour l'animation au scroll des bulles du fond
+    const svg1Ref = useRef(null);
+    const svg2Ref = useRef(null);
+    const svg3Ref = useRef(null);
+
 
     useEffect(() => {
         const fetchDiscoverItems = async () => {
@@ -61,6 +70,12 @@ const Hero = () => {
                 <img src={logoSite} alt="logo site" />
                 <h1 className={s.title} data-text="économise tes batteries !">économise tes batteries !</h1>
                 <p className={s.subTitle}>Retrouve tes films et séries préférés, notes-les, gardes les en mémoire et surtout, découvre le film ou la série qui fera de ta soirée une SUPER soirée ! </p>
+                {/* AJOUT DES IMAGES POUR LE FOND ANIME */}
+                <div className={s.bubblesBackground}>
+                    <img ref={svg1Ref} src={ellipse1} alt="ellipse animé floue" className={s.backgroundSvg1} />
+                    <img ref={svg2Ref} src={ellipse2} alt="ellipse animé floue" className={s.backgroundSvg2} />
+                    <img ref={svg3Ref} src={ellipse3} alt="double ellipse animées floues" className={s.backgroundSvg3} />
+                </div>
             </div>
             <div className={s.discoverCarousel}>
                 {discoverItems.map((item, index) => {
@@ -87,7 +102,7 @@ const Hero = () => {
                                     onClick={() => handleViewDetails(item.id)}
                                     className={s.viewDetailsButton}
                                 >
-                                    Voir détails
+                                    Découvre {itemType === 'movie' ? 'ton film' : 'ta série'} !
                                 </button>
                             )}
                         </div>

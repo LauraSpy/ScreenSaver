@@ -34,10 +34,10 @@ const Home = () => {
     return (
         <div className="homepage">
             <Hero />
-            <Sliders title="Tendancesfilms actuelles" movies={trendingMovies} />
-            <Sliders title="Films populaires" movies={popularMovies} />
-            <Sliders title="Tendances séries actuelles" movies={trendingTVShows} />
-            <Sliders title="Séries populaires" movies={popularTVShows} />
+            <Sliders title="Tendances des films" items={trendingMovies} type="movie" />
+            <Sliders title="Tendances des séries" items={trendingTVShows} type="tv" />
+            <Sliders title="Films populaires" items={popularMovies} type="movie" />
+            <Sliders title="Séries populaires" items={popularTVShows} type="tv" />
         </div>
     );
 };

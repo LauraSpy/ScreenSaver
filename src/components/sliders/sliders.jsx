@@ -2,42 +2,44 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 
-const Sliders = ({ title, movies = [] }) => {
-    console.log("Movies in Sliders:", movies);
+const Sliders = ({ title, items = [], type }) => {
+    console.log(`${type} in Sliders:`, items);
     const navigate = useNavigate();
 
-    const handleMovieClick = (movieId) => {
-        navigate(`/movies/${movieId}`);
+    const handleItemClick = (itemId) => {
+        navigate(`/details/${type}/${itemId}`);
     };
 
     return (
         <div className={s.slider}>
-            <h1>{title}</h1>
+            <div className={s.sliderTitle}>
+                <h1>{title}</h1>
+            </div>
             <div className={s.sliderMap}>
-                {movies.length > 0 ? (
-                    movies.map((movie) => (
+                {items.length > 0 ? (
+                    items.map((item) => (
                         <div
-                            key={movie.id}
+                            key={item.id}
                             className={s.sliderItem}
-                            onClick={() => handleMovieClick(movie.id)}
+                            onClick={() => handleItemClick(item.id)}
                             style={{cursor: 'pointer'}}
                         >
-                            <div className={s.movieCard}>
+                            <div className={s.itemCard}>
                                 <img 
-                                    src={movie.poster_path
-                                        ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
+                                    src={item.poster_path
+                                        ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
                                         : 'chemin/vers/image/par/default.jpg'}
-                                    className={s.movieCardImg}
-                                    alt={movie.title} 
+                                    className={s.itemCardImg}
+                                    alt={item.title || item.name} 
                                 />
-                                <div className={s.movieCardBody}>
-                                    <h2 className={s.movieCardBodyTitle}>{movie.title}</h2>
+                                <div className={s.itemCardBody}>
+                                    <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
                                 </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p>Aucun film disponible.</p>
+                    <p>Aucun {type === 'movie' ? 'film' : 'série'} disponible.</p>
                 )}
             </div>
         </div>
