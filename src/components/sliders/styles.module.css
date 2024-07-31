@@ -1,0 +1,33 @@
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5% 10%;
+}
+
+.slider h1 {
+    color: white;
+}
+
+.sliderMap {
+    display: flex;
+    gap: 2%;
+    margin-top: 2%;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.movieCard {
+    width: 15vw;
+}
+
+.movieCard img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+.movieCardBodyTitle {
+    color: white;
+}

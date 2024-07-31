@@ -1,0 +1,43 @@
+
+.navLinks {
+    color: var(--white-pink);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;   
+}
+
+.navLinks li {
+    list-style-type: none;
+    padding: 2%;
+    position: relative; /* Nécessaire pour le dropdown */
+}
+
+.dropdown {
+    position: absolute; /* Positionne le dropdown par rapport à son parent li */
+    top: 100%; /* Positionne le dropdown juste en dessous du bouton */
+    left: 0; /* Aligne le dropdown à gauche */
+    background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond du dropdown */
+    border: 1px solid #ccc; /* Bordure autour du dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour donner un effet de profondeur */
+    z-index: 1000; /* Assure que le dropdown est au-dessus des autres éléments */
+    list-style: none; /* Supprime les puces de la liste */
+    padding: 10px 0; /* Espacement vertical */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+.dropdown li {
+    padding: 5px 20px; /* Espacement des éléments du dropdown */
+    cursor: pointer; /* Indique que c'est cliquable */
+}
+
+.dropdown li:hover {
+    background-color: rgba(240, 240, 240, 0.8); /* Couleur de fond au survol */
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: var(--white-pink);
+}

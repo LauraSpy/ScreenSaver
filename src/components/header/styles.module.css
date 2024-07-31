@@ -2,9 +2,10 @@ header {
     border-bottom: 1px solid;
     border-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,216,243,0.5) 25%, rgba(255,216,243,0.5) 75%, rgba(4,6,35,1) 100%) 1;
     border-image-slice: 0 0 1 0;
+    transition: background-color 0.3s ease; /* Ajoute une transition douce pour le changement de couleur */
 }
 
-.header {
+.headerContent {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -44,7 +45,7 @@ header {
     color: rgba(255,216,243,0.5);
 }
 
-#searchbar {
+.searchbarInput {
     width: 100%;
     height: 40px;
     background-color: var(--bg-dark);
@@ -71,23 +72,13 @@ header {
     width: 80%;
 }
 
-.nav-links {
-    color: var(--white-pink);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 5%;   
-}
 
-.nav-links li {
-    list-style-type: none;
-    padding: 2%;
+/* Styles pour la barre de navigation fixe */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--bg-dark); /* Couleur de fond lorsque la barre est fixe */
+    z-index: 1000; /* Assure que la barre de navigation est au-dessus des autres éléments */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour donner un effet de profondeur */
 }
-
-button {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    color: var(--white-pink);
-}
-

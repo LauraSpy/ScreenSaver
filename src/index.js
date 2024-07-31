@@ -7,9 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DetailFilm from './pages/detail/detail.jsx';
 import UserProfilePage from './pages/profil/profil.jsx';
 import Contact from './pages/contact/contact.jsx';
-import FilterFilm from './pages/search_page/searchPage.jsx';
-import Home from './pages/homepage.jsx';
-import GenreList from './components/GenreList.jsx';
+import Home from './pages/home/homepage.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,10 +16,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          {/* <Route index element={<Home />} />  Default route for the base path */}
-          <Route path="/genre/:genreId" element={<DetailFilm />} />
-          <Route path="/genres" element={<GenreList />} />
-          <Route path="/filter" element={<FilterFilm />} />
+          <Route index element={<Home />} />  Default route for the base path
+          <Route path="/movies/:type/:id" element={<DetailFilm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfilePage />} />
         </Route>
