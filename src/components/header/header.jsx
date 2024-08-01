@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import s from './styles.module.css';
 import logoSite from '../../images/logo/logo.svg';
 import logoSearch from '../../images/buttons/bouton-search.svg';
@@ -39,7 +39,9 @@ const Header = () => {
         <header className={isSticky ? `${s.header} ${s.sticky}` : s.header}>
             <div className={s.headerContent}>
                 <div className={s.logoSite}>
-                    <img src={logoSite} alt="logo site" />
+                    <Link to='/'>
+                        <img src={logoSite} alt="logo site" />
+                    </Link>
                 </div>
                 <form className={s.searchbar} onSubmit={handleSearchSubmit}>
                     <input 

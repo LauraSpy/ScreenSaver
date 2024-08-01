@@ -8,6 +8,7 @@ import DetailFilm from './pages/detail/detail.jsx';
 import UserProfilePage from './pages/profil/profil.jsx';
 import Contact from './pages/contact/contact.jsx';
 import Home from './pages/home/homepage.jsx';
+import ProtectedRoutes from './utils/ProtectedRoutes.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,9 +18,13 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />  Default route for the base path
-          <Route path="/:type/:id" element={<DetailFilm />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<UserProfilePage />} />
+
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/:type/:id" element={<DetailFilm />} />
+            <Route path="/profile" element={<UserProfilePage />} />
+          </Route>
+
         </Route>
       </Routes>
     </BrowserRouter>
@@ -27,3 +32,4 @@ root.render(
 );
 
 reportWebVitals();
+
