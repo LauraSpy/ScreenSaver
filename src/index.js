@@ -17,7 +17,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />  Default route for the base path
-          <Route path="/movies/:type/:id" element={<DetailFilm />} />
+          <Route path="/:type/:id" element={<DetailFilm />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<UserProfilePage />} />
         </Route>

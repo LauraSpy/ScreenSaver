@@ -61,7 +61,7 @@ const Hero = () => {
 
     //bouton pour accéder aux détails du film présenté en "discover"
     const handleViewDetails = (itemId) => {
-        navigate(`/movies/${itemType}/${itemId}`);
+        navigate(`/${itemType}/${itemId}`);
     };
     
     return (

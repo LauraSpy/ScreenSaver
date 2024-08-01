@@ -12,6 +12,11 @@ const endpoints = {
     genres: (type) => `${BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${LANGUAGE}`,
     byGenre: (type, genreId, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&with_genres=${genreId}&page=${page}&sort_by=popularity.desc`,
     topRated: (type, page) => `${BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+    credits: (type, id) => `${BASE_URL}/${type}/${id}/credits?api_key=${API_KEY}&language=${LANGUAGE}`,
+    images: (type, id) => `${BASE_URL}/${type}/${id}/images?api_key=${API_KEY}`,
+    videos: (type, id) => `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=${LANGUAGE}`,
+    similar: (type, id, page) => `${BASE_URL}/${type}/${id}/similar?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+    watchProviders: (type, id) => `${BASE_URL}/${type}/${id}/watch/providers?api_key=${API_KEY}`,
 };
 
 const fetchData = async (url, cacheKey) => {
@@ -99,4 +104,30 @@ export const getDiscover = async (type, page = 1) => {
     const url = endpoints.discover(type, page);
     return fetchData(url, `discover${type}_${page}`);
 };
+
+export const getCredits = async (type, id) => {
+    const url = endpoints.credits(type, id);
+    return fetchData(url, `${type}Credits_${id}`);
+};
+
+export const getImages = async (type, id) => {
+    const url = endpoints.images(type, id);
+    return fetchData(url, `${type}Images_${id}`);
+};
+
+export const getVideos = async (type, id) => {
+    const url = endpoints.videos(type, id);
+    return fetchData(url, `${type}Videos_${id}`);
+};
+
+export const getSimilar = async (type, id, page = 1) => {
+    const url = endpoints.similar(type, id, page);
+    return fetchData(url, `${type}Similar_${id}_${page}`);
+};
+
+export const getWatchProviders = async (type, id) => {
+    const url = endpoints.watchProviders(type, id);
+    return fetchData(url, `${type}WatchProviders_${id}`);
+};
+
 
