@@ -62,7 +62,9 @@ const Header = () => {
                     <img src={logoNotif} alt="notif logo" />
                 </div>
                 <div className={s.avatar}>
-                    <img src={avatar} alt="avatar" />
+                    <Link to='/profile'>
+                        <img src={avatar} alt="avatar" />
+                    </Link>
                 </div>
             </div>
             <NavBar />

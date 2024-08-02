@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Hero from '../../components/hero/hero';
 import { getPopular, getTrending } from '../../api/api-tmdb';
-import Sliders from '../../components/sliders/sliders';
+import Sliders from '../../components/sliders/itemSliders/sliders';
+import TrailerSliders from '../../components/sliders/trailerSliders/trailerSliders';
 
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);

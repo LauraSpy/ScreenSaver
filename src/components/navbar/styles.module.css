@@ -14,26 +14,35 @@
     position: relative; /* Nécessaire pour le dropdown */
 }
 
+.navLinks li img {
+    cursor: pointer;
+}
+
 .dropdown {
     position: absolute; /* Positionne le dropdown par rapport à son parent li */
     top: 100%; /* Positionne le dropdown juste en dessous du bouton */
-    left: 0; /* Aligne le dropdown à gauche */
-    background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond du dropdown */
-    border: 1px solid #ccc; /* Bordure autour du dropdown */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour donner un effet de profondeur */
+    left: 0; 
+    background-image: var(--linear-gradient-dark);
+    border-radius: 15px;
+    border: none;
+    font-family: "Red Hat Text", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     z-index: 1000; /* Assure que le dropdown est au-dessus des autres éléments */
-    list-style: none; /* Supprime les puces de la liste */
-    padding: 10px 0; /* Espacement vertical */
-    margin: 0; /* Supprime la marge par défaut */
+    list-style: none; 
+    padding: 10px 0; 
+    margin: 0; 
 }
 
 .dropdown li {
     padding: 5px 20px; /* Espacement des éléments du dropdown */
     cursor: pointer; /* Indique que c'est cliquable */
+    width: 200px;
+    text-align: left;
+    transition: 0.3s;
 }
 
 .dropdown li:hover {
-    background-color: rgba(240, 240, 240, 0.8); /* Couleur de fond au survol */
+    background-color: rgba(240, 240, 240, 0.2); /* Couleur de fond au survol */
 }
 
 button {

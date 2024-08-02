@@ -1,9 +1,9 @@
 
 /* COLOR */
 
-.gradientAngularColor {
-    background-image: var(--main-gradient);
-    width: 200px;
-    height: 200px;
-  }
+.App {
+  text-align: center;
+  background: rgb(83,3,62); 
+  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(83,3,62,1) 50%, rgba(255,255,255,0) 100%);
+}
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './styles.module.css';
-import play from '../../images/icon/play.svg'; // Assurez-vous que le chemin est correct
+import play from '../../../images/icon/play.svg'; 
 
 export const TrailerButton = ({ trailerKey }) => {
   return (

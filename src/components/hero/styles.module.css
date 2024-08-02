@@ -14,8 +14,6 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 30px;
-  background: rgb(83,3,62);
-  background: linear-gradient(0deg, rgba(83,3,62,1) 0%, rgba(255,255,255,0) 100%);
 }
 
 .bubblesBackground {
@@ -177,8 +175,6 @@ body {
   align-items: center;
   overflow: hidden;
   width: 100%;
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(83,3,62,1) 100%);
 }
 
 .carouselItem {

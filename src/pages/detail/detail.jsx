@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetails, getCredits, getImages, getVideos, getSimilar, getWatchProviders } from '../../api/api-tmdb';
 import s from './styles.module.css'; 
-import Sliders from '../../components/sliders/sliders';  
-import { TrailerButton } from '../../components/buttons/buttons';
+import Sliders from '../../components/sliders/itemSliders/sliders';  
+import { TrailerButton } from '../../components/buttons/trailer/trailer';
 
 const DetailFilm = () => {
     const { type, id } = useParams();
