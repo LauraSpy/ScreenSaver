@@ -14,7 +14,7 @@
     text-align: left;
     margin-bottom: 2%;
     border-bottom: 1px solid;
-    border-image: linear-gradient(90deg, rgba(255,216,243,0.5) 0%, rgba(255,216,243,0.5) 25%, rgba(255,216,243,0.5) 75%, rgba(4,6,35,1) 100%) 1;
+    border-image: linear-gradient(90deg, rgba(255,216,243,0.5) 0%, rgba(255,216,243,0.5) 25%, rgba(255,216,243,0.5) 65%, rgba(4,6,35,0) 100%) 1;
     border-image-slice: 0 0 1 0;
 }
 
@@ -97,4 +97,9 @@
 
 .sliderItem {
     position: relative;
+}
+
+.lastItemImg {
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0));
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0));
 }

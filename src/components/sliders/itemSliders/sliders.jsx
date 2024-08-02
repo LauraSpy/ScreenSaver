@@ -5,7 +5,7 @@ import ellipse from '../../../images/icon/ellipsis.svg';
 import plus from '../../../images/icon/plus.svg';
 import ItemOptions from '../../itemOptions/ItemsOptions';
 
-const Sliders = ({ title, items = [], type }) => {
+const Sliders = ({ title, items = [], type, maxItems }) => {
     const navigate = useNavigate();
     const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -21,6 +21,9 @@ const Sliders = ({ title, items = [], type }) => {
         navigate(`/${type}`);
     };
 
+    // Si maxItems est défini, on limite le nombre d'éléments affichés
+    const displayedItems = maxItems ? items.slice(0, maxItems) : items;
+
     return (
         <div className={s.slider}>
             <div className={s.sliderTitle}>
@@ -28,8 +31,8 @@ const Sliders = ({ title, items = [], type }) => {
             </div>
             <div className={s.sliderContainer}>    
                 <div className={s.sliderMap}>
-                    {items.length > 0 ? (
-                        items.map((item) => (
+                    {displayedItems.length > 0 ? (
+                        displayedItems.map((item, index) => (
                             <div
                                 key={item.id}
                                 className={s.sliderItem}
@@ -40,10 +43,10 @@ const Sliders = ({ title, items = [], type }) => {
                                 />
                                 <div className={s.itemCard}>
                                     <img 
-                                        src={item.poster_path
+                                        src={item.poster_path //on pose la question de s'il y a un chemin qui mène vers un "poster", et si oui, il s'affiche
                                             ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
                                             : 'chemin/vers/image/par/default.jpg'}
-                                        className={s.itemCardImg}
+                                        className={`${s.itemCardImg} ${index === displayedItems.length - 1 ? s.lastItemImg : ''}`}
                                         alt={item.title || item.name} 
                                     />
                                     <div className={s.itemCardBody}>

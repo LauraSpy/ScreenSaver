@@ -35,10 +35,11 @@ const Home = () => {
     return (
         <div className="homepage">
             <Hero />
-            <Sliders title="Tendances des films" items={trendingMovies} type="movie" />
-            <Sliders title="Tendances des séries" items={trendingTVShows} type="tv" />
-            <Sliders title="Films populaires" items={popularMovies} type="movie" />
-            <Sliders title="Séries populaires" items={popularTVShows} type="tv" />
+            <Sliders title="Tendances des films" items={trendingMovies} type="movie" maxItems={6} />
+            <Sliders title="Tendances des séries" items={trendingTVShows} type="tv" maxItems={6} />
+            <TrailerSliders title="Bande-Annonce" />
+            <Sliders title="Films populaires" items={popularMovies} type="movie" maxItems={6} />
+            <Sliders title="Séries populaires" items={popularTVShows} type="tv" maxItems={6} />
         </div>
     );
 };
