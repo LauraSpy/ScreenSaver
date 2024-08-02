@@ -5,6 +5,10 @@
     margin: 5% 10%;
 }
 
+.sliderMap {
+    display: flex;
+}
+
 .sliderTitle {
     width: 100%;
     text-align: left;
@@ -23,33 +27,44 @@
     text-transform: uppercase;
 }
 
-.sliderMap {
-    display: flex;
+.sliderContainer {
+    position: relative;
     gap: 2%;
     margin-top: 2%;
     width: 100%;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f100; /* Couleur du thumb et du track */
+    overflow-x: hidden;
 }
 
-/* Styles pour Webkit (Chrome, Safari, etc.) */
-.sliderMap::-webkit-scrollbar {
-    height: 8px; /* Hauteur de la scrollbar */
+.itemOptions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
 }
 
-.sliderMap::-webkit-scrollbar-track {
-    background: #333; /* Couleur de fond de la piste */
+.ellipseButton {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-.sliderMap::-webkit-scrollbar-thumb {
-    background-color: #888; /* Couleur du thumb */
-    border-radius: 4px; /* Coins arrondis pour le thumb */
+.seeMoreButton {
+    position: absolute;
+    right: 0;
+    top: 45%;
+    transform: translateY(-50%);
+    background-color: rgba(4, 6, 35, 0.7);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    color: white;
+    border: none;
+    padding: 7px 11px 5px 11px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.sliderMap::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Couleur du thumb au survol */
+.seeMoreButton:hover {
+    background-color:rgba(4, 6, 35, 0.9);
 }
 
 .itemCard {
@@ -82,40 +97,4 @@
 
 .sliderItem {
     position: relative;
-}
-
-.ellipseButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.dropdownMenu {
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
-    padding: 10px;
-    z-index: 20;
-}
-
-.dropdownMenu button {
-    display: block;
-    width: 100%;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    background: none;
-    border: none;
-    color: white;
-    text-align: left;
-    cursor: pointer;
-}
-
-.dropdownMenu button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
 }
