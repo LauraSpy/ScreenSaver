@@ -41,17 +41,21 @@ const Sliders = ({ title, items = [], type, maxItems }) => {
                                     itemId={item.id}
                                     onViewDetails={handleItemClick}
                                 />
-                                <div className={s.itemCard}>
-                                    <img 
-                                        src={item.poster_path //on pose la question de s'il y a un chemin qui mène vers un "poster", et si oui, il s'affiche
-                                            ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-                                            : 'chemin/vers/image/par/default.jpg'}
-                                        className={`${s.itemCardImg} ${index === displayedItems.length - 1 ? s.lastItemImg : ''}`}
-                                        alt={item.title || item.name} 
-                                    />
-                                    <div className={s.itemCardBody}>
-                                        <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
-                                    </div>
+                                <div 
+                                    className={`${s.itemCard} ${index === displayedItems.length - 1 ? s.lastItemImg : ''}`}
+                                    style={{
+                                        backgroundImage: `url(${
+                                            item.poster_path
+                                                ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
+                                                : 'chemin/vers/image/par/default.jpg'
+                                        })`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                    }}
+                                >
+                                </div>
+                                <div className={s.itemCardBody}>
+                                    <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
                                 </div>
                             </div>
                         ))

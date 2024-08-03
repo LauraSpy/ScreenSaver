@@ -32,6 +32,13 @@ const DetailFilm = () => {
                 setVideos(videosData);
                 setSimilar(similarData);
                 setWatchProviders(watchProvidersData);
+
+                console.log('Details:', detailsData);
+                console.log('Credits:', creditsData);
+                console.log('Images:', imagesData);
+                console.log('Videos:', videosData);
+                console.log('Similar:', similarData);
+                console.log('Watch Providers:', watchProvidersData);
             } catch (error) {
                 console.error("Erreur lors de la récupération des données:", error);
             }
@@ -48,34 +55,46 @@ const DetailFilm = () => {
 
     return (
         <div className={s.detailPage}>
-            <div className={s.banner} style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`}}>
+            <div className={s.banner} 
+                style={{
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original${details.backdrop_path})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }
+                }>
+            </div>
+            <div className={s.posterBanner}>
+                <img src={`https://image.tmdb.org/t/p/w500${details.poster_path}`} alt={details.title || details.name} className={s.poster} />
+            </div>
+            <div className={s.bannerTitle}>
                 <h1>{details.title || details.name}</h1>
                 <p>{new Date(details.release_date || details.first_air_date).getFullYear()}</p>
             </div>
             <div className={s.mainContent}>
-                <img src={`https://image.tmdb.org/t/p/w500${details.poster_path}`} alt={details.title || details.name} className={s.poster} />
                 <div className={s.info}>
                     <p><strong>Réalisateur:</strong> {director ? director.name : 'Non disponible'}</p>
                     <p><strong>Scénariste:</strong> {writer ? writer.name : 'Non disponible'}</p>
                     <p><strong>Genre:</strong> {details.genres.map(genre => genre.name).join(', ')}</p>
                     <p><strong>Musique:</strong> {composer ? composer.name : 'Non disponible'}</p>
                     <p><strong>Synopsis:</strong> {details.overview}</p>
-                    {watchProviders.results.FR && (
-                        <div>
-                            <h3>Disponible en streaming:</h3>
-                            {watchProviders.results.FR.flatrate && watchProviders.results.FR.flatrate.map(provider => (
-                                <img key={provider.provider_id} src={`https://image.tmdb.org/t/p/original${provider.logo_path}`} alt={provider.provider_name} className={s.providerLogo} />
-                            ))}
-                        </div>
-                    )}
                 </div>
+                <div>
+                    {watchProviders.results.FR && (
+                            <div>
+                                <h3>Disponible en streaming:</h3>
+                                {watchProviders.results.FR.flatrate && watchProviders.results.FR.flatrate.map(provider => (
+                                    <img key={provider.provider_id} src={`https://image.tmdb.org/t/p/original${provider.logo_path}`} alt={provider.provider_name} className={s.providerLogo} />
+                                ))}
+                            </div>
+                        )}
+                </div>
+                {videos.results.length > 0 && (
+                    <div className={s.trailer}>
+                    <h2>Bande-annonce</h2>
+                        <TrailerButton trailerKey={videos.results[0].key} />
+                    </div>
+                )}
             </div>
-            {videos.results.length > 0 && (
-                <div className={s.trailer}>
-                <h2>Bande-annonce</h2>
-                <TrailerButton trailerKey={videos.results[0].key} />
-              </div>
-            )}
             <div className={s.cast}>
                 <h2>Casting</h2>
                 <div className={s.castList}>
