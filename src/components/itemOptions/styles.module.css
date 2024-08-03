@@ -5,7 +5,6 @@
 
 .ellipseButton {
     position: absolute;
-    margin: 3%;
     top: 10px;
     right: 10px;
     background: none;
@@ -14,9 +13,13 @@
     background-color: rgba(255,216,243,0.5);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     border-radius: 50%;
-    padding: 1px 2px;
+    padding: 5px 0;
     transition: 0.3s;
     z-index: 10;
+}
+
+.ellipse {
+    width: 50%;
 }
 
 .ellipseButton:hover {
@@ -39,4 +42,3 @@
     background-color: rgba(4, 6, 35, 0.9);
     border-radius: 15px;
 }
-

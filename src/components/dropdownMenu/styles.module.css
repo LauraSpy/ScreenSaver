@@ -1,7 +1,10 @@
 .dropdownMenu {
-    display: flex;
-    flex-direction: column;
-    height: 35vh;
+    position: absolute;
+    width: 13vw;
+    top: 8.5vh;
+    padding: 10px;
+    z-index: 20;
+    height: 25vh;
     padding: 15% 5%;
     background-image: var(--linear-gradient-dark);
     border-radius: 15px;
@@ -10,10 +13,16 @@
 .dropdownMenu button {
     display: flex;
     align-items: center;
-    padding-left: 2%;
-    margin: 5%;
     font-family: "Red Hat Text", sans-serif;
+    font-size: 11px;
     cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
 }
 
 .icon {
@@ -21,29 +30,34 @@
     justify-content: flex-start;
     align-items: center;
     padding-right: 5%;
-}
-
-.dropdownMenu {
-    position: absolute;
-    width: 13vw;
-    top: 8.5vh;
-    right: 13.55px;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    z-index: 20;
-}
-
-.dropdownMenu button {
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    background: none;
-    border: none;
-    color: white;
-    text-align: left;
-    cursor: pointer;
+    width: 20%;
+    height: 20%;
 }
 
 .dropdownMenu button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .dropdownMenu {
+        width: 15vw;
+        height: 25vh;
+        padding: 10% 5%;
+
+    }
+}
+
+
+@media screen and (max-width: 730px) {
+    .dropdownMenu {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .dropdownMenu {
+        width: 35vw;
+    }
 }

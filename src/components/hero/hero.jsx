@@ -67,7 +67,7 @@ const Hero = () => {
     return (
         <div className={s.hero}>
             <div className={s.heroHeader}>
-                <img src={logoSite} alt="logo site" />
+                <img src={logoSite} alt="logo site" className={s.logoSite} />
                 <h1 className={s.title} data-text="économise tes batteries !">économise tes batteries !</h1>
                 <p className={s.subTitle}>Retrouve tes films et séries préférés, notes-les, gardes les en mémoire et surtout, découvre le film ou la série qui fera de ta soirée une SUPER soirée ! </p>
                 {/* AJOUT DES IMAGES POUR LE FOND ANIME */}
