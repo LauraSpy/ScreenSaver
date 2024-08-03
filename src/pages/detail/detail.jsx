@@ -176,7 +176,7 @@ const DetailFilm = () => {
             <div className={s.similarList}>
                 {similar && similar.results.length > 0 && (
                     <Sliders 
-                        title="Films similaires"
+                        title="Titres similaires"
                         items={similar.results}
                         type={type}  // 'movie' ou 'tv'
                     />
