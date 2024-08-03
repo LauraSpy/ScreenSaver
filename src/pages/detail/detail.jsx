@@ -4,6 +4,7 @@ import { getDetails, getCredits, getImages, getVideos, getSimilar, getWatchProvi
 import s from './styles.module.css'; 
 import Sliders from '../../components/sliders/itemSliders/sliders';  
 import { TrailerButton } from '../../components/buttons/trailer/trailer';
+import notAvailableImage from '../../images/imagesGénériques/notAvailable.png.png';
 
 const DetailFilm = () => {
     const { type, id } = useParams();
@@ -13,6 +14,10 @@ const DetailFilm = () => {
     const [videos, setVideos] = useState(null);
     const [similar, setSimilar] = useState(null);
     const [watchProviders, setWatchProviders] = useState(null);
+
+    const handleImageError = (event) => {
+        event.target.src = notAvailableImage;
+    };
 
     useEffect(() => {
         const fetchAllData = async () => {
@@ -100,7 +105,12 @@ const DetailFilm = () => {
                 <div className={s.castList}>
                     {credits.cast.slice(0, 10).map(actor => (
                         <div key={actor.id} className={s.castMember}>
-                            <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} />
+                            <div className={s.imageContainer}>
+                                <img 
+                                    src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} 
+                                    alt={actor.name} 
+                                    onError={handleImageError} />
+                                </div>
                             <p>{actor.name}</p>
                         </div>
                     ))}

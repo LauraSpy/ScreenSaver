@@ -7,15 +7,22 @@ const NavBar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(null);
     const navigate = useNavigate();
 
-    const toggleDropdown = (menu) => {
-        setDropdownOpen(dropdownOpen === menu ? null : menu);
+    const handleMouseEnter = (menu) => {
+        setDropdownOpen(menu);
+    };
+
+    const handleMouseLeave = () => {
+        setDropdownOpen(null);
     };
 
     return (
         <nav>
             <ul className={s.navLinks}>
-                <li>
-                    <button onClick={() => toggleDropdown('films')}>
+                <li
+                    onMouseEnter={() => handleMouseEnter('films')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button>
                         Films <img src={arrowDown} alt="arrow down" />
                     </button>
                     {dropdownOpen === 'films' && (
@@ -28,8 +35,11 @@ const NavBar = () => {
                         </ul>
                     )}
                 </li>
-                <li>
-                    <button onClick={() => toggleDropdown('series')}>
+                <li 
+                    onMouseEnter={() => handleMouseEnter('series')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button>
                         Séries <img src={arrowDown} alt="arrow down" />
                     </button>
                     {dropdownOpen === 'series' && (
@@ -42,8 +52,11 @@ const NavBar = () => {
                         </ul>
                     )}
                 </li>
-                <li>
-                    <button onClick={() => toggleDropdown('genres')}>
+                <li
+                    onMouseEnter={() => handleMouseEnter('genres')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button>
                         Genres <img src={arrowDown} alt="arrow down" />
                     </button>
                     {dropdownOpen === 'genres' && (
@@ -54,8 +67,11 @@ const NavBar = () => {
                         </ul>
                     )}
                 </li>
-                <li>
-                    <button onClick={() => toggleDropdown('myList')}>
+                <li
+                    onMouseEnter={() => handleMouseEnter('myList')}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <button>
                         Ma Liste <img src={arrowDown} alt="arrow down" />
                     </button>
                     {dropdownOpen === 'myList' && (
