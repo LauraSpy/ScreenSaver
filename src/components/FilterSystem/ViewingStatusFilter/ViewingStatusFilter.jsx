@@ -8,26 +8,38 @@ const ViewingStatusFilter = ({ value, onChange }) => {
 
   return (
     <div className={s.viewingStatusFilter}>
-      <h3>Statut de visionnage</h3>
+      <h3>Afficher</h3>
       <div className={s.options}>
-        <button
-          className={`${s.option} ${value === 'all' ? s.selected : ''}`}
-          onClick={() => handleChange('all')}
-        >
-          Tous
-        </button>
-        <button
-          className={`${s.option} ${value === 'unseen' ? s.selected : ''}`}
-          onClick={() => handleChange('unseen')}
-        >
-          Jamais vus
-        </button>
-        <button
-          className={`${s.option} ${value === 'seen' ? s.selected : ''}`}
-          onClick={() => handleChange('seen')}
-        >
-          Déjà vus
-        </button>
+        <label className={s.toggleOption}>
+            <input
+              type="checkbox"
+              checked={value === 'all'}
+              onChange={() => handleChange('all')}
+              className={s.toggleCheckbox}
+            />
+            <span className={s.toggleSlider}> </span>
+            <span className={s.toggleLabel}>Tous</span>
+          </label>
+          <label className={s.toggleOption}>
+            <input
+              type="checkbox"
+              checked={value === 'unseen'}
+              onChange={() => handleChange('unseen')}
+              className={s.toggleCheckbox}
+            />
+            <span className={s.toggleSlider}> </span>
+            <span className={s.toggleLabel}>Jamais vus</span>
+          </label>
+          <label className={s.toggleOption}>
+            <input
+              type="checkbox"
+              checked={value === 'seen'}
+              onChange={() => handleChange('seen')}
+              className={s.toggleCheckbox}
+            />
+            <span className={s.toggleSlider}> </span>
+            <span className={s.toggleLabel}>Déjà vus</span>
+          </label>
       </div>
     </div>
   );

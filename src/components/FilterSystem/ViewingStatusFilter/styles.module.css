@@ -1,9 +1,21 @@
 .viewingStatusFilter {
     margin: 15px 0;
   }
+
+  .viewingStatusFilter h3 {
+    color: var(--light-yellow);
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    text-align: left;
+    padding: 5% 2%;
+  }
   
   .options {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5%;
     gap: 10px;
   }
   
@@ -24,4 +36,14 @@
     background-color: #007bff;
     color: white;
     border-color: #007bff;
+  }
+
+  .toggleLabel {
+    color: var(--light-yellow);
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 0.9rem;
+  }
+
+  .toggleSlider {
+    width: 10px;
   }

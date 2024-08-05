@@ -16,6 +16,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    width: 15vmax;
 }
 
 .dropdownButton {
@@ -34,7 +35,7 @@
 .dropdownContent {
     display: none;
     background-color: none;
-    border: 1px solid #ddd;
+    border: 1px solid var(--light-yellow);
     border-radius: 4px;
     padding: 10px;
     margin-top: 5px;
