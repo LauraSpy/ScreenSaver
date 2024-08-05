@@ -1,54 +1,95 @@
 import React, { useState } from 'react';
-import MediaTypeFilter from './MediaTypeFilter/MediaTypeFilter';
-import StreamingCinemaFilter from './StreamingCinemaFilter/StreamingCinemaFilter';
-import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
+// import MediaTypeFilter from './MediaTypeFilter/MediaTypeFilter';
+// import StreamingCinemaFilter from './StreamingCinemaFilter/StreamingCinemaFilter';
+// import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
 import GenreFilter from './GenreFilter/GenreFilter';
-import DurationFilter from './DurationFilter/DurationFilter';
-import KeywordFilter from './KeywordFilter/KeywordFilter';
-import styles from './styles.module.css';
+// import DurationFilter from './DurationFilter/DurationFilter';
+// import KeywordFilter from './KeywordFilter/KeywordFilter';
+import s from './styles.module.css';
 
 const FilterSystem = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
-    mediaType: 'all',
-    streamingCinema: 'all',
-    viewingStatus: 'all',
+    // mediaType: 'all',
+    // streamingCinema: 'all',
+    // viewingStatus: 'all',
     genres: [],
-    duration: { min: 0, max: 300 },
-    keywords: ''
+    // duration: { min: 0, max: 300 },
+    // keywords: ''
   });
 
+  const [openDropdown, setOpenDropdown] = useState(null);
+
   const updateFilters = (filterType, value) => {
-    const newFilters = { ...filters, [filterType]: value };
-    setFilters(newFilters);
-    onFilterChange(newFilters);
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [filterType]: value
+    }));
+  };
+
+  const handleSearch = () => {
+    onFilterChange(filters);
+    setOpenDropdown(null);
+  };
+
+  const toggleDropdown = (dropdown) => {
+    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
 
   return (
-    <div className={styles.filterSystem}>
-      <MediaTypeFilter 
-        value={filters.mediaType} 
-        onChange={(value) => updateFilters('mediaType', value)} 
-      />
-      <StreamingCinemaFilter 
-        value={filters.streamingCinema} 
-        onChange={(value) => updateFilters('streamingCinema', value)} 
-      />
-      <ViewingStatusFilter 
-        value={filters.viewingStatus} 
-        onChange={(value) => updateFilters('viewingStatus', value)} 
-      />
-      <GenreFilter 
-        selectedGenres={filters.genres} 
-        onChange={(value) => updateFilters('genres', value)} 
-      />
-      <DurationFilter 
-        value={filters.duration} 
-        onChange={(value) => updateFilters('duration', value)} 
-      />
-      <KeywordFilter 
-        value={filters.keywords} 
-        onChange={(value) => updateFilters('keywords', value)} 
-      />
+    <div className={s.filterSystem}>
+      <div className={s.filterRow}>
+        <div className={`${s.dropdownContainer} ${openDropdown === 'mediaType' ? s.active : ''}`}>
+          <button onClick={() => toggleDropdown('mediaType')} className={s.dropdownButton}>
+            Type de média
+          </button>
+          <div className={s.dropdownContent}>
+            {/* <MediaTypeFilter 
+              value={filters.mediaType} 
+              onChange={(value) => updateFilters('mediaType', value)} 
+            /> */}
+          </div>
+        </div>
+
+        <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
+          <button onClick={() => toggleDropdown('streamingCinema')} className={s.dropdownButton}>
+            Streaming/Cinéma
+          </button>
+          <div className={s.dropdownContent}>
+            {/* <StreamingCinemaFilter 
+              value={filters.streamingCinema} 
+              onChange={(value) => updateFilters('streamingCinema', value)} 
+            /> */}
+          </div>
+        </div>
+
+        <div className={`${s.dropdownContainer} ${openDropdown === 'filters' ? s.active : ''}`}>
+          <button onClick={() => toggleDropdown('filters')} className={s.dropdownButton}>
+            Filtrer
+          </button>
+          <div className={s.dropdownContent}>
+            {/* <ViewingStatusFilter 
+              value={filters.viewingStatus} 
+              onChange={(value) => updateFilters('viewingStatus', value)} 
+            /> */}
+            <GenreFilter 
+              selectedGenres={filters.genres} 
+              onChange={(value) => updateFilters('genres', value)} 
+            />
+            {/* <DurationFilter 
+              value={filters.duration} 
+              onChange={(value) => updateFilters('duration', value)} 
+            />
+            <KeywordFilter 
+              value={filters.keywords} 
+              onChange={(value) => updateFilters('keywords', value)} 
+            /> */}
+          </div>
+        </div>
+      </div>
+
+      <button className={s.searchButton} onClick={handleSearch}>
+        Rechercher
+      </button>
     </div>
   );
 };

@@ -15,6 +15,9 @@ const ListItems = () => {
     const [genres, setGenres] = useState({});
     const [loading, setLoading] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
+    const [filters, setFilters] = useState({
+        genres: []
+    });
 
     const currentPage = Number(searchParams.get('page') || '1');
 
@@ -37,16 +40,19 @@ const ListItems = () => {
 
     useEffect(() => {
         if (Object.keys(genres).length > 0 || !genreName) {
-            loadItems(currentPage);
+            loadItems(currentPage, filters);
         }
-    }, [mediaType, listType, genreName, currentPage, genres]);
+    }, [mediaType, listType, genreName, currentPage, genres, filters]);
 
-    const loadItems = async (page) => {
+    const loadItems = async (page, activeFilters) => {
         setLoading(true);
         try {
             let data;
             const type = mediaType === 'films' ? 'movie' : 'tv';
-            if (genreName) {
+            if (activeFilters.genres.length > 0) {
+                const genreIds = activeFilters.genres.join(',');
+                data = await getByGenre(type, genreIds, page);
+            } else if (genreName) {
                 const genreId = genres[genreName.toLowerCase()];
                 if (!genreId) {
                     throw new Error('Genre non reconnu');
@@ -80,6 +86,11 @@ const ListItems = () => {
         setSearchParams({ page: newPage.toString() });
     };
 
+    const handleFilterChange = (newFilters) => {
+        console.log("Nouveaux filtres:", newFilters);
+        setFilters(newFilters);
+    };
+
     const getTitle = () => {
         if (genreName) {
             return `Genre: ${genreName.charAt(0).toUpperCase() + genreName.slice(1)}`;
@@ -99,7 +110,7 @@ const ListItems = () => {
             <h1>{getTitle()}</h1>
             <div className={s.container}>
                 <div className={s.filter}>
-                    <console className="log">ici les filtres</console>
+                    <FilterSystem onFilterChange={handleFilterChange} />
                 </div>
                 {loading ? (
                         <p>Chargement...</p>

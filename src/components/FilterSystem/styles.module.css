@@ -1,0 +1,63 @@
+.filterSystem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+  
+.filterRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 15vmax;
+}
+
+.dropdownContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdownButton {
+    padding: 10px 15px;
+    background-color: none;
+    width: 100%;
+    border: 1px solid var(--light-yellow);
+    color: var(--light-yellow);
+    font-family: "Red Hat Display", sans-serif;
+    border-radius: 4px;
+    width: 15vmax;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    background-color: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+    min-width: 200px;
+}
+
+.dropdownContainer.active .dropdownContent {
+    display: block;
+}
+
+.searchButton {
+    padding: 10px 20px;
+    background-color: var(--light-green);
+    color: var(--light-bg);
+    font-family: "Red Hat Mono", monospace;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.searchButton:hover {
+    background-color: #0056b3;
+}
