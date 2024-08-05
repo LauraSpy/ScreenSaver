@@ -7,6 +7,8 @@ const LANGUAGE = 'fr-FR,en-US';
 const endpoints = {
     discover: (type, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}&sort_by=popularity.desc`,
     popular: (type, page) => `${BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+    nowPlaying: (page) => `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+    airingToday: (page) => `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
     trending: (type) => `${BASE_URL}/trending/${type}/week?api_key=${API_KEY}&language=${LANGUAGE}`,
     details: (type, id) => `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&language=${LANGUAGE}`,
     genres: (type) => `${BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${LANGUAGE}`,
@@ -154,4 +156,13 @@ export const getWatchProviders = async (type, id) => {
     return fetchData(url, `${type}WatchProviders_${id}`);
 };
 
+export const getNowPlaying = async (page = 1) => {
+    const url = endpoints.nowPlaying(page);
+    return fetchData(url, `nowPlaying_${page}`);
+};
+
+export const getAiringToday = async (page = 1) => {
+    const url = endpoints.airingToday(page);
+    return fetchData(url, `airingToday_${page}`);
+};
 

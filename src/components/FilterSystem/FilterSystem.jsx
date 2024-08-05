@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-// import MediaTypeFilter from './MediaTypeFilter/MediaTypeFilter';
-// import StreamingCinemaFilter from './StreamingCinemaFilter/StreamingCinemaFilter';
-// import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
+import StreamingCinemaFilter from './StreamingCinemaFilter/StreamingCinemaFilter';
+import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
 import GenreFilter from './GenreFilter/GenreFilter';
-// import DurationFilter from './DurationFilter/DurationFilter';
-// import KeywordFilter from './KeywordFilter/KeywordFilter';
+import DurationFilter from './DurationFilter/DurationFilter';
+import KeywordFilter from './KeywordFilter/KeywordFilter';
 import s from './styles.module.css';
 
 const FilterSystem = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
-    // mediaType: 'all',
-    // streamingCinema: 'all',
-    // viewingStatus: 'all',
+    streamingCinema: 'all',
+    viewingStatus: 'all',
     genres: [],
-    // duration: { min: 0, max: 300 },
-    // keywords: ''
+    duration: { min: 0, max: 300 },
+    keywords: ''
   });
 
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -38,27 +36,15 @@ const FilterSystem = ({ onFilterChange }) => {
   return (
     <div className={s.filterSystem}>
       <div className={s.filterRow}>
-        <div className={`${s.dropdownContainer} ${openDropdown === 'mediaType' ? s.active : ''}`}>
-          <button onClick={() => toggleDropdown('mediaType')} className={s.dropdownButton}>
-            Type de média
-          </button>
-          <div className={s.dropdownContent}>
-            {/* <MediaTypeFilter 
-              value={filters.mediaType} 
-              onChange={(value) => updateFilters('mediaType', value)} 
-            /> */}
-          </div>
-        </div>
-
-        <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
+      <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
           <button onClick={() => toggleDropdown('streamingCinema')} className={s.dropdownButton}>
             Streaming/Cinéma
           </button>
           <div className={s.dropdownContent}>
-            {/* <StreamingCinemaFilter 
+            <StreamingCinemaFilter 
               value={filters.streamingCinema} 
               onChange={(value) => updateFilters('streamingCinema', value)} 
-            /> */}
+            />
           </div>
         </div>
 
@@ -67,22 +53,23 @@ const FilterSystem = ({ onFilterChange }) => {
             Filtrer
           </button>
           <div className={s.dropdownContent}>
-            {/* <ViewingStatusFilter 
+            <ViewingStatusFilter 
               value={filters.viewingStatus} 
               onChange={(value) => updateFilters('viewingStatus', value)} 
-            /> */}
+            />
             <GenreFilter 
               selectedGenres={filters.genres} 
               onChange={(value) => updateFilters('genres', value)} 
             />
-            {/* <DurationFilter 
-              value={filters.duration} 
-              onChange={(value) => updateFilters('duration', value)} 
+            <DurationFilter 
+                value={filters.duration}
+                onChange={(value) => updateFilters('duration', value)}
+                maxDurationLimit={300} 
             />
             <KeywordFilter 
               value={filters.keywords} 
               onChange={(value) => updateFilters('keywords', value)} 
-            /> */}
+            />
           </div>
         </div>
       </div>
