@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Sliders from '../../components/sliders/itemSliders/sliders';
 import GenreSlider from '../../components/sliders/GenreSliders/GenreSliders';
 import { getPopular, getTopRated, getDiscover, getByGenre, getGenres } from '../../api/api-tmdb';
+import FilterSystem from "../../components/FilterSystem/FilterSystem";
 import s from './styles.module.css';
 
 const ITEMS_PER_PAGE = 50;
@@ -95,41 +96,46 @@ const ListItems = () => {
 
     return (
         <div className={s.ListItems}>
-           <h1>{getTitle()}</h1>
-           {loading ? (
-                <p>Chargement...</p>
-            ) : (
-                <>
-                    {items.length > 0 ? (
-                        genreName ? (
-                            <GenreSlider 
-                                items={items} 
-                                genreName={genreName} 
-                                mediaType={mediaType === 'films' ? 'movie' : 'tv'} 
-                            />
-                        ) : (
-                            <Sliders items={items} type={mediaType === 'films' ? 'movie' : 'tv'} />
-                        )
+            <h1>{getTitle()}</h1>
+            <div className={s.container}>
+                <div className={s.filter}>
+                    <console className="log">ici les filtres</console>
+                </div>
+                {loading ? (
+                        <p>Chargement...</p>
                     ) : (
-                        <p>Aucun élément trouvé.</p>
+                        <>
+                            {items.length > 0 ? (
+                                genreName ? (
+                                    <GenreSlider 
+                                        items={items} 
+                                        genreName={genreName} 
+                                        mediaType={mediaType === 'films' ? 'movie' : 'tv'} 
+                                    />
+                                ) : (
+                                    <Sliders items={items} type={mediaType === 'films' ? 'movie' : 'tv'} />
+                                )
+                            ) : (
+                                <p>Aucun élément trouvé.</p>
+                            )}
+                            <div className={s.pagination}>
+                                <button 
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    Précédent
+                                </button>
+                                <span>Page {currentPage} sur {totalPages}</span>
+                                <button 
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    Suivant
+                                </button>
+                            </div>
+                        </>
                     )}
-                    <div className={s.pagination}>
-                        <button 
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        >
-                            Précédent
-                        </button>
-                        <span>Page {currentPage} sur {totalPages}</span>
-                        <button 
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage === totalPages}
-                        >
-                            Suivant
-                        </button>
-                    </div>
-                </>
-            )}
+            </div>
         </div>
     );
 };
