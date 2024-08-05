@@ -1,6 +1,12 @@
+.filter {
+    position: absolute;
+    left: 5%;
+}
+
 .container {
-    display: flex;
-    flex-direction: row;
+    width: 80%;
+    position: relative;
+    right: -20%;
 }
 
 .pagination {

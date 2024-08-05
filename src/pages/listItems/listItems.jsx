@@ -49,6 +49,8 @@ const ListItems = () => {
         try {
             let data;
             const type = mediaType === 'films' ? 'movie' : 'tv';
+            console.log("Chargement des items:", { type, genreName, page, activeFilters }); // Log avant le chargement
+    
             if (activeFilters.genres.length > 0) {
                 const genreIds = activeFilters.genres.join(',');
                 data = await getByGenre(type, genreIds, page);
@@ -74,8 +76,11 @@ const ListItems = () => {
                         throw new Error('Type de liste non reconnu');
                 }
             }
+    
+            console.log("Réponse brute de l'API:", data); // Log de la réponse brute de l'API
             setItems(data.results.slice(0, ITEMS_PER_PAGE));
             setTotalPages(Math.min(data.total_pages, 1000));
+            console.log("Items chargés:", data.results.slice(0, ITEMS_PER_PAGE)); // Log des items chargés
         } catch (error) {
             console.error("Erreur lors du chargement des éléments:", error);
         }
@@ -107,11 +112,11 @@ const ListItems = () => {
 
     return (
         <div className={s.ListItems}>
-            <h1>{getTitle()}</h1>
+            <div className={s.filter}>
+                <FilterSystem onFilterChange={handleFilterChange} />
+            </div>
             <div className={s.container}>
-                <div className={s.filter}>
-                    <FilterSystem onFilterChange={handleFilterChange} />
-                </div>
+            <h1>{getTitle()}</h1>
                 {loading ? (
                         <p>Chargement...</p>
                     ) : (
@@ -124,7 +129,7 @@ const ListItems = () => {
                                         mediaType={mediaType === 'films' ? 'movie' : 'tv'} 
                                     />
                                 ) : (
-                                    <Sliders items={items} type={mediaType === 'films' ? 'movie' : 'tv'} />
+                                    <Sliders items={items} type={mediaType === 'films' ? 'movie' : 'tv'} isListView={true} />
                                 )
                             ) : (
                                 <p>Aucun élément trouvé.</p>
