@@ -16,13 +16,13 @@ const KeywordFilter = ({ value, onChange }) => {
   
     return (
       <div className={s.keywordFilter}>
-        <h3>Recherche par mot-clé</h3>
+        <h3>Mot-clé</h3>
         <div className={s.keywordInputWrapper}>
           <input
             type="text"
             value={keyword}
             onChange={handleChange}
-            placeholder="Entrez un mot-clé"
+            placeholder="Rechercher par mot-clé"
             className={s.keywordInput}
           />
         </div>

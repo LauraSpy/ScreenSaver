@@ -1,7 +1,19 @@
 .keywordFilter {
     margin: 20px 0;
   }
+
+  .keywordFilter h3 {
+    color: var(--light-yellow);
+    font-family: "Red Hat Text", sans-serif;
+    font-weight: 200;
+    text-align: left;
+    padding: 5% 2%;
+  }
   
+  .keywordInputWrapper {
+    display: flex;
+  }
+
   .keywordForm {
     display: flex;
     gap: 10px;
@@ -10,21 +22,10 @@
   .keywordInput {
     flex-grow: 1;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--light-green);
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 4px;
     font-size: 14px;
+    width: 90%;
   }
   
-  .keywordButton {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .keywordButton:hover {
-    background-color: #0056b3;
-  }
