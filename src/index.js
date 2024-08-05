@@ -19,7 +19,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="/:type" element={<ListItems />} />
+          <Route path="/:mediaType/:listType" element={<ListItems />} />
+          <Route path="/genres/:genreName" element={<ListItems />} />
           <Route path="/:type/:id" element={<DetailFilm />} />
           <Route path="/contact" element={<Contact />} />
 

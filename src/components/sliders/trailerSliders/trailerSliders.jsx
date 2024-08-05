@@ -85,7 +85,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                             </div>
                         ))
                     ) : (
-                        <p>{type === 'movie' ? 'Aucun film' : 'Aucune série'} disponible.</p>
+                        <p>Contenu indisponible. <br /> Nous nous excusons pour la gêne occasionnée</p>
                     )}
                 </div>
             </div>

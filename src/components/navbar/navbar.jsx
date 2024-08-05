@@ -30,8 +30,8 @@ const NavBar = () => {
                             <li onClick={() => navigate('/films/popular')}>Films populaires</li>
                             <li onClick={() => navigate('/films/top-rated')}>Films les mieux notés</li>
                             <li onClick={() => navigate('/films/now-playing')}>Films à l'affiche</li>
-                            <li onClick={() => navigate('/films/to-watch')}>Séries à voir</li>
-                            <li onClick={() => navigate('/films/already-watched')}>Séries déjà vues</li>
+                            <li onClick={() => navigate('/films/to-watch')}>Films à voir</li>
+                            <li onClick={() => navigate('/films/already-watched')}>Films déjà vues</li>
                         </ul>
                     )}
                 </li>

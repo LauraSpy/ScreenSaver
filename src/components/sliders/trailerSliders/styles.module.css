@@ -98,3 +98,9 @@
 .sliderItem {
     position: relative;
 }
+
+.sliderMap p {
+    color: white;
+    font-family: "Red Hat Display", sans-serif;
+    text-align: left;
+}
