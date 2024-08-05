@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
-import plus from '../../../images/icon/plus.svg';
 import ItemOptions from '../../itemOptions/ItemsOptions';
 
 const Sliders = ({ title, items = [], type, isListView = false }) => {
@@ -64,7 +63,7 @@ const Sliders = ({ title, items = [], type, isListView = false }) => {
             <div className={s.sliderTitle}>
                 <h1>{title}</h1>
             </div>
-            <div className={s.sliderContainer}>
+            <div className={s.sliderContainer} ref={sliderContainerRef}>
                 <div className={s.sliderMap}>
                     {displayedItems.map((item) => (
                         <div key={item.id} className={s.sliderItem}>
