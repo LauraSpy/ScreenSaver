@@ -19,9 +19,12 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="/:mediaType/:listType" element={<ListItems />} />
+
+          <Route path="/detail/:type/:id" element={<DetailFilm />} />
+
+          <Route path="/list/:mediaType/:listType" element={<ListItems />} />
           <Route path="/genres/:genreName" element={<ListItems />} />
-          <Route path="/:type/:id" element={<DetailFilm />} />
+
           <Route path="/contact" element={<Contact />} />
 
           <Route element={<ProtectedRoutes />}>

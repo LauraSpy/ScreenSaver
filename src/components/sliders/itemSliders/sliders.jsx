@@ -10,7 +10,7 @@ const Sliders = ({ title, items = [], type }) => {
     const sliderContainerRef = useRef(null);
 
     const handleItemClick = (itemId) => {
-        navigate(`/${type}/${itemId}`);
+        navigate(`/detail/${type}/${itemId}`);
     };
 
     const toggleDropdown = (itemId) => {
@@ -88,13 +88,6 @@ const Sliders = ({ title, items = [], type }) => {
                             </div>
                         </div>
                     ))}
-                    {items.length > 20 && (
-                        <div className={s.seeMoreItem}>
-                            <button className={s.seeMoreButton} onClick={handleSeeMore}>
-                                <img src={plus} alt="Voir plus" />
-                            </button>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

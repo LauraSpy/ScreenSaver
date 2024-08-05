@@ -27,11 +27,11 @@ const NavBar = () => {
                     </button>
                     {dropdownOpen === 'films' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/films/popular')}>Films populaires</li>
-                            <li onClick={() => navigate('/films/top-rated')}>Films les mieux notés</li>
-                            <li onClick={() => navigate('/films/now-playing')}>Films à l'affiche</li>
-                            <li onClick={() => navigate('/films/to-watch')}>Films à voir</li>
-                            <li onClick={() => navigate('/films/already-watched')}>Films déjà vues</li>
+                            <li onClick={() => navigate('/list/films/popular')}>Films populaires</li>
+                            <li onClick={() => navigate('/list/films/top-rated')}>Films les mieux notés</li>
+                            <li onClick={() => navigate('/list/films/now-playing')}>Films à l'affiche</li>
+                            <li onClick={() => navigate('/list/films/to-watch')}>Films à voir</li>
+                            <li onClick={() => navigate('/list/films/already-watched')}>Films déjà vues</li>
                         </ul>
                     )}
                 </li>
@@ -44,11 +44,11 @@ const NavBar = () => {
                     </button>
                     {dropdownOpen === 'series' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/series/current')}>Séries du moment</li>
-                            <li onClick={() => navigate('/series/popular')}>Séries populaires</li>
-                            <li onClick={() => navigate('/series/top-rated')}>Séries les mieux notées</li>
-                            <li onClick={() => navigate('/series/to-watch')}>Séries à voir</li>
-                            <li onClick={() => navigate('/series/already-watched')}>Séries déjà vues</li>
+                            <li onClick={() => navigate('/list/series/current')}>Séries du moment</li>
+                            <li onClick={() => navigate('/list/series/popular')}>Séries populaires</li>
+                            <li onClick={() => navigate('/list/series/top-rated')}>Séries les mieux notées</li>
+                            <li onClick={() => navigate('/list/series/to-watch')}>Séries à voir</li>
+                            <li onClick={() => navigate('/list/series/already-watched')}>Séries déjà vues</li>
                         </ul>
                     )}
                 </li>

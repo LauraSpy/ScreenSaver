@@ -131,7 +131,7 @@ const DetailFilm = () => {
                             )}
                     </div>
                     <div className={s.trailer}>
-                        {videos.results.length > 0 ? (
+                        {videos && videos.results && videos.results.length > 0 ? (
                             <TrailerButton trailerKey={videos.results[0].key} />
                         ) : (
                             <p className={s.notAvailable}>Pas de Bande-Annonce</p>
@@ -174,7 +174,7 @@ const DetailFilm = () => {
             </div>
 
             <div className={s.similarList}>
-                {similar && similar.results.length > 0 && (
+                {similar && similar.results && similar.results.length > 0 && (
                     <Sliders 
                         title="Titres similaires"
                         items={similar.results}
