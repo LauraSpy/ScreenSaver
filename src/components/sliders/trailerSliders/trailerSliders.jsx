@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
-import plus from '../../../images/icon/plus.svg';
 import ItemOptions from '../../itemOptions/ItemsOptions';
 import { getVideos } from '../../../api/api-tmdb';
 
@@ -13,16 +12,28 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
         const fetchVideos = async () => {
             const videoData = {};
             for (const item of items) {
-                const data = await getVideos(type, item.id);
-                const trailer = data.results.find(video => video.type === 'Trailer');
-                if (trailer) {
-                    videoData[item.id] = trailer.key;
+                try {
+                    console.log(`Fetching video for ${type} with ID: ${item.id}`);
+                    const trailer = await getVideos(type, item.id);
+                    if (trailer) {
+                        console.log(`Trailer found for ${item.id}:`, trailer.key);
+                        videoData[item.id] = trailer.key;
+                    } else {
+                        console.log(`No trailer found for ${item.id}`);
+                    }
+                } catch (error) {
+                    console.error(`Error fetching video for ${item.id}:`, error);
                 }
             }
+            console.log('All video data:', videoData);
             setVideos(videoData);
         };
-
-        fetchVideos();
+    
+        if (items.length > 0) {
+            fetchVideos();
+        } else {
+            console.log('No items to fetch videos for.');
+        }
     }, [items, type]);
 
     const handleItemClick = (itemId) => {
@@ -34,6 +45,8 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
     };
 
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
+
+    console.log('Displayed items:', displayedItems);
 
     return (
         <div className={s.slider}>
@@ -58,7 +71,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                                             width="100%"
                                             height="200"
                                             src={`https://www.youtube.com/embed/${videos[item.id]}`}
-                                            frameBorder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowFullScreen
                                             title={item.title || item.name}
@@ -73,14 +85,9 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                             </div>
                         ))
                     ) : (
-                        <p>Aucun {type === 'movie' ? 'film' : 'série'} disponible.</p>
+                        <p>{type === 'movie' ? 'Aucun film' : 'Aucune série'} disponible.</p>
                     )}
                 </div>
-                {items.length > 0 && (
-                    <button className={s.seeMoreButton} onClick={handleSeeMore}>
-                        <img src={plus} alt="" />
-                    </button>
-                )}
             </div>
         </div>
     );

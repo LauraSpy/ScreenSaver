@@ -2,7 +2,7 @@ import { setCache, getCache } from '../utils/cache.js';
 
 const API_KEY = '26ea4fd02b2f408aa82a007499337145';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const LANGUAGE = 'fr-FR';
+const LANGUAGE = 'fr-FR,en-US';
 
 const endpoints = {
     discover: (type, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}&sort_by=popularity.desc`,
@@ -14,7 +14,7 @@ const endpoints = {
     topRated: (type, page) => `${BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
     credits: (type, id) => `${BASE_URL}/${type}/${id}/credits?api_key=${API_KEY}&language=${LANGUAGE}`,
     images: (type, id) => `${BASE_URL}/${type}/${id}/images?api_key=${API_KEY}`,
-    videos: (type, id) => `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=${LANGUAGE}`,
+    videos: (type, id) => `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=${LANGUAGE}&include_video_language=fr,en`,
     similar: (type, id, page) => `${BASE_URL}/${type}/${id}/similar?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
     watchProviders: (type, id) => `${BASE_URL}/${type}/${id}/watch/providers?api_key=${API_KEY}`,
 };
@@ -116,8 +116,32 @@ export const getImages = async (type, id) => {
 };
 
 export const getVideos = async (type, id) => {
+    console.log(`Fetching videos for ${type} with ID: ${id}`);
     const url = endpoints.videos(type, id);
-    return fetchData(url, `${type}Videos_${id}`);
+    console.log(`Video URL: ${url}`);
+    try {
+        const data = await fetchData(url, `${type}Videos_${id}`);
+        console.log(`Video data received for ${type} ${id}:`, data);
+        if (data.results && data.results.length > 0) {
+            console.log(`Number of videos found: ${data.results.length}`);
+            // Priorité aux bandes-annonces françaises, puis anglaises
+            const trailer = data.results.find(video => video.type === 'Trailer' && video.iso_639_1 === 'fr') ||
+                data.results.find(video => video.type === 'Trailer' && video.iso_639_1 === 'en') ||
+                data.results.find(video => video.type === 'Trailer');
+            if (trailer) {
+                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
+                return trailer;
+            } else {
+                console.log('No trailer found in the video results');
+            }
+        } else {
+            console.log('No video results found');
+        }
+        return null;
+    } catch (error) {
+        console.error(`Error fetching videos for ${type} ${id}:`, error);
+        throw error;
+    }
 };
 
 export const getSimilar = async (type, id, page = 1) => {
