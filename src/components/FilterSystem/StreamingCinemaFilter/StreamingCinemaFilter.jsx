@@ -12,7 +12,6 @@ const StreamingCinemaFilter = ({ value, onChange }) => {
 
   return (
     <div className={s.streamingCinemaFilter}>
-      <h3>Streaming/Cinéma</h3>
       <div className={s.buttons}>
         <button
           className={`${s.button} ${selectedOption === 'streaming' ? s.selected : ''}`}

@@ -30,6 +30,9 @@
     width: 15vmax;
     text-align: left;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .dropdownContent {
@@ -61,4 +64,9 @@
 
 .searchButton:hover {
     background-color: #0056b3;
+}
+
+.dropdownIcon {
+    filter: brightness(0) saturate(100%) invert(89%) sepia(19%) saturate(654%) hue-rotate(332deg) brightness(105%) contrast(103%); 
+    /* pour changer la couleur du logo SVG pour correspondre à la couleur "light yellow" du texte */
 }

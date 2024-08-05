@@ -24,8 +24,16 @@
     padding: 8px;
     border: 1px solid var(--light-green);
     background-color: rgba(0, 0, 0, 0);
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 12px;
+    color: var(--white-pink);
     border-radius: 4px;
     font-size: 14px;
     width: 90%;
   }
   
+  .keywordInput:focus {
+    color: var(--white-pink);
+    border-color: var(--white-pink);
+    outline: none;
+  }

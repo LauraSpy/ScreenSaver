@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import Sliders from '../../components/sliders/itemSliders/sliders';
-import GenreSlider from '../../components/sliders/GenreSliders/GenreSliders';
 import { getPopular, getTopRated, getDiscover, getByGenre, getGenres } from '../../api/api-tmdb';
 import FilterSystem from "../../components/FilterSystem/FilterSystem";
 import Pagination from "../../components/Pagination/Pagination";
@@ -50,7 +49,7 @@ const ListItems = () => {
         try {
             let data;
             const type = mediaType === 'films' ? 'movie' : 'tv';
-            console.log("Chargement des items:", { type, genreName, page, activeFilters }); // Log avant le chargement
+            console.log("Chargement des items:", { type, genreName, page, activeFilters }); //log avant chargement
     
             if (activeFilters.genres.length > 0) {
                 const genreIds = activeFilters.genres.join(',');
@@ -117,7 +116,7 @@ const ListItems = () => {
                 <FilterSystem onFilterChange={handleFilterChange} />
             </div>
             <div className={s.container}>
-                <h1 
+                {/* <h1 
                     className={s.containerTitle}
                     // écriture du style ici pour le titre, parce que je n'ai pas trouvé comment modifié avec le prop "listView".
                     style={{
@@ -132,24 +131,22 @@ const ListItems = () => {
                     }}   
                 >
                     {getTitle()}
-                </h1>
+                </h1> */}
                 {loading ? (
                         <p>Chargement...</p>
                     ) : (
                         <>
                             {items.length > 0 ? (
-                                genreName ? (
-                                    <GenreSlider 
-                                        items={items} 
-                                        genreName={genreName} 
-                                        mediaType={mediaType === 'films' ? 'movie' : 'tv'} 
-                                    />
+                                <Sliders 
+                                    title={getTitle()}
+                                    items={items} 
+                                    type={mediaType === 'films' ? 'movie' : 'tv'} 
+                                    isListView={true}
+                                    showGenreFilter={!!genreName}
+                                />
                                 ) : (
-                                    <Sliders items={items} type={mediaType === 'films' ? 'movie' : 'tv'} isListView={true} />
-                                )
-                            ) : (
-                                <p>Aucun élément trouvé.</p>
-                            )}
+                                    <p>Aucun élément trouvé.</p>
+                                )}
                             <Pagination 
                                 currentPage={currentPage} 
                                 totalPages={totalPages} 

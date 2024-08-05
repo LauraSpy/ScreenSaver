@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from './redux/authSlice';
 import './App.css';
 import s from './style.module.css';
 import Header from './components/header/header';
@@ -6,6 +9,15 @@ import BackToTop from './components/buttons/backToTop/backToTop';
 import Footer from './components/footer/footer';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      dispatch(login(JSON.parse(user)));
+    }
+  }, [dispatch]);
+
   return (
     <div className={s.App}>
       <BackToTop />

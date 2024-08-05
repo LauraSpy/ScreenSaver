@@ -5,6 +5,8 @@ import GenreFilter from './GenreFilter/GenreFilter';
 import DurationFilter from './DurationFilter/DurationFilter';
 import KeywordFilter from './KeywordFilter/KeywordFilter';
 import s from './styles.module.css';
+import right from '../../images/buttons/right.svg';
+import bottom from '../../images/buttons/bottom.svg';
 
 const FilterSystem = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
@@ -39,6 +41,11 @@ const FilterSystem = ({ onFilterChange }) => {
       <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
           <button onClick={() => toggleDropdown('streamingCinema')} className={s.dropdownButton}>
             Streaming/Cinéma
+            <img 
+              src={openDropdown === 'streamingCinema' ? bottom : right} 
+              alt="dropdown icon" 
+              className={s.dropdownIcon}
+            />
           </button>
           <div className={s.dropdownContent}>
             <StreamingCinemaFilter 
@@ -51,6 +58,11 @@ const FilterSystem = ({ onFilterChange }) => {
         <div className={`${s.dropdownContainer} ${openDropdown === 'filters' ? s.active : ''}`}>
           <button onClick={() => toggleDropdown('filters')} className={s.dropdownButton}>
             Filtrer
+            <img 
+              src={openDropdown === 'filters' ? bottom : right} 
+              alt="dropdown icon" 
+              className={s.dropdownIcon}
+            />
           </button>
           <div className={s.dropdownContent}>
             <ViewingStatusFilter 

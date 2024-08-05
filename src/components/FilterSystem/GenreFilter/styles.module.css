@@ -28,11 +28,11 @@
   }
   
   .genreButton:hover {
-    background-color: #e0e0e0;
+    background-color: rgba(255, 232, 248, 0.5);
   }
   
   .genreButton.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background-color: #CE66AE;
+    color: var(--white-pink);
+    border-color: var(--light-yellow);
   }

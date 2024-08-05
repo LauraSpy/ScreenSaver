@@ -41,7 +41,14 @@ header {
 
 .searchbar input::placeholder {
     color: rgba(255,216,243,0.5);
-    font-size: 0.5rem;
+    font-size: 0.6rem;
+}
+
+.searchbarInput:focus {
+    outline: none;
+    color: var(--white-pink);
+    border-color: var(--white-pink);
+    font-size: 0.6rem;
 }
 
 .searchbarInput {

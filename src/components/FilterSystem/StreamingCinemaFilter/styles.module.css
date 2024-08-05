@@ -1,27 +1,28 @@
 .streamingCinemaFilter {
-    margin: 20px 0;
+    margin: 10px 0;
   }
   
   .buttons {
     display: flex;
+    align-items: flex-start;
     gap: 10px;
   }
   
   .button {
-    padding: 10px 20px;
-    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border: 1px solid var(--light-yellow);
     border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: none;
     cursor: pointer;
     transition: background-color 0.3s;
   }
   
   .button:hover {
-    background-color: #e0e0e0;
+    background-color: rgb(255, 232, 248, 0.5);
   }
   
   .button.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background-color: rgb(255, 232, 248);
+    color: var(--dark-bg);
+    border-color: var(--light-yellow);
   }

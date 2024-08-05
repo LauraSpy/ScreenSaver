@@ -53,21 +53,6 @@ const NavBar = () => {
                     )}
                 </li>
                 <li
-                    onMouseEnter={() => handleMouseEnter('genres')}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    <button>
-                        Genres <img src={arrowDown} alt="arrow down" />
-                    </button>
-                    {dropdownOpen === 'genres' && (
-                        <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/genres/action')}>Action</li>
-                            <li onClick={() => navigate('/genres/comedy')}>Comédie</li>
-                            <li onClick={() => navigate('/genres/drama')}>Drame</li>
-                        </ul>
-                    )}
-                </li>
-                <li
                     onMouseEnter={() => handleMouseEnter('myList')}
                     onMouseLeave={handleMouseLeave}
                 >
