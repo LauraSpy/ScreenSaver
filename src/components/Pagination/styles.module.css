@@ -1,0 +1,35 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: none;
+    cursor: pointer;
+    color: var(--light-blue);
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.pagination button.disabledButton {
+    background-color: #3C0753;
+    color: #718185;
+    cursor: not-allowed;
+}
+
+.pagination button.activePage {
+    background-color: var(--bg-dark);
+    color: var(--light-blue);
+    border-color: #007bff;
+}
+
+.pagination button[disabled] {
+    pointer-events: none;
+}

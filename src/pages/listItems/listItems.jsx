@@ -4,6 +4,7 @@ import Sliders from '../../components/sliders/itemSliders/sliders';
 import GenreSlider from '../../components/sliders/GenreSliders/GenreSliders';
 import { getPopular, getTopRated, getDiscover, getByGenre, getGenres } from '../../api/api-tmdb';
 import FilterSystem from "../../components/FilterSystem/FilterSystem";
+import Pagination from "../../components/Pagination/Pagination";
 import s from './styles.module.css';
 
 const ITEMS_PER_PAGE = 50;
@@ -79,7 +80,7 @@ const ListItems = () => {
     
             console.log("Réponse brute de l'API:", data); // Log de la réponse brute de l'API
             setItems(data.results.slice(0, ITEMS_PER_PAGE));
-            setTotalPages(Math.min(data.total_pages, 1000));
+            setTotalPages(Math.min(data.total_pages, 500));
             console.log("Items chargés:", data.results.slice(0, ITEMS_PER_PAGE)); // Log des items chargés
         } catch (error) {
             console.error("Erreur lors du chargement des éléments:", error);
@@ -116,7 +117,22 @@ const ListItems = () => {
                 <FilterSystem onFilterChange={handleFilterChange} />
             </div>
             <div className={s.container}>
-            <h1>{getTitle()}</h1>
+                <h1 
+                    className={s.containerTitle}
+                    // écriture du style ici pour le titre, parce que je n'ai pas trouvé comment modifié avec le prop "listView".
+                    style={{
+                        color: 'rgb(255, 232, 248)',
+                        marginTop: '5%',
+                        marginLeft: '10%',
+                        fontFamily: '"Red Hat Display", sans-serif',
+                        fontWeight: 'bold',
+                        fontSize: '1.5rem',
+                        textTransform: 'uppercase',
+                        textAlign: 'left',
+                    }}   
+                >
+                    {getTitle()}
+                </h1>
                 {loading ? (
                         <p>Chargement...</p>
                     ) : (
@@ -134,21 +150,11 @@ const ListItems = () => {
                             ) : (
                                 <p>Aucun élément trouvé.</p>
                             )}
-                            <div className={s.pagination}>
-                                <button 
-                                    onClick={() => handlePageChange(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                >
-                                    Précédent
-                                </button>
-                                <span>Page {currentPage} sur {totalPages}</span>
-                                <button 
-                                    onClick={() => handlePageChange(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                >
-                                    Suivant
-                                </button>
-                            </div>
+                            <Pagination 
+                                currentPage={currentPage} 
+                                totalPages={totalPages} 
+                                handlePageChange={handlePageChange} 
+                            />
                         </>
                     )}
             </div>

@@ -13,7 +13,7 @@
 .sliderWrapper.listView .sliderMap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .sliderMap {
@@ -35,7 +35,7 @@
     border-image-slice: 0 0 1 0;
 }
 
-.sliderTitle h1 {
+.sliderTitle h1, .listView {
     color: var(--white-pink);
     margin-bottom: 2%;
     font-family: "Red Hat Display", sans-serif;
