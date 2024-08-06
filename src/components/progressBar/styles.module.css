@@ -1,0 +1,38 @@
+.progressContainer {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    margin: 10px;
+    color: var(--white-pink);
+    font-family: "Red Hat Mono", monospace;
+}
+
+.progressRing {
+    transform: rotate(-90deg);
+}
+
+.progressRingCircle {
+    transition: stroke-dashoffset 0.35s;
+    transform-origin: 50% 50%;
+}
+
+.progressText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 60%;
+}
+
+.progressNumber {
+    font-size: 1.7rem;
+    font-weight: bold;
+    display: block;
+}
+
+.progressLabel {
+    font-size: 0.8rem;
+    display: block;
+}

@@ -1,5 +1,4 @@
-// src/components/UserProfile.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/authSlice';
 import defaultBanner from '../../images/banner/banner-default.png';
@@ -8,13 +7,17 @@ import banner1 from '../../images/banner/banner1.jpg';
 import banner2 from '../../images/banner/banner2.jpg';
 import avatar1 from '../../images/avatar/avatar1.jpg';
 import avatar2 from '../../images/avatar/avatar2.jpg';
+import Sliders from '../../components/sliders/itemSliders/sliders';
+import { getTrending } from '../../api/api-tmdb';
 import s from './styles.module.css';
+import CircularProgressBar from '../progressBar/CircularProgressBar';
 
 const UserProfile = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [bannerOptions] = useState([defaultBanner, banner1, banner2]);
   const [avatarOptions] = useState([defaultAvatar, avatar1, avatar2]);
+  const bannerRef = useRef(null);
 
   const handleImageChange = (type) => {
     const options = type === 'banner' ? bannerOptions : avatarOptions;
@@ -24,39 +27,106 @@ const UserProfile = () => {
     dispatch(updateProfile({ [type]: newImage }));
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (bannerRef.current) {
+        const scrollPosition = window.scrollY;
+        const bannerElement = bannerRef.current;
+        const bannerHeight = 60; // Hauteur initiale en vh
+        const maxHeight = 80; // Hauteur maximale en vh
+        const scrollPercentage = Math.min(scrollPosition / (window.innerHeight * 0.5), 1);
+        const newHeight = bannerHeight + scrollPercentage * (maxHeight - bannerHeight);
+        bannerElement.style.height = `${newHeight}vh`;
+        
+        // Ajuster l'opacité
+        bannerElement.style.opacity = 1 - scrollPercentage * 0.5;
+      }
+    };
+
+    const handleScrollWithRAF = () => {
+      requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', handleScrollWithRAF);
+    return () => window.removeEventListener('scroll', handleScrollWithRAF);
+  }, []);
+
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [trendingTVShows, setTrendingTVShows] = useState([]);
+
+  useEffect(() => {
+      const fetchMovies = async () => {
+          try {
+              const trendingMoviesData = await getTrending('movie');
+              setTrendingMovies(trendingMoviesData.results);
+
+              const trendingTVShowsData = await getTrending('tv');
+              setTrendingTVShows(trendingTVShowsData.results);
+          } catch (error) {
+              console.error("Erreur lors de la récupération des films:", error);
+          }
+      };
+
+      fetchMovies();
+  }, []);
+
   // Simuler des données de progression
   const progress = {
-    moviesWatched: 50,
-    seriesWatched: 30,
-    rated: 40,
-    favorites: 20,
-    toWatch: 60,
+    moviesWatched: { total: 50, percentage: 70 },
+    seriesWatched: { total: 30, percentage: 60 },
+    rated: { total: 40, percentage: 80 },
+    favorites: { total: 20, percentage: 40 },
+    toWatch: { total: 60, percentage: 30 },
   };
 
   return (
     <div>
-      <div>
-        <img src={user.banner || defaultBanner} alt="Bannière" style={{width: '100%', height: '55vh', objectFit: 'cover'}} />
-        <button onClick={() => handleImageChange('banner')}>
-          Changer la bannière
+      <div className={s.bannerContainer} ref={bannerRef}>
+        <img className={s.banner} src={user.banner || defaultBanner} alt="Bannière" />
+        <button className={s.changeBanner} onClick={() => handleImageChange('banner')}>
+          <i className="fas fa-pencil-alt"></i>
         </button>
       </div>
-      <div>
-        <img src={user.avatar || defaultAvatar} alt="Avatar" style={{width: '100px', height: '100px', objectFit: 'cover', borderRadius: '50%'}} />
-        <button onClick={() => handleImageChange('avatar')}>
-          Changer l'avatar
+      <div className={s.avatarContainer}>
+        <img className={s.avatar} src={user.avatar || defaultAvatar} alt="Avatar" />
+        <button className={s.changeAvatar} onClick={() => handleImageChange('avatar')}>
+          <i className="fas fa-pencil-alt"></i>
         </button>
       </div>
-      <h2>{user.pseudo}</h2>
-      <div>
-        <h3>Progression</h3>
-        <div>Films regardés: {progress.moviesWatched}%</div>
-        <div>Séries regardées: {progress.seriesWatched}%</div>
-        <div>Films/Séries notés: {progress.rated}%</div>
-        <div>Favoris: {progress.favorites}%</div>
-        <div>À voir: {progress.toWatch}%</div>
+      <h2 className={s.username}>{user.pseudo}</h2>
+      <div className={s.progressSection}>
+        <h3 className={s.collection}>Ma Collection</h3>
+        <div className={s.progressBars}>
+          <CircularProgressBar 
+            percentage={progress.moviesWatched.percentage} 
+            label="Total films vus" 
+            total={progress.moviesWatched.total} 
+          />
+          <CircularProgressBar 
+            percentage={progress.seriesWatched.percentage} 
+            label="Total séries vues" 
+            total={progress.seriesWatched.total} 
+          />
+          <CircularProgressBar 
+            percentage={progress.rated.percentage} 
+            label="Total Films/Séries notés" 
+            total={progress.rated.total} 
+          />
+          <CircularProgressBar 
+            percentage={progress.favorites.percentage} 
+            label="Favoris" 
+            total={progress.favorites.total} 
+          />
+          <CircularProgressBar 
+            percentage={progress.toWatch.percentage} 
+            label="À voir" 
+            total={progress.toWatch.total} 
+          />
+        </div>
       </div>
-    </div>
+      <Sliders title="Tendances des films" items={trendingMovies} type="movie" />
+      <Sliders title="Tendances des séries" items={trendingTVShows} type="tv" />
+    </div>   
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
+import s from './styles.module.css';
 
 const LoginForm = () => {
     const [pseudo, setPseudo] = useState('');
@@ -30,28 +31,37 @@ const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="pseudo">Pseudo</label>
+        <form onSubmit={handleSubmit} className={s.form}>
+            <h1 className={s.connexion}>Connexion</h1>
+            <div className={s.pseudo}>
+                <div className={s.label}>
+                    <label htmlFor="pseudo">Pseudo</label><span className={s.needed}>*</span>
+                </div>
                 <input
                     type="text"
                     id="pseudo"
                     value={pseudo}
                     onChange={(e) => setPseudo(e.target.value)}
+                    className={s.input}
                 />
-                {errors.pseudo && <span>{errors.pseudo}</span>}
+                <br />
+                {errors.pseudo && <span className={s.error}>{errors.pseudo}</span>}
             </div>
-            <div>
-                <label htmlFor="password">Mot de passe</label>
+            <div className={s.password}>
+                <div className={s.label}>
+                    <label htmlFor="password">Mot de passe</label><span className={s.needed}>*</span>
+                </div>
                 <input
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={s.input}
                 />
-                {errors.password && <span>{errors.password}</span>}
+                <br />
+                {errors.password && <span className={s.error}>{errors.password}</span>}
             </div>
-            <button type="submit">Se connecter</button>
+            <button type="submit" className={s.submit}>Se connecter</button>
         </form>
     );
 };

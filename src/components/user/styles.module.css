@@ -1,0 +1,76 @@
+.bannerContainer {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.changeBanner {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    color: var(--light-blue);
+    border: 2px solid var(--light-blue);
+    padding: 0.6%;
+    border-radius: 50%;
+    z-index: 1000;
+}
+
+.avatarContainer {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    left: 10%;
+    bottom: 15%;
+    z-index: 10;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.changeAvatar {
+    position: absolute;
+    top: 65%;
+    right: 0;
+    padding: 5%;
+    color: var(--light-blue);
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+    border: 3px solid var(--bg-dark);
+}
+
+.username {
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--white-pink);
+    margin-left: 30%;
+    padding: 3% 5%;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+
+.collection {
+    color: var(--white-pink);
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: left;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
