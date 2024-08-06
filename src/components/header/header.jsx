@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'; //va permettre d'utiliser le sélecteur "user" pour l'avatar
 import { useNavigate, Link } from 'react-router-dom';
 import s from './styles.module.css';
 import logoSite from '../../images/logo/logo.svg';
 import logoSearch from '../../images/buttons/bouton-search.svg';
 import logoNotif from '../../images/icon/notif.svg';
-import avatar from '../../images/avatar/default-avatar.svg';
+import defaultAvatar from '../../images/avatar/avatar-default.png';
 import NavBar from '../navbar/navbar';
 
 const Header = () => {
+    const user = useSelector((state) => state.auth.user); //ici on appelle le "user" pour mettre à jour l'avatar
     const [searchTerm, setSearchTerm] = useState('');
     const [isSticky, setIsSticky] = useState(false);
     const navigate = useNavigate();
@@ -63,7 +65,8 @@ const Header = () => {
                 </div>
                 <div className={s.avatar}>
                     <Link to='/profile'>
-                        <img src={avatar} alt="avatar" />
+                    {/* ici, l'avatar se met à jour en fonction du choix de l'utilisateur pour son avatar sur son profil */}
+                        <img src={user.avatar || defaultAvatar} alt="avatar" /> 
                     </Link>
                 </div>
             </div>

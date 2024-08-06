@@ -63,12 +63,12 @@ header {
 .avatar img {
     width: 50px;
     height: 50px;
+    object-fit: cover;
     background-color: var(--light-green);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20%;
 }
 
 .notif img {
