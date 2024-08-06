@@ -88,3 +88,148 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour donner un effet de profondeur */
 }
 
+/* Styles pour la barre de recherche en overlay */
+.searchOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.searchbarOverlay {
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+.menuBurger {
+    display: none;
+    cursor: pointer;
+}
+
+.menuBurger i {
+    font-size: 2rem;
+    color: var(--white-pink);
+}
+
+.menuOverlay {
+    position: fixed;
+    top: 12.1vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2000;
+}
+
+.menuOverlay .searchbarOverlay {
+    margin-top: 20px;
+}
+
+.tabletIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tabletIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.expandedSearchBar {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bg-dark);
+    transition: all 0.3s ease;
+}
+
+.expandedSearchBar form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expandedSearchBar .searchbarInput {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.expandedSearchBar .searchLogo {
+    position: static;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    .logoSite {
+        margin-right: 15%;
+    }
+
+    .searchbar {
+        display: none;
+    }
+
+    .searchLogo {
+        display: block;
+        cursor: pointer;
+        right: 50%;
+    }
+
+    .tabletIcons {
+        order: 3;
+    }
+
+    .avatar {
+        order: 4;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .notif {
+        display: none;
+    }
+
+    .menuBurger {
+        display: block;
+        order: 1;
+    }
+
+    .headerContent {
+        justify-content: space-around;
+        height: 12vh;
+    }
+
+    /* je viens placer l'emplacement du logo au milieu */
+    .logoSite {
+        order: 2;
+        /* je viens combler l'espace manquant par le logo notif qui n'apparaît pas dans la version portable */
+        margin-left: -5%;
+        margin-right: -5%;
+    }
+
+    .logoSite img {
+        width: 50px;
+        height: auto;
+    }
+
+    .tabletIcons {
+        order: 3;
+    }
+
+    .avatar {
+        order: 4;
+    }
+}
