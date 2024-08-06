@@ -10,12 +10,15 @@ const RatingButton = ({ rating, size = 'normal' }) => {
     setIsFlipped(!isFlipped);
   };
 
+  // je corrige avec cette constante le style-inline de l'icon quand il est retourné, bug d'affichage que je ne réussissais pas à corriger directement dans le CSS avec l'icon de l'étoile
+  const iconStyle = size === 'small' ? { fontSize: '0.5em', fontWeight: '200' } : {};
+
   return (
     <div className={`${s.ratingButton} ${s[size]} ${isFlipped ? s.flipped : ''}`} onClick={handleClick}>
       <div className={s.front}>
         <i className="far fa-star"></i>
       </div>
-      <div className={s.back}>
+      <div className={s.back} style={iconStyle}>
         {rating ? rating.toFixed(1) : 'N/A'}
       </div>
     </div>
