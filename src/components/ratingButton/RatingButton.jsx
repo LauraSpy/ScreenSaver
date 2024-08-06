@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import s from './styles.module.css';
 
-const RatingButton = ({ rating }) => {
+//ajout d'un prop TAILLE pour l'affichage de l'icon sur la page où "listView = true"
+const RatingButton = ({ rating, size = 'normal' }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleClick = (e) => {
@@ -10,7 +11,7 @@ const RatingButton = ({ rating }) => {
   };
 
   return (
-    <div className={`${s.ratingButton} ${isFlipped ? s.flipped : ''}`} onClick={handleClick}>
+    <div className={`${s.ratingButton} ${s[size]} ${isFlipped ? s.flipped : ''}`} onClick={handleClick}>
       <div className={s.front}>
         <i className="far fa-star"></i>
       </div>

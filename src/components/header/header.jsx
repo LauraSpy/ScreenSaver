@@ -65,8 +65,16 @@ const Header = () => {
                 </div>
                 <div className={s.avatar}>
                     <Link to='/profile'>
-                    {/* ici, l'avatar se met à jour en fonction du choix de l'utilisateur pour son avatar sur son profil */}
-                        <img src={user.avatar || defaultAvatar} alt="avatar" /> 
+                    {/* ici, l'avatar se met à jour en fonction du choix de l'utilisateur pour son avatar sur son profil 
+                    Si l'utilisateur n'est pas connecté, on affiche l'image par défault : on vérifier si user = null dans le Redux store avec la condition ternaire*/}
+                        <img 
+                            src={user ? (user.avatar || defaultAvatar) : defaultAvatar} 
+                            alt="avatar"
+                            onError={(e) => {
+                                e.target.onerror = null; 
+                                e.target.src = defaultAvatar;
+                              }}
+                        /> 
                     </Link>
                 </div>
             </div>

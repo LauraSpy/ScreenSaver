@@ -88,7 +88,16 @@ const UserProfile = () => {
         </button>
       </div>
       <div className={s.avatarContainer}>
-        <img className={s.avatar} src={user.avatar || defaultAvatar} alt="Avatar" />
+        <img 
+          className={s.avatar} 
+          src={user.avatar || defaultAvatar} 
+          alt="Avatar"
+          // l'ajout de onError permet d'afficher l'image par défaut à la connexion (sans cet élément, seul le texte du "alt" s'affichait)
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src = defaultAvatar;
+          }} 
+        />
         <button className={s.changeAvatar} onClick={() => handleImageChange('avatar')}>
           <i className="fas fa-pencil-alt"></i>
         </button>

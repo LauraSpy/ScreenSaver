@@ -8,6 +8,17 @@
     cursor: pointer;
     z-index: 5; 
   }
+
+  .front.small, .back.small {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* ajout d'un prop pour la taille, l'affichage de l'icon ne semblait pas vouloir être pris en compte sur la page "ListItems" en particulier */
+  .ratingButton.small .back i,
+  .ratingButton.small .front i {
+    font-size: 0.5em;
+  }
   
   .ratingButton .front,
   .ratingButton .back {

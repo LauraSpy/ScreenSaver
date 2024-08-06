@@ -116,22 +116,6 @@ const ListItems = () => {
                 <FilterSystem onFilterChange={handleFilterChange} />
             </div>
             <div className={s.container}>
-                {/* <h1 
-                    className={s.containerTitle}
-                    // écriture du style ici pour le titre, parce que je n'ai pas trouvé comment modifié avec le prop "listView".
-                    style={{
-                        color: 'rgb(255, 232, 248)',
-                        marginTop: '5%',
-                        marginLeft: '10%',
-                        fontFamily: '"Red Hat Display", sans-serif',
-                        fontWeight: 'bold',
-                        fontSize: '1.5rem',
-                        textTransform: 'uppercase',
-                        textAlign: 'left',
-                    }}   
-                >
-                    {getTitle()}
-                </h1> */}
                 {loading ? (
                         <p>Chargement...</p>
                     ) : (

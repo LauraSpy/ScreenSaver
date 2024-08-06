@@ -122,7 +122,8 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         backgroundPosition: 'center',
                                     }}
                                 >
-                                    <RatingButton rating={item.vote_average} />
+                                    <RatingButton rating={item.vote_average} size={isListView ? 'small' : 'normal'} />
+                                    {/* si ListView = true : on affiche l'icon de RatingButton plus petit, bug d'affichage autrement */}
                                 </div>
                                 <div className={s.itemCardBody}>
                                     <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
