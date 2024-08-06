@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+//Fichier créés pour simuler une authentification d'un utilisateur. 
+
 const initialState = {
     user: { //dans l'état initiale de user, on initialise les états qui seront modifiés lors de la connexion de l'uilisateur
         pseudo: 'JohnDoe',
