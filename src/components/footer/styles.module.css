@@ -1,7 +1,157 @@
-.Footer img {
-    width: 100px;
+.logoFooter img {
+    width: 20vmax;
 }
 
 .Footer {
-    padding: 2.5%;
+    margin: 5%;
+}
+
+.footerHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 3%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.logoSocialMedia {
+    width: 50vmax;
+}
+
+.socialIcon {
+    padding: 1%;
+}
+
+.socialIcon img {
+    width: 3vmax;
+    height: 3vh;
+}
+
+.footerLeft {
+    display: flex;
+    text-align: left;
+}
+
+.filmListMenu, .listSerieMenu {
+    list-style-type: none;
+    padding-top: 15%;
+    width: 20vmax;
+    font-family: "Red Hat Text", sans-serif;
+}
+
+.footerBottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 5%;
+    color: var(--white-pink);
+}
+
+.footerRight {
+    text-align: left;
+    display: flex;
+    gap: 20%;
+    height: 15vh;
+}
+
+.film, .series {
+    width: 20vmax;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.listBottomLeft {
+    width: 20vmax;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.listBottomRight {
+    font-family: "Red Hat Text", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.identity {
+    margin-top: 5%;
+    color: var(--white-pink);
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+    .footerBottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 12%;
+        gap: 10vmax;
+    }
+
+    .footerLeft, .footerRight {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .footerLeft {
+        gap: 20vmax;
+    }
+
+    .footerRight {
+        gap: 15vmax;
+        
+    }
+
+    .listBottomLeft {
+        width: 25vmax;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .footerHeader {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 30px;
+    }
+
+    .logoFooter {
+        margin-top: 20px;
+    }
+
+    .logoFooter img {
+        width: 30vmax;
+    }
+    .footerBottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-top: 5%;
+    }
+
+    .footerLeft, .footerRight {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerRight {
+        gap: 0;
+        height: 23vh;
+        align-items: center;
+    }
+
+    .footerLeft {
+        gap: 30px;
+    }
+
+    .listBottomLeft {
+        margin-bottom: 20px;
+    }
 }

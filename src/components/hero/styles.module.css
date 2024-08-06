@@ -252,15 +252,17 @@ body {
 @media screen and (max-width: 390px) {
   .heroHeader h1 {
     font-size: 15px;
+    width: 60%;
   }
 
   .heroHeader p {
-    font-size: 11px;
+    font-size: 12px;
     padding-bottom: 5%;
   }
 
   .logoSite {
     width: 60%;
+    margin-top: 10%;
   }
 
   .backgroundSvg3 {

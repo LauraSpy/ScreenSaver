@@ -87,3 +87,4 @@ header {
     z-index: 1000; /* Assure que la barre de navigation est au-dessus des autres éléments */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour donner un effet de profondeur */
 }
+
