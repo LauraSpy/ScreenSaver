@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 import ItemOptions from '../../itemOptions/ItemsOptions';
+import RatingButton from '../../ratingButton/RatingButton';
 import { getGenres, getByGenre } from '../../../api/api-tmdb';
 
 const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter = false, initialGenre = null }) => {
@@ -121,6 +122,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         backgroundPosition: 'center',
                                     }}
                                 >
+                                    <RatingButton rating={item.vote_average} />
                                 </div>
                                 <div className={s.itemCardBody}>
                                     <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
