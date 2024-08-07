@@ -4,11 +4,21 @@ import s from './styles.module.css';
 const CircularProgressBar = ({ percentage, label, total }) => {
   const [animatedPercentage, setAnimatedPercentage] = useState(0);
   const [animatedTotal, setAnimatedTotal] = useState(0);
-  const size = 150; // Augmentez cette valeur pour agrandir le cercle
-  const strokeWidth = 5; // Augmentez cette valeur pour une ligne plus épaisse
+  const size = 150;
+  const strokeWidth = 5;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (animatedPercentage / 100) * circumference;
+
+  const getColor = (percent) => {
+    if (percent === 100) return 'var(--bright-bg)'; 
+    if (percent >= 90) return '#A8FDA2';  
+    if (percent >= 70) return 'var(--light-blue)'; 
+    if (percent >= 50) return '#CE66AE'; 
+    if (percent >= 30) return '#FDECB1'; 
+    if (percent >= 10) return '#FFA500'; 
+    return '#808080'; 
+  };
 
   useEffect(() => {
     let percentageInterval;
@@ -60,7 +70,7 @@ const CircularProgressBar = ({ percentage, label, total }) => {
         />
         <circle
           className={s.progressRingCircle}
-          stroke="#CE66AE"
+          stroke={getColor(animatedPercentage)}
           strokeWidth={strokeWidth}
           fill="transparent"
           r={radius}
