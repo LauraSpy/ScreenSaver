@@ -1,0 +1,82 @@
+.contactTitle {
+    margin-bottom: 10%;
+    color: var(--white-pink);
+    text-transform: uppercase;
+    font-size: 2vmax;
+}
+
+.pseudo, .email, .message {
+    color: var(--white-pink);
+    font-family: "Red Hat Display", sans-serif;
+    text-align: left;
+}
+
+.textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.pseudo, .email, .message {
+    margin-bottom: 20px;
+}
+
+.form {
+    margin: auto;
+    height: 60vh;
+    width: 35vmax;
+    padding: 2% 5%;
+}
+
+.input {
+    background-color: rgb(255, 232, 248, 0);
+    border-radius: 5px;
+    padding: 2%;
+    border: 1px solid var(--pastel-pink);
+    color: var(--white-pink);
+    font-family: "Red Hat Mono", monospace;
+    width: 100%;
+}
+
+.input::placeholder {
+    color: var(--white-pink);
+    font-family: "Red Hat Display", sans-serif;
+    opacity: 0.7; /* Vous pouvez ajuster l'opacité si nécessaire */
+}
+
+.input:focus{
+    outline: none;
+    border: 1px solid var(--pastel-pink);
+    color: var(--white-pink);
+}
+
+.needed {
+    color: red;
+    position: absolute;
+    padding-left: 0.5%;
+}
+
+.submit {
+    margin: 5% 10%;
+    padding: 2% 5%;
+    background-color: var(--light-blue);
+    border-radius: 50px;
+    color: var(--bg-dark);
+    font-family: "Red Hat Mono", monospace;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.submit:hover {
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px 0px inset;
+}
+
+.error {
+    font-size: 12px;
+    color: var(--pastel-pink);
+}
+
+.characterCount {
+    text-align: right;
+    font-size: 11px;
+    opacity: 0.7;
+}

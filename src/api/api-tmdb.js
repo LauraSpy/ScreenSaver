@@ -19,6 +19,7 @@ const endpoints = {
     videos: (type, id) => `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=${LANGUAGE}&include_video_language=fr,en`,
     similar: (type, id, page) => `${BASE_URL}/${type}/${id}/similar?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
     watchProviders: (type, id) => `${BASE_URL}/${type}/${id}/watch/providers?api_key=${API_KEY}`,
+    search: (query, page) => `${BASE_URL}/search/multi?api_key=${API_KEY}&language=${LANGUAGE}&query=${encodeURIComponent(query)}&page=${page}`,
 };
 
 const fetchData = async (url, cacheKey) => {
@@ -164,5 +165,10 @@ export const getNowPlaying = async (page = 1) => {
 export const getAiringToday = async (page = 1) => {
     const url = endpoints.airingToday(page);
     return fetchData(url, `airingToday_${page}`);
+};
+
+export const searchItems = async (query, page = 1) => {
+    const url = endpoints.search(query, page);
+    return fetchData(url, `search_${query}_${page}`);
 };
 

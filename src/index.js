@@ -14,6 +14,7 @@ import TermsOfService from '../src/components/TermsOfService/TermsOfService.jsx'
 import ListItems from './pages/listItems/listItems.jsx';
 import ProtectedRoutes from './utils/ProtectedRoutes.jsx';
 import LoginForm from './components/form/LoginForm.jsx';
+import SearchResults from './pages/searchResults/SearchResults.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -28,6 +29,7 @@ root.render(
             <Route path="/list/:mediaType/:listType" element={<ListItems />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/search" element={<SearchResults />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/terms" Component={TermsOfService} />

@@ -13,7 +13,7 @@
 }
 
 .progressRingCircle {
-    transition: stroke-dashoffset 0.35s;
+    transition: stroke-dashoffset 0.35s, stroke 0.35s;
     transform-origin: 50% 50%;
 }
 
