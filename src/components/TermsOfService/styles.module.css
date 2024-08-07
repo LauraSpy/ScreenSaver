@@ -1,0 +1,30 @@
+.termContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: var(--pastel-pink);
+    margin: 5%;
+  }
+  
+  h2 {
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--light-blue);
+    margin-top: 5%;
+  }
+  
+  p {
+    color: var(--white-pink);
+    font-family: "Red Hat Text", sans-serif;
+  }
+  

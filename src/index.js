@@ -10,6 +10,7 @@ import DetailFilm from './pages/detail/detail.jsx';
 import UserProfilePage from './pages/profil/profil.jsx';
 import Contact from './pages/contact/contact.jsx';
 import Home from './pages/home/homepage.jsx';
+import TermsOfService from '../src/components/TermsOfService/TermsOfService.jsx';
 import ListItems from './pages/listItems/listItems.jsx';
 import ProtectedRoutes from './utils/ProtectedRoutes.jsx';
 import LoginForm from './components/form/LoginForm.jsx';
@@ -29,6 +30,7 @@ root.render(
             <Route path="/contact" element={<Contact />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<UserProfilePage />} />
+              <Route path="/terms" Component={TermsOfService} />
             </Route>
           </Route>
         </Routes>

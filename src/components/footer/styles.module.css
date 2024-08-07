@@ -41,6 +41,11 @@
     font-family: "Red Hat Text", sans-serif;
 }
 
+.filmListMenu li:hover, .listSerieMenu li:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .footerBottom {
     display: flex;
     flex-direction: row;
@@ -82,6 +87,15 @@
     color: var(--white-pink);
     font-family: "Red Hat Display", sans-serif;
     font-size: 12px;
+}
+
+.contact, .cgu {
+    text-decoration: none;
+    color: var(--white-pink);
+}
+
+.contact:hover, .cgu:hover {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 600px) {

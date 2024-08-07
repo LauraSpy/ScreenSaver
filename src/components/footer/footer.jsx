@@ -72,8 +72,12 @@ const Footer = () => {
                         <h2>Mes Favoris</h2>
                     </div>
                     <div className={s.listBottomRight}>
-                        <p>Contact</p>
-                        <p>CGU</p>
+                        <Link to='/contact' className={s.contact}>
+                            <p>Contact</p>
+                        </Link>
+                        <Link to='/terms' className={s.cgu}>
+                            <p>CGU</p>
+                        </Link>
                     </div>
                 </div>
             </div>
