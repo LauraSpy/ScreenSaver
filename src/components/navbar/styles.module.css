@@ -48,10 +48,54 @@
 
 .dropdown li:hover {
     background-color: rgba(240, 240, 240, 0.2); /* Couleur de fond au survol */
+    border-radius: 10px;
 }
 
 button {
     background-color: rgba(0, 0, 0, 0);
     border: none;
     color: var(--white-pink);
+}
+
+.navOverlay {
+    /* Styles spécifiques pour la nav dans l'overlay */
+    width: 100%;
+    padding: 10%;
+}
+
+.navLinksOverlay {
+    /* Styles pour les liens dans l'overlay */
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.navLinksOverlay > li {
+    /* Styles pour chaque élément de la liste dans l'overlay */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.navLinksOverlay button {
+    /* Styles pour les boutons dans l'overlay */
+    width: 50%;
+    text-align: left;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Red Hat Text", sans-serif;
+}
+
+.navLinksOverlay .dropdown {
+    /* Styles pour le dropdown dans l'overlay */
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    background: none;
+    box-shadow: none;
+}
+
+.navLinksOverlay .dropdown li {
+    /* Styles pour les éléments du dropdown dans l'overlay */
+    padding: 2% 5%;
+    font-family: "Red Hat Text", sans-serif;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '../../images/logo/logo.svg';
 import insta from '../../images/logo/social/instagram-brands-solid.svg';
 import facebook from '../../images/logo/social/facebook-brands-solid.svg';
@@ -29,7 +29,9 @@ const Footer = () => {
         <div className={s.Footer}>
             <div className={s.footerHeader}>
                 <div className={s.logoFooter}>
-                    <img src={logo} alt="logo site" />
+                    <Link to="/">
+                        <img src={logo} alt="logo site" />
+                    </Link>
                 </div>
                 <div className={s.logoSocialMedia}>
                     {socialMedias.map((social, index) => (

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 import arrowDown from '../../images/buttons/bottom.svg';
 
-const NavBar = () => {
+const NavBar = ({ isOverlay = false }) => {
     const [dropdownOpen, setDropdownOpen] = useState(null);
     const navigate = useNavigate();
 
@@ -16,8 +16,8 @@ const NavBar = () => {
     };
 
     return (
-        <nav>
-            <ul className={s.navLinks}>
+        <nav className={isOverlay ? s.navOverlay : ''}>
+            <ul className={`${s.navLinks} ${isOverlay ? s.navLinksOverlay : ''}`}>
                 <li
                     onMouseEnter={() => handleMouseEnter('films')}
                     onMouseLeave={handleMouseLeave}

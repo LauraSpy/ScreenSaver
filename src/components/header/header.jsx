@@ -36,8 +36,11 @@ const Header = () => {
     };
 
     const toggleMenuOverlay = () => {
+        console.log('Toggle Menu Overlay:', !showMenuOverlay);
         setShowMenuOverlay(!showMenuOverlay);
     };
+
+    console.log('Screen Size:', screenSize);
 
     useEffect(() => {
         const handleResize = () => {
@@ -48,6 +51,7 @@ const Header = () => {
             } else {
                 setScreenSize('desktop');
             }
+            console.log('Resize - New Screen Size:', screenSize);
         };
 
         const handleScroll = () => {
@@ -69,12 +73,16 @@ const Header = () => {
             <div className={s.headerContent}>
                 {screenSize === 'mobile' && (
                     <div className={s.menuBurger} onClick={toggleMenuOverlay}>
-                        <i className={showMenuOverlay ? 'fas fa-times' : 'fas fa-bars'}></i>
-                    </div>
+                        <i className={`${showMenuOverlay ? 'fas fa-times' : 'fas fa-bars'} ${s.iconLarge}`}></i>
+                    </div>                
                 )}
                 <div className={s.logoSite}>
                     <Link to='/'>
-                        <img src={logoSiteMobile} alt="logo site" />
+                    {/* ici, on va faire une condition pour changer le logo du site en fonction de l'écran : si mobile, on passe à la version du logo fait pour le mobile */}
+                        <img 
+                            src={screenSize === 'mobile' ? logoSiteMobile : logoSite} 
+                            alt="logo site" 
+                        />
                     </Link>
                 </div>
                 {screenSize === 'desktop' && (
@@ -144,7 +152,7 @@ const Header = () => {
             {screenSize === 'desktop' && <NavBar />}
             {showMenuOverlay && screenSize === 'mobile' && (
                 <div className={s.menuOverlay}>
-                    <NavBar />
+                    <NavBar isOverlay={true} />
                     <div className={s.searchbarOverlay}>
                         <form onSubmit={handleSearchSubmit}>
                             <input 
