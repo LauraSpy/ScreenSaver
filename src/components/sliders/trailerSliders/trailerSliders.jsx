@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
-import ItemOptions from '../../itemOptions/ItemsOptions';
 import { getVideos } from '../../../api/api-tmdb';
 
 const TrailerSliders = ({ title, items = [], type, maxItems }) => {
-    const navigate = useNavigate();
     const [videos, setVideos] = useState({});
 
     useEffect(() => {
@@ -36,10 +33,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
         }
     }, [items, type]);
 
-    const handleItemClick = (itemId) => {
-        navigate(`/${type}/${itemId}`);
-    };
-
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
 
     console.log('Displayed items:', displayedItems);
@@ -57,10 +50,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                                 key={item.id}
                                 className={`${s.sliderItem} ${index === displayedItems.length - 1 ? s.lastItem : ''}`}
                             >   
-                                <ItemOptions 
-                                    itemId={item.id}
-                                    onViewDetails={handleItemClick}
-                                />
                                 <div className={s.itemCard}>
                                     {videos[item.id] ? (
                                         <iframe
