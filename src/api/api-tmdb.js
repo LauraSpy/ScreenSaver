@@ -4,11 +4,10 @@ const API_KEY = '26ea4fd02b2f408aa82a007499337145';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const LANGUAGE = 'fr-FR,en-US';
 
+//on définit les endpoints qui sont les liens pour aller "discuter" avec l'API, pour faire des requêtes HTTP
 const endpoints = {
     discover: (type, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}&sort_by=popularity.desc`,
     popular: (type, page) => `${BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
-    nowPlaying: (page) => `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
-    airingToday: (page) => `${BASE_URL}/tv/airing_today?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
     trending: (type) => `${BASE_URL}/trending/${type}/week?api_key=${API_KEY}&language=${LANGUAGE}`,
     details: (type, id) => `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&language=${LANGUAGE}`,
     genres: (type) => `${BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${LANGUAGE}`,
@@ -22,6 +21,7 @@ const endpoints = {
     search: (query, page) => `${BASE_URL}/search/multi?api_key=${API_KEY}&language=${LANGUAGE}&query=${encodeURIComponent(query)}&page=${page}`,
 };
 
+//utilisation de la fonction "fetch" de React pour faire les requêtes d'informations (rechercher les données = Data) dans l'API
 const fetchData = async (url, cacheKey) => {
     const cachedData = getCache(cacheKey);
     if (cachedData) return cachedData;
@@ -49,10 +49,11 @@ const fetchData = async (url, cacheKey) => {
     }
 };
 
+//me permet d'aller récupérer tous les films et séries de l'API, pour avoir suffisamment de contenu à afficher
 const getAllItems = async (type) => {
     const allItems = [];
     let page = 1;
-    const maxPages = 500;
+    const maxPages = 500; //et je définis un nombre de page maximum
 
     try {
         while (page <= maxPages) {
@@ -70,19 +71,19 @@ const getAllItems = async (type) => {
     }
 };
 
-export const getAllMovies = () => getAllItems('movie');
-export const getAllTVShows = () => getAllItems('tv');
-
+//ici on va exporter les infos liés à la catégorie : Populaire
 export const getPopular = async (type, page = 1) => {
     const url = endpoints.popular(type, page);
     return fetchData(url, `popular${type}_${page}`);
 };
 
+//ici catégoirie : du moment
 export const getTrending = async (type) => {
     const url = endpoints.trending(type);
     return fetchData(url, `trending${type}`);
 };
 
+//pour venir récupérer les bandes annonces
 export const getVideos = async (type, id) => {
     console.log(`Fetching videos for ${type} with ID: ${id}`);
     const url = endpoints.videos(type, id);
@@ -110,6 +111,7 @@ export const getVideos = async (type, id) => {
     }
 };
 
+//ici je spécifie la catégorie pour les bandes annonces que je veux récupérer pour ne pas en avoir de trop
 export const getTrendingWithTrailers = async (type) => {
     try {
         const trendingData = await getTrending(type);
@@ -134,16 +136,19 @@ export const getTrendingWithTrailers = async (type) => {
     }
 };
 
+//utiliser pour la page "détail" des films et séries
 export const getDetails = async (type, id) => {
     const url = endpoints.details(type, id);
     return fetchData(url, `${type}Details_${id}`);
 };
 
+//utiliser pour les filtres par genre
 export const getGenres = async (type) => {
     const url = endpoints.genres(type);
     return fetchData(url, `${type}Genres`);
 };
 
+//utiliser dans le composant des "items sliders"
 export const getByGenre = async (type, genreId, page = 1) => {
     const url = endpoints.byGenre(type, genreId, page);
     return fetchData(url, `${type}ByGenre_${genreId}_${page}`);
@@ -154,16 +159,19 @@ export const getTopRated = async (type, page = 1) => {
     return fetchData(url, `topRated${type}_${page}`);
 };
 
+//pour le HERO de la page d'accueil, ce sont les films qui apparaissent dans le carousel automatique
 export const getDiscover = async (type, page = 1) => {
     const url = endpoints.discover(type, page);
     return fetchData(url, `discover${type}_${page}`);
 };
 
+//page détail des films
 export const getCredits = async (type, id) => {
     const url = endpoints.credits(type, id);
     return fetchData(url, `${type}Credits_${id}`);
 };
 
+//dans le Sliders Items
 export const getImages = async (type, id) => {
     const url = endpoints.images(type, id);
     return fetchData(url, `${type}Images_${id}`);
@@ -179,16 +187,8 @@ export const getWatchProviders = async (type, id) => {
     return fetchData(url, `${type}WatchProviders_${id}`);
 };
 
-export const getNowPlaying = async (page = 1) => {
-    const url = endpoints.nowPlaying(page);
-    return fetchData(url, `nowPlaying_${page}`);
-};
 
-export const getAiringToday = async (page = 1) => {
-    const url = endpoints.airingToday(page);
-    return fetchData(url, `airingToday_${page}`);
-};
-
+//pour la barre de recherche, permet de faire les "query" de recherche
 export const searchItems = async (query, page = 1) => {
     const url = endpoints.search(query, page);
     return fetchData(url, `search_${query}_${page}`);
