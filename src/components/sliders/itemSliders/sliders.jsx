@@ -4,7 +4,7 @@ import s from './styles.module.css';
 import ItemOptions from '../../itemOptions/ItemsOptions';
 import RatingButton from '../../ratingButton/RatingButton';
 import { getGenres, getByGenre } from '../../../api/api-tmdb';
-import notAvailable from '../images/imagesGénériques/notAvailable.png';
+import notAvailable from '../../../images/imagesGénériques/notAvailable.png';
 
 const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter = false, initialGenre = null }) => {
     const navigate = useNavigate();
@@ -117,8 +117,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         backgroundImage: `url(${
                                             item.poster_path
                                                 ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-                                                : 'chemin/vers/image/par/default.jpg'
-                                        })`,
+                                                : notAvailable})`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
                                     }}
