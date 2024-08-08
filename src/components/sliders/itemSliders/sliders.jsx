@@ -4,6 +4,7 @@ import s from './styles.module.css';
 import ItemOptions from '../../itemOptions/ItemsOptions';
 import RatingButton from '../../ratingButton/RatingButton';
 import { getGenres, getByGenre } from '../../../api/api-tmdb';
+import notAvailable from '../images/imagesGénériques/notAvailable.png';
 
 const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter = false, initialGenre = null }) => {
     const navigate = useNavigate();

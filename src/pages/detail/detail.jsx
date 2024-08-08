@@ -4,7 +4,7 @@ import { getDetails, getCredits, getImages, getVideos, getSimilar, getWatchProvi
 import s from './styles.module.css'; 
 import Sliders from '../../components/sliders/itemSliders/sliders';  
 import { TrailerButton } from '../../components/buttons/trailer/trailer';
-import notAvailableImage from '../../images/imagesGénériques/notAvailable.png.png';
+import notAvailableImage from '../../images/imagesGénériques/notAvailable.png';
 
 const DetailFilm = () => {
     const { type, id } = useParams();

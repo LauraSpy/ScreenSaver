@@ -23,23 +23,28 @@
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
-.bannerTitle {
+.bannerTitle h1, .bannerTitle p {
     position: absolute;
-    top: 65%;
-    left: 40%;
     text-align: left;
     text-wrap: wrap;
     background-clip: text;
     background-image: var(--linear-gradient);
     font-family: "Red Hat Display", sans-serif;
     text-transform: uppercase;
-    font-size: 12px;
     color: transparent;
+}
+
+.bannerTitle h1 {
+    top: 60%;
+    left: 30%;
+    font-size: 2vmax;
 }
 
 .bannerTitle p {
     font-size: 1.1rem;
     font-weight: bold;
+    top: 75%;
+    left: 35%;
 }
 
 .mainContent {
@@ -231,11 +236,28 @@
     .streamingContainer {
         padding-bottom: 15%;
     }
+
+    .bannerTitle h1 {
+        left: 35%;
+    }
+    
+    .bannerTitle p {
+        left: 40%;
+    }
 }
 
 @media screen and (max-width: 900px) {
     .streamingContainer {
         padding-bottom: 15%;
+    }
+
+    .bannerTitle h1 {
+        left: 45%;
+        font-size: 2.5vmax;
+    }
+    
+    .bannerTitle p {
+        left: 50%;
     }
 }
 
@@ -277,15 +299,26 @@
     .poster {
         height: 40vh;
     }
+
+    .bannerTitle h1 {
+        font-size: 3vmax;
+    }
 }
 
 @media screen and (max-width: 500px) {
-    .bannerTitle {
-        top: 80%;
+    
+    .bannerTitle h1 {
+        top: 70%;
         text-align: center;
-        left: 40%;
+        left: 20%;
+        font-size: 3vmax;
     }
 
+    .bannerTitle p {
+        top: 80%;
+        left: 35%;
+    }
+    
     .posterBanner {
         position: absolute;
         top: 30%;
@@ -300,8 +333,14 @@
 }
 
 @media screen and (max-width: 350px) {
-    .bannerTitle {
+    .bannerTitle h1 {
         top: 70%;
-        left: 20%;
+        left: 12%;
+        font-size: 3vmax;
+    }
+
+    .bannerTitle p {
+        top: 82%;
+        left: 45%;
     }
 }

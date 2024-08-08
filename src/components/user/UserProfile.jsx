@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../redux/authSlice';
 import defaultBanner from '../../images/banner/banner-default.png';
 import defaultAvatar from '../../images/avatar/avatar-default.png';
-import banner1 from '../../images/banner/banner1.jpg';
+import banner1 from '../../images/banner/banner1.webp';
 import banner2 from '../../images/banner/banner2.jpg';
 import avatar1 from '../../images/avatar/avatar1.jpg';
 import avatar2 from '../../images/avatar/avatar2.jpg';
@@ -11,6 +11,7 @@ import Sliders from '../../components/sliders/itemSliders/sliders';
 import { getTrending } from '../../api/api-tmdb';
 import s from './styles.module.css';
 import CircularProgressBar from '../progressBar/CircularProgressBar';
+import ellipse from '../../images/bulles/Ellipse4.svg';
 
 const UserProfile = () => {
   const user = useSelector((state) => state.auth.user);
@@ -18,6 +19,7 @@ const UserProfile = () => {
   const [bannerOptions] = useState([defaultBanner, banner1, banner2]);
   const [avatarOptions] = useState([defaultAvatar, avatar1, avatar2]);
   const bannerRef = useRef(null);
+  const svgRef = useRef(null);
 
   const handleImageChange = (type) => {
     const options = type === 'banner' ? bannerOptions : avatarOptions;
@@ -102,35 +104,40 @@ const UserProfile = () => {
           <i className="fas fa-pencil-alt"></i>
         </button>
       </div>
-      <h2 className={s.username}>{user.pseudo}</h2>
-      <div className={s.progressSection}>
-        <h3 className={s.collection}>Ma Collection</h3>
-        <div className={s.progressBars}>
-          <CircularProgressBar 
-            percentage={progress.moviesWatched.percentage} 
-            label="Total films vus" 
-            total={progress.moviesWatched.total} 
-          />
-          <CircularProgressBar 
-            percentage={progress.seriesWatched.percentage} 
-            label="Total séries vues" 
-            total={progress.seriesWatched.total} 
-          />
-          <CircularProgressBar 
-            percentage={progress.rated.percentage} 
-            label="Total Films/Séries notés" 
-            total={progress.rated.total} 
-          />
-          <CircularProgressBar 
-            percentage={progress.favorites.percentage} 
-            label="Favoris" 
-            total={progress.favorites.total} 
-          />
-          <CircularProgressBar 
-            percentage={progress.toWatch.percentage} 
-            label="À voir" 
-            total={progress.toWatch.total} 
-          />
+      <div className={s.bodyBubbles}>
+        <div className={s.bubblesBackground}>
+          <img ref={svgRef} src={ellipse} alt="ellipse animé floue" className={s.backgroundSvg} />
+        </div>
+        <h2 className={s.username}>{user.pseudo}</h2>
+        <div className={s.progressSection}>
+          <h3 className={s.collection}>Ma Collection</h3>
+          <div className={s.progressBars}>
+            <CircularProgressBar 
+              percentage={progress.moviesWatched.percentage} 
+              label="Total films vus" 
+              total={progress.moviesWatched.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.seriesWatched.percentage} 
+              label="Total séries vues" 
+              total={progress.seriesWatched.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.rated.percentage} 
+              label="Total Films/Séries notés" 
+              total={progress.rated.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.favorites.percentage} 
+              label="Favoris" 
+              total={progress.favorites.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.toWatch.percentage} 
+              label="À voir" 
+              total={progress.toWatch.total} 
+            />
+          </div>
         </div>
       </div>
       <Sliders title="Tendances des films" items={trendingMovies} type="movie" />
