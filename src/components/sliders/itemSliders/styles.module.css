@@ -77,7 +77,8 @@
 }
 
 .itemCard {
-    width: 170px;
+    min-width: 170px;
+    max-width: 200px;
     height: 30vh;
     margin-bottom: 25%;
     padding-top: 22.5vw; 
