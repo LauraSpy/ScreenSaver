@@ -68,7 +68,8 @@
 }
 
 .itemCard {
-    width: 25vw;
+    width: 18vw;
+    height: 30vh;
     margin-bottom: 10%;
     padding: 5%;
     position: relative;
@@ -104,6 +105,13 @@
     color: white;
     font-family: "Red Hat Display", sans-serif;
     text-align: left;
+}
+
+@media screen and (max-width: 1024px) {
+      
+    .itemCard {
+        width: 23vmax;
+    }
 }
 
 @media screen and (max-width: 800px) {

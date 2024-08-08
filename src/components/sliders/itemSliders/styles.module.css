@@ -130,6 +130,17 @@
     pointer-events: none;
 }
 
+@media screen and (max-width: 1024px) {
+    .sliderTitle h1 {
+        font-size: 1.3rem;
+    }
+        
+    .itemCard {
+        width: 18vmax;
+        height: 35vh;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .sliderTitle h1 {
         font-size: 1.3rem;
