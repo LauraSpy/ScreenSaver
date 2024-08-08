@@ -10,6 +10,7 @@
 
 .navLinks li {
     list-style-type: none;
+    font-family: "Red Hat Text", sans-serif;
     padding: 1%;
     position: relative; /* Nécessaire pour le dropdown */
 }
