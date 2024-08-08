@@ -37,12 +37,13 @@
 
 .dropdownContent {
     display: none;
-    background-color: none;
+    background-color: var(--bg-dark);
     border: 1px solid var(--light-yellow);
     border-radius: 4px;
     padding: 10px;
     margin-top: 5px;
     min-width: 200px;
+    z-index: 1000;
 }
 
 .dropdownContainer.active .dropdownContent {
@@ -60,13 +61,60 @@
     cursor: pointer;
     align-self: flex-start;
     margin-top: 10px;
+    z-index: 2000;
 }
 
 .searchButton:hover {
-    background-color: #0056b3;
+    background-color: var(--light-blue);
+}
+
+.searchButton:active {
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px 0px inset;
 }
 
 .dropdownIcon {
     filter: brightness(0) saturate(100%) invert(89%) sepia(19%) saturate(654%) hue-rotate(332deg) brightness(105%) contrast(103%); 
     /* pour changer la couleur du logo SVG pour correspondre à la couleur "light yellow" du texte */
+}
+
+@media screen and (max-width: 500px) {
+    .filterSystem {
+        align-items: center;
+        width: 40vmax;
+    }
+
+    .dropdownButton {
+        width: 30vmax;
+        margin-left: -5vmax;
+    }
+
+    .searchButton {
+        margin: auto;
+    }
+
+    .dropdownContent {
+        margin-left: -5vmax;
+        width: 30vmax;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .filterSystem {
+        align-items: center;
+        width: 30vmax;
+    }
+
+    .dropdownButton {
+        width: 30vmax;
+        margin-left: -5vmax;
+    }
+
+    .searchButton {
+        margin: auto;
+    }
+
+    .dropdownContent {
+        margin-left: -5vmax;
+        width: 30vmax;
+    }
 }

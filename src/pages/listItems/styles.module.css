@@ -1,3 +1,4 @@
+
 .filter {
     position: absolute;
     left: 5%;
@@ -33,4 +34,20 @@
 
 .pagination span {
     margin: 0 10px;
+}
+
+
+@media screen and (max-width: 500px) {
+    .container {
+        top: 150px;
+        left: 5%;
+    }
+
+    .filter {
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+
 }
