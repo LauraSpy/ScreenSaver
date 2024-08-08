@@ -77,10 +77,9 @@
 }
 
 .itemCard {
-    width: 170px;
-    height: 270px;
+    width: 170px; /* Largeur fixe */
+    height: 230px; /* Hauteur fixe */
     margin-bottom: 25%;
-    padding-top: 22.5vw; 
     position: relative;
     background-size: cover;
     background-position: center;
@@ -88,9 +87,10 @@
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
+/* Styles pour la vue en liste */
 .sliderContainer.listView .itemCard {
-    width: 100%;
-    height: 30vh;
+    width: 100%; 
+    height: 30vh; 
     padding-top: 150%;
     margin-bottom: 10%;
 }

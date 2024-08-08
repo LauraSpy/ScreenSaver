@@ -117,15 +117,15 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         backgroundImage: `url(${
                                             item.poster_path
                                                 ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-                                                : notAvailable})`,
+                                                : notAvailable
+                                        })`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
-                                        width: '170px', 
-                                        height: '230px',
+                                        width: '170px', // Définir la largeur fixe
+                                        height: '230px', // Définir la hauteur fixe
                                     }}
                                 >
                                     <RatingButton rating={item.vote_average} size={isListView ? 'small' : 'normal'} />
-                                    {/* si ListView = true : on affiche l'icon de RatingButton plus petit, bug d'affichage autrement */}
                                 </div>
                                 <div className={s.itemCardBody}>
                                     <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
