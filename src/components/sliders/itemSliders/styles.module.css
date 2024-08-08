@@ -77,8 +77,8 @@
 }
 
 .itemCard {
-    width: 13vw;
-    height: 35vh;
+    width: 170px;
+    height: 250px;
     margin-bottom: 25%;
     padding-top: 22.5vw; 
     position: relative;
@@ -134,20 +134,11 @@
     .sliderTitle h1 {
         font-size: 1.3rem;
     }
-        
-    .itemCard {
-        width: 18vmax;
-        height: 35vh;
-    }
 }
 
 @media screen and (max-width: 800px) {
     .sliderTitle h1 {
         font-size: 1.3rem;
-    }
-        
-    .itemCard {
-        width: 23vmax;
     }
 
     .itemCardBodyTitle {
