@@ -14,10 +14,10 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
             for (const item of items) {
                 try {
                     console.log(`Fetching video for ${type} with ID: ${item.id}`);
-                    const trailer = await getVideos(type, item.id);
-                    if (trailer) {
-                        console.log(`Trailer found for ${item.id}:`, trailer.key);
-                        videoData[item.id] = trailer.key;
+                    const trailerKey = await getVideos(type, item.id);
+                    if (trailerKey) {
+                        console.log(`Trailer found for ${item.id}:`, trailerKey);
+                        videoData[item.id] = trailerKey;
                     } else {
                         console.log(`No trailer found for ${item.id}`);
                     }
@@ -38,10 +38,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
 
     const handleItemClick = (itemId) => {
         navigate(`/${type}/${itemId}`);
-    };
-
-    const handleSeeMore = () => {
-        navigate(`/${type}`);
     };
 
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
@@ -76,7 +72,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                                             title={item.title || item.name}
                                         ></iframe>
                                     ) : (
-                                        <p>Loading...</p>
+                                        <p>Aucune bande-annonce disponible</p>
                                     )}
                                     <div className={s.itemCardBody}>
                                         <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
@@ -85,7 +81,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                             </div>
                         ))
                     ) : (
-                        <p>Contenu indisponible. <br /> Nous nous excusons pour la gêne occasionnée</p>
+                        <p>Contenu indisponible. <br /> Nous nous excusons pour la gêne occasionnée.</p>
                     )}
                 </div>
             </div>

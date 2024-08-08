@@ -19,7 +19,7 @@
 }
 
 .sliderTitle h1 {
-    color: white;
+    color: var(--white-pink);
     margin-bottom: 2%;
     font-family: "Red Hat Display", sans-serif;
     font-weight: bold;
@@ -68,7 +68,7 @@
 }
 
 .itemCard {
-    width: 15vw;
+    width: 25vw;
     margin-bottom: 10%;
     padding: 5%;
     position: relative;
@@ -78,6 +78,7 @@
     width: 100%;
     height: auto;
     border-radius: 15px;
+    border: none;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
@@ -103,4 +104,15 @@
     color: white;
     font-family: "Red Hat Display", sans-serif;
     text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+    .sliderTitle h1 {
+        font-size: 1.3rem;
+    }
+        
+    .itemCard {
+        width: 33vmax;
+    }
+
 }

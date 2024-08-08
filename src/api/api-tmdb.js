@@ -83,6 +83,57 @@ export const getTrending = async (type) => {
     return fetchData(url, `trending${type}`);
 };
 
+export const getVideos = async (type, id) => {
+    console.log(`Fetching videos for ${type} with ID: ${id}`);
+    const url = endpoints.videos(type, id);
+    console.log(`Video URL: ${url}`);
+    try {
+        const data = await fetchData(url, `${type}Videos_${id}`);
+        console.log(`Video data received for ${type} ${id}:`, data);
+        if (data.results && data.results.length > 0) {
+            console.log(`Number of videos found: ${data.results.length}`);
+            const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube' && (video.iso_639_1 === 'fr' || video.iso_639_1 === 'en')) ||
+                data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+            if (trailer) {
+                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
+                return trailer.key;
+            } else {
+                console.log('No trailer found in the video results');
+            }
+        } else {
+            console.log('No video results found');
+        }
+        return null;
+    } catch (error) {
+        console.error(`Error fetching videos for ${type} ${id}:`, error);
+        throw error;
+    }
+};
+
+export const getTrendingWithTrailers = async (type) => {
+    try {
+        const trendingData = await getTrending(type);
+        const trendingItems = trendingData.results || [];
+        const itemsWithTrailers = [];
+
+        for (const item of trendingItems) {
+            const trailerKey = await getVideos(type, item.id);
+            if (trailerKey) {
+                itemsWithTrailers.push({
+                    ...item,
+                    trailerKey
+                });
+            }
+        }
+
+        console.log('Items with trailers:', itemsWithTrailers);
+        return itemsWithTrailers;
+    } catch (error) {
+        console.error(`Error fetching trending items with trailers for ${type}:`, error);
+        throw error;
+    }
+};
+
 export const getDetails = async (type, id) => {
     const url = endpoints.details(type, id);
     return fetchData(url, `${type}Details_${id}`);
@@ -116,35 +167,6 @@ export const getCredits = async (type, id) => {
 export const getImages = async (type, id) => {
     const url = endpoints.images(type, id);
     return fetchData(url, `${type}Images_${id}`);
-};
-
-export const getVideos = async (type, id) => {
-    console.log(`Fetching videos for ${type} with ID: ${id}`);
-    const url = endpoints.videos(type, id);
-    console.log(`Video URL: ${url}`);
-    try {
-        const data = await fetchData(url, `${type}Videos_${id}`);
-        console.log(`Video data received for ${type} ${id}:`, data);
-        if (data.results && data.results.length > 0) {
-            console.log(`Number of videos found: ${data.results.length}`);
-            // Priorité aux bandes-annonces françaises, puis anglaises
-            const trailer = data.results.find(video => video.type === 'Trailer' && video.iso_639_1 === 'fr') ||
-                data.results.find(video => video.type === 'Trailer' && video.iso_639_1 === 'en') ||
-                data.results.find(video => video.type === 'Trailer');
-            if (trailer) {
-                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
-                return trailer;
-            } else {
-                console.log('No trailer found in the video results');
-            }
-        } else {
-            console.log('No video results found');
-        }
-        return null;
-    } catch (error) {
-        console.error(`Error fetching videos for ${type} ${id}:`, error);
-        throw error;
-    }
 };
 
 export const getSimilar = async (type, id, page = 1) => {
