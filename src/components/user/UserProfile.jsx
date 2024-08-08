@@ -72,11 +72,11 @@ const UserProfile = () => {
 
   // Simuler des données de progression
   const progress = {
-    moviesWatched: { total: 50, percentage: 90 },
-    seriesWatched: { total: 30, percentage: 55 },
-    rated: { total: 40, percentage: 73 },
-    favorites: { total: 20, percentage: 41 },
-    toWatch: { total: 10, percentage: 18 },
+    moviesWatched: { total: 550, percentage: 90 },
+    seriesWatched: { total: 130, percentage: 55 },
+    rated: { total: 240, percentage: 41 },
+    favorites: { total: 420, percentage: 73 },
+    toWatch: { total: 100, percentage: 18 },
   };
 
   return (
