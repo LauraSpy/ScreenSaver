@@ -23,7 +23,7 @@
 
 .sliderItem {
     position: relative;
-    height: 35vh;
+    max-height: 35vh;
 }
 
 .sliderTitle {
@@ -77,9 +77,8 @@
 }
 
 .itemCard {
-    min-width: 170px;
-    max-width: 200px;
-    max-height: 30vh;
+    width: 180px;
+    height: 28vh;
     margin-bottom: 25%;
     padding-top: 22.5vw; 
     position: relative;
