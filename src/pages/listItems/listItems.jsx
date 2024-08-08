@@ -49,8 +49,8 @@ const ListItems = () => {
         try {
             let data;
             const type = mediaType === 'films' ? 'movie' : 'tv';
-            console.log("Chargement des items:", { type, genreName, page, activeFilters }); //log avant chargement
-    
+            console.log("Chargement des items:", { type, genreName, page, activeFilters });
+
             if (activeFilters.genres.length > 0) {
                 const genreIds = activeFilters.genres.join(',');
                 data = await getByGenre(type, genreIds, page);
@@ -76,11 +76,11 @@ const ListItems = () => {
                         throw new Error('Type de liste non reconnu');
                 }
             }
-    
-            console.log("Réponse brute de l'API:", data); // Log de la réponse brute de l'API
+
+            console.log("Réponse brute de l'API:", data);
             setItems(data.results.slice(0, ITEMS_PER_PAGE));
             setTotalPages(Math.min(data.total_pages, 500));
-            console.log("Items chargés:", data.results.slice(0, ITEMS_PER_PAGE)); // Log des items chargés
+            console.log("Items chargés:", data.results.slice(0, ITEMS_PER_PAGE));
         } catch (error) {
             console.error("Erreur lors du chargement des éléments:", error);
         }

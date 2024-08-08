@@ -20,14 +20,16 @@ const FilterSystem = ({ onFilterChange }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const updateFilters = (filterType, value) => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
+    const updatedFilters = {
+      ...filters,
       [filterType]: value
-    }));
+    };
+    setFilters(updatedFilters);
+    onFilterChange(updatedFilters); // fait appel à onFilterChange pour mettre à jour les filtres
   };
 
   const handleSearch = () => {
-    onFilterChange(filters);
+    onFilterChange(filters); //s'assure que le dernier filtres est positionné en "recherche"
     setOpenDropdown(null);
   };
 
