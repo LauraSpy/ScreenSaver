@@ -77,8 +77,8 @@
 }
 
 .itemCard {
-    width: 170px; /* Largeur fixe */
-    height: 230px; /* Hauteur fixe */
+    width: 320px; /* Largeur fixe */
+    height: 590px; /* Hauteur fixe */
     margin-bottom: 25%;
     position: relative;
     background-size: cover;
