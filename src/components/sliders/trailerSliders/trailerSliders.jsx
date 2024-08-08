@@ -65,7 +65,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                                     {videos[item.id] ? (
                                         <iframe
                                             width="100%"
-                                            height="200"
+                                            height="250"
                                             src={`https://www.youtube.com/embed/${videos[item.id]}`}
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowFullScreen
