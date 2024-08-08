@@ -77,7 +77,8 @@
 }
 
 .itemCard {
-    height: 28vh;
+    width: 170px;
+    height: 270px;
     margin-bottom: 25%;
     padding-top: 22.5vw; 
     position: relative;
