@@ -120,6 +120,8 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                                 : notAvailable})`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
+                                        width: '170px', 
+                                        eight: '250px',
                                     }}
                                 >
                                     <RatingButton rating={item.vote_average} size={isListView ? 'small' : 'normal'} />
