@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import s from './styles.module.css';
 import { getVideos } from '../../../api/api-tmdb';
 
 const TrailerSliders = ({ title, items = [], type, maxItems }) => {
     const [videos, setVideos] = useState({});
+    const sliderContainerRef = useRef(null);
 
     useEffect(() => {
         const fetchVideos = async () => {
@@ -32,6 +33,37 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
             console.log('No items to fetch videos for.');
         }
     }, [items, type]);
+
+    const handleWheel = (e) => {
+        if (sliderContainerRef.current) {
+            const container = sliderContainerRef.current;
+            const scrollAmount = e.deltaY;
+            container.scrollTo({
+                left: container.scrollLeft + scrollAmount,
+                behavior: 'smooth'
+            });
+            if (
+                (container.scrollLeft === 0 && scrollAmount < 0) ||
+                (container.scrollLeft + container.clientWidth === container.scrollWidth && scrollAmount > 0)
+            ) {
+                return; // Permet le défilement vertical de la page si on est au début ou à la fin du slider
+            }
+            e.preventDefault();
+        }
+    };
+
+    useEffect(() => {
+        const sliderContainer = sliderContainerRef.current;
+        if (sliderContainer) {
+            sliderContainer.addEventListener('wheel', handleWheel, { passive: false });
+        }
+        return () => {
+            if (sliderContainer) {
+                sliderContainer.removeEventListener('wheel', handleWheel);
+            }
+        };
+    }, []);
+    
 
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
 
