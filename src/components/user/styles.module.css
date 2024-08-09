@@ -64,6 +64,19 @@
     text-align: left;
 }
 
+.logoutButton {
+    font-size: 12px;
+    font-family: "Red Hat Mono", monospace;
+    padding-left: 2%;
+    cursor: pointer;
+    opacity: 50%;
+    transition: opacity ease-in-out 0.2s;
+}
+
+.logoutButton:hover {
+    opacity: 90%;
+}
+
 
 .collection {
     color: var(--white-pink);

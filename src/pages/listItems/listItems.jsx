@@ -113,7 +113,10 @@ const ListItems = () => {
     return (
         <div className={s.ListItems}>
             <div className={s.filter}>
-                <FilterSystem onFilterChange={handleFilterChange} />
+                <FilterSystem 
+                    onFilterChange={handleFilterChange} 
+                    showStreamingCinemaFilter={mediaType === 'films'} //permet d'afficher le film seulement si on est sur des sliders qui affichent des films
+                />
             </div>
             <div className={s.container}>
                 {loading ? (

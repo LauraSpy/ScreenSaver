@@ -8,7 +8,7 @@ import s from './styles.module.css';
 import right from '../../images/buttons/right.svg';
 import bottom from '../../images/buttons/bottom.svg';
 
-const FilterSystem = ({ onFilterChange }) => {
+const FilterSystem = ({ onFilterChange, showStreamingCinemaFilter }) => {
   const [filters, setFilters] = useState({
     streamingCinema: 'all',
     viewingStatus: 'all',
@@ -40,22 +40,24 @@ const FilterSystem = ({ onFilterChange }) => {
   return (
     <div className={s.filterSystem}>
       <div className={s.filterRow}>
-      <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
-          <button onClick={() => toggleDropdown('streamingCinema')} className={s.dropdownButton}>
-            Streaming/Cinéma
-            <img 
-              src={openDropdown === 'streamingCinema' ? bottom : right} 
-              alt="dropdown icon" 
-              className={s.dropdownIcon}
-            />
-          </button>
-          <div className={s.dropdownContent}>
-            <StreamingCinemaFilter 
-              value={filters.streamingCinema} 
-              onChange={(value) => updateFilters('streamingCinema', value)} 
-            />
+      {showStreamingCinemaFilter && (
+          <div className={`${s.dropdownContainer} ${openDropdown === 'streamingCinema' ? s.active : ''}`}>
+            <button onClick={() => toggleDropdown('streamingCinema')} className={s.dropdownButton}>
+              Streaming/Cinéma
+              <img 
+                src={openDropdown === 'streamingCinema' ? bottom : right} 
+                alt="dropdown icon" 
+                className={s.dropdownIcon}
+              />
+            </button>
+            <div className={s.dropdownContent}>
+              <StreamingCinemaFilter 
+                value={filters.streamingCinema} 
+                onChange={(value) => updateFilters('streamingCinema', value)} 
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={`${s.dropdownContainer} ${openDropdown === 'filters' ? s.active : ''}`}>
           <button onClick={() => toggleDropdown('filters')} className={s.dropdownButton}>

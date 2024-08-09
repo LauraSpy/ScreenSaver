@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateProfile } from '../../redux/authSlice';
+import { updateProfile, logout } from '../../redux/authSlice';
 import defaultBanner from '../../images/banner/banner-default.png';
 import defaultAvatar from '../../images/avatar/avatar-default.png';
 import banner1 from '../../images/banner/banner1.webp';
@@ -27,6 +27,13 @@ const UserProfile = () => {
     const nextIndex = (currentIndex + 1) % options.length;
     const newImage = options[nextIndex];
     dispatch(updateProfile({ [type]: newImage }));
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    alert('Vous avez été déconnecté.');
+    // Optionnel : rediriger l'utilisateur vers la page de connexion ou d'accueil
+    // navigate('/login');
   };
 
   useEffect(() => {
@@ -94,7 +101,6 @@ const UserProfile = () => {
           className={s.avatar} 
           src={user.avatar || defaultAvatar} 
           alt="Avatar"
-          // l'ajout de onError permet d'afficher l'image par défaut à la connexion (sans cet élément, seul le texte du "alt" s'affichait)
           onError={(e) => {
             e.target.onerror = null; 
             e.target.src = defaultAvatar;
@@ -108,7 +114,12 @@ const UserProfile = () => {
         <div className={s.bubblesBackground}>
           <img ref={svgRef} src={ellipse} alt="ellipse animé floue" className={s.backgroundSvg} />
         </div>
-        <h2 className={s.username}>{user.pseudo}</h2>
+        <h2 className={s.username}>
+          {user.pseudo}
+          <button className={s.logoutButton} onClick={handleLogout}>
+            Déconnexion
+          </button>
+        </h2>
         <div className={s.progressSection}>
           <h3 className={s.collection}>Ma Collection</h3>
           <div className={s.progressBars}>

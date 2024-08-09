@@ -11,6 +11,8 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
@@ -20,9 +22,11 @@ const LoginForm = () => {
         }
         if (!password) {
             setErrors(prev => ({ ...prev, password: 'Le mot de passe est requis' }));
+        } else if (!passwordPattern.test(password)) {
+            setErrors(prev => ({ ...prev, password: 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.' }));
         }
 
-        if (pseudo && password) {
+        if (pseudo && passwordPattern.test(password)) {
             // Simuler une connexion réussie
             dispatch(login({ pseudo, avatar: 'default-avatar.png' }));
             localStorage.setItem('user', JSON.stringify({ pseudo, avatar: 'default-avatar.png' }));

@@ -10,6 +10,12 @@
     right: -20%;
 }
 
+.container p {
+    color: var(--white-pink);
+    font-size: 13px;
+    text-align: center;
+}
+
 .pagination {
     display: flex;
     justify-content: center;

@@ -165,9 +165,6 @@ const Header = () => {
                                 placeholder="Rechercher..."
                                 className={s.searchbarInput}
                             />
-                            {/* <button type="submit" className={s.searchLogo}>
-                                <img src={logoSearch} alt="search logo" />
-                            </button> */}
                         </form>
                     </div>
                 </div>

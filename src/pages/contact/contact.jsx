@@ -9,9 +9,10 @@ const ContactForm = () => {
     const [message, setMessage] = useState('');
     const [errors, setErrors] = useState({});
 
-    const svgRef = useRef(null);
+    const svgRef = useRef(null); //pour la bulle du background animé
 
-    const MAX_MESSAGE_LENGTH = 500;
+    const MAX_MESSAGE_LENGTH = 500; //max de caractère qui peuvent être envoyé dans la case "message"
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //pattern créé pour vérifier que l'adresse mail est bien valide
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,7 +23,7 @@ const ContactForm = () => {
         }
         if (!email) {
             setErrors(prev => ({ ...prev, email: 'L\'email est requis' }));
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!emailPattern.test(email)) {
             setErrors(prev => ({ ...prev, email: 'L\'email est invalide' }));
         }
         if (!message) {
@@ -31,7 +32,7 @@ const ContactForm = () => {
             setErrors(prev => ({ ...prev, message: `Le message ne doit pas dépasser ${MAX_MESSAGE_LENGTH} caractères` }));
         }
 
-        if (pseudo && email && message && message.length <= MAX_MESSAGE_LENGTH && Object.keys(errors).length === 0) {
+        if (pseudo && emailPattern.test(email) && message && message.length <= MAX_MESSAGE_LENGTH && Object.keys(errors).length === 0) {
             console.log('Message envoyé:', { pseudo, email, message });
             setPseudo('');
             setEmail('');
