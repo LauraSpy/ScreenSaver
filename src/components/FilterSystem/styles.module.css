@@ -101,11 +101,11 @@
 @media screen and (max-width: 300px) {
     .filterSystem {
         align-items: center;
-        width: 30vmax;
+        width: 28vmax;
     }
 
     .dropdownButton {
-        width: 25vmax;
+        width: 23vmax;
         margin-left: -8vmax;
     }
 
