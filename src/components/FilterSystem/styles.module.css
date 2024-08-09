@@ -105,8 +105,8 @@
     }
 
     .dropdownButton {
-        width: 30vmax;
-        margin-left: -5vmax;
+        width: 25vmax;
+        margin-left: -8vmax;
     }
 
     .searchButton {
@@ -114,7 +114,7 @@
     }
 
     .dropdownContent {
-        margin-left: -5vmax;
-        width: 30vmax;
+        margin-left: -8vmax;
+        width: 20vmax;
     }
 }
