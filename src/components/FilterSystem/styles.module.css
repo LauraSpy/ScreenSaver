@@ -80,12 +80,12 @@
 @media screen and (max-width: 500px) {
     .filterSystem {
         align-items: center;
-        width: 40vmax;
+        width: 30vmax;
     }
 
     .dropdownButton {
-        width: 30vmax;
-        margin-left: -5vmax;
+        width: 25vmax;
+        margin-left: -7vmax;
     }
 
     .searchButton {
@@ -93,8 +93,8 @@
     }
 
     .dropdownContent {
-        margin-left: -5vmax;
-        width: 30vmax;
+        margin-left: -7vmax;
+        width: 20vmax;
     }
 }
 
