@@ -12,6 +12,7 @@ import { getTrending } from '../../api/api-tmdb';
 import s from './styles.module.css';
 import CircularProgressBar from '../progressBar/CircularProgressBar';
 import ellipse from '../../images/bulles/Ellipse4.svg';
+import TokenKey from '../../auth/TokenKey';
 
 const UserProfile = () => {
   const user = useSelector((state) => state.auth.user);
@@ -151,8 +152,8 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      <Sliders title="Tendances des films" items={trendingMovies} type="movie" />
-      <Sliders title="Tendances des séries" items={trendingTVShows} type="tv" />
+      <Sliders title="Ma Liste" items={trendingMovies} type="movie" />
+      <Sliders title="Favoris" items={trendingTVShows} type="tv" />
     </div>   
   );
 };

@@ -9,34 +9,66 @@ const LANGUAGE = 'fr-FR,en-US';
 const endpoints = {
     // Endpoint pour découvrir des films ou séries en fonction de leur popularité
     discover: (type, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}&sort_by=popularity.desc`,
+
     // Endpoint pour obtenir les films ou séries populaires
     popular: (type, page) => `${BASE_URL}/${type}/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+
     // Endpoint pour obtenir les films ou séries tendance de la semaine
     trending: (type) => `${BASE_URL}/trending/${type}/week?api_key=${API_KEY}&language=${LANGUAGE}`,
+
     // Endpoint pour obtenir les détails d'un film ou d'une série spécifique
     details: (type, id) => `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&language=${LANGUAGE}`,
+
     // Endpoint pour obtenir la liste des genres disponibles pour les films ou séries
     genres: (type) => `${BASE_URL}/genre/${type}/list?api_key=${API_KEY}&language=${LANGUAGE}`,
+
     // Endpoint pour découvrir des films ou séries par genre
     byGenre: (type, genreId, page) => `${BASE_URL}/discover/${type}?api_key=${API_KEY}&language=${LANGUAGE}&with_genres=${genreId}&page=${page}&sort_by=popularity.desc`,
+
     // Endpoint pour obtenir les films ou séries les mieux notés
     topRated: (type, page) => `${BASE_URL}/${type}/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+
     // Endpoint pour obtenir les crédits (cast et crew) d'un film ou d'une série
     credits: (type, id) => `${BASE_URL}/${type}/${id}/credits?api_key=${API_KEY}&language=${LANGUAGE}`,
+
     // Endpoint pour obtenir les images d'un film ou d'une série
     images: (type, id) => `${BASE_URL}/${type}/${id}/images?api_key=${API_KEY}`,
+
     // Endpoint pour obtenir les vidéos (bandes annonces) d'un film ou d'une série
     videos: (type, id) => `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=${LANGUAGE}&include_video_language=fr,en`,
+
     // Endpoint pour obtenir des films ou séries similaires à un film ou une série spécifique
     similar: (type, id, page) => `${BASE_URL}/${type}/${id}/similar?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`,
+
     // Endpoint pour obtenir les fournisseurs de visionnage d'un film ou d'une série
     watchProviders: (type, id) => `${BASE_URL}/${type}/${id}/watch/providers?api_key=${API_KEY}`,
+
     // Endpoint pour rechercher des films ou séries par requête
     search: (query, page) => `${BASE_URL}/search/multi?api_key=${API_KEY}&language=${LANGUAGE}&query=${encodeURIComponent(query)}&page=${page}`,
+
     // Endpoint pour rechercher des films et série par mots-clés
     searchKeyword: (query) => `${BASE_URL}/search/keyword?api_key=${API_KEY}&query=${encodeURIComponent(query)}`,
     discoverByKeyword: (keywordId, page) => `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_keywords=${keywordId}&page=${page}`,
+
+    // Endpoint pour les films favoris
+    favoriteMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/favorite/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
+
+    // Endpoint pour les séries favorites
+    favoriteTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/favorite/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
+
+    // Endpoint pour les films en liste de suivi
+    watchlistMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/watchlist/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
+
+    // Endpoint pour les séries en liste de suivi
+    watchlistTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/watchlist/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
+
+    // Endpoint pour les films notés
+    ratedMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/rated/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
+
+    // Endpoint pour les séries notées
+    ratedTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/rated/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
 };
+
 
 // Fonction pour récupérer les données de l'API avec mise en cache
 const fetchData = async (url, cacheKey) => {
@@ -223,6 +255,8 @@ export const searchItems = async (query, page = 1) => {
     return fetchData(url, `search_${query}_${page}`);
 };
 
+
+//fonction pour les recherches par mot-clés
 export const searchKeywords = async (query) => {
     const url = endpoints.searchKeyword(query);
     const response = await fetch(url);
@@ -233,6 +267,8 @@ export const searchKeywords = async (query) => {
     return data.results;
 };
 
+
+//fonction pour rechercher dans les films par mot-clés
 export const searchMoviesByKeyword = async (keywordId, page = 1) => {
     const url = endpoints.discoverByKeyword(keywordId, page);
     const response = await fetch(url);
@@ -241,4 +277,41 @@ export const searchMoviesByKeyword = async (keywordId, page = 1) => {
     }
     const data = await response.json();
     return data.results;
+};
+
+
+// Fonction pour récupérer les films favoris
+export const getFavoriteMovies = async (accountId, sessionId) => {
+    const url = endpoints.favoriteMovies(accountId, sessionId);
+    return fetchData(url, `favoriteMovies_${accountId}`);
+};
+
+// Fonction pour récupérer les séries favorites
+export const getFavoriteTV = async (accountId, sessionId) => {
+    const url = endpoints.favoriteTV(accountId, sessionId);
+    return fetchData(url, `favoriteTV_${accountId}`);
+};
+
+// Fonction pour récupérer les films en liste de suivi
+export const getWatchlistMovies = async (accountId, sessionId) => {
+    const url = endpoints.watchlistMovies(accountId, sessionId);
+    return fetchData(url, `watchlistMovies_${accountId}`);
+};
+
+// Fonction pour récupérer les séries en liste de suivi
+export const getWatchlistTV = async (accountId, sessionId) => {
+    const url = endpoints.watchlistTV(accountId, sessionId);
+    return fetchData(url, `watchlistTV_${accountId}`);
+};
+
+// Fonction pour récupérer les films notés
+export const getRatedMovies = async (accountId, sessionId) => {
+    const url = endpoints.ratedMovies(accountId, sessionId);
+    return fetchData(url, `ratedMovies_${accountId}`);
+};
+
+// Fonction pour récupérer les séries notées
+export const getRatedTV = async (accountId, sessionId) => {
+    const url = endpoints.ratedTV(accountId, sessionId);
+    return fetchData(url, `ratedTV_${accountId}`);
 };
