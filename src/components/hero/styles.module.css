@@ -249,7 +249,7 @@ body {
   }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 450px) {
   .heroHeader h1 {
     font-size: 15px;
     width: 60%;
@@ -278,6 +278,10 @@ body {
   .buttonChangeState {
     font-size: 12px;
     width: 80%;
+  }
+
+  .discoverCarousel {
+    height: 40vh;
   }
 
   .carouselItem {
