@@ -170,18 +170,10 @@ header {
 
 /* Responsive styles */
 @media screen and (max-width: 1024px) {
-    .logoSite {
-        margin-right: 15%;
-    }
-
-    .searchbar {
-        display: none;
-    }
-
     .searchLogo {
         display: block;
         cursor: pointer;
-        right: 70%;
+        right: 10%;
         top: 5%;
     }
 

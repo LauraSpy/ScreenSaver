@@ -13,7 +13,6 @@ const Header = () => {
     const user = useSelector((state) => state.auth.user);
     const [searchTerm, setSearchTerm] = useState('');
     const [isSticky, setIsSticky] = useState(false);
-    const [showSearchBar, setShowSearchBar] = useState(false);
     const [showMenuOverlay, setShowMenuOverlay] = useState(false);
     const [screenSize, setScreenSize] = useState('desktop');
     const navigate = useNavigate();
@@ -27,20 +26,12 @@ const Header = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
             setSearchTerm('');
-            setShowSearchBar(false);
         }
     };
 
-    const toggleSearchBar = () => {
-        setShowSearchBar(!showSearchBar);
-    };
-
     const toggleMenuOverlay = () => {
-        console.log('Toggle Menu Overlay:', !showMenuOverlay);
         setShowMenuOverlay(!showMenuOverlay);
     };
-
-    console.log('Screen Size:', screenSize);
 
     useEffect(() => {
         const handleResize = () => {
@@ -51,7 +42,6 @@ const Header = () => {
             } else {
                 setScreenSize('desktop');
             }
-            console.log('Resize - New Screen Size:', screenSize);
         };
 
         const handleScroll = () => {
@@ -78,14 +68,13 @@ const Header = () => {
                 )}
                 <div className={s.logoSite}>
                     <Link to='/'>
-                    {/* ici, on va faire une condition pour changer le logo du site en fonction de l'écran : si mobile, on passe à la version du logo fait pour le mobile */}
                         <img 
                             src={screenSize === 'mobile' ? logoSiteMobile : logoSite} 
                             alt="logo site" 
                         />
                     </Link>
                 </div>
-                {screenSize === 'desktop' && (
+                {(screenSize === 'desktop' || screenSize === 'tablet') && (
                     <form className={s.searchbar} onSubmit={handleSearchSubmit}>
                         <input 
                             type="search" 
@@ -102,17 +91,7 @@ const Header = () => {
                         </button>
                     </form>
                 )}
-                {screenSize === 'tablet' && (
-                    <div className={s.tabletIcons}>
-                        <div className={s.searchLogo} onClick={toggleSearchBar}>
-                            <img src={logoSearch} alt="search logo" />
-                        </div>
-                        <div className={s.notif}>
-                            <img src={logoNotif} alt="notif logo" />
-                        </div>
-                    </div>
-                )}
-                {screenSize === 'desktop' && (
+                {(screenSize === 'desktop' || screenSize === 'tablet') && (
                     <div className={s.notif}>
                         <img src={logoNotif} alt="notif logo" />
                     </div>
@@ -130,26 +109,7 @@ const Header = () => {
                     </Link>
                 </div>
             </div>
-            {showSearchBar && screenSize === 'tablet' && (
-                <div className={s.expandedSearchBar}>
-                    <form onSubmit={handleSearchSubmit}>
-                        <input 
-                            type="search" 
-                            name="searchbar" 
-                            id="searchbar" 
-                            aria-label='Rechercher...'
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            placeholder="Rechercher..."
-                            className={s.searchbarInput}
-                        />
-                        <button type="submit" className={s.searchLogo}>
-                            <img src={logoSearch} alt="search logo" />
-                        </button>
-                    </form>
-                </div>
-            )}
-            {screenSize === 'desktop' && <NavBar />}
+            {(screenSize === 'desktop' || screenSize === 'tablet') && <NavBar />}
             {showMenuOverlay && screenSize === 'mobile' && (
                 <div className={s.menuOverlay}>
                     <NavBar isOverlay={true} />
