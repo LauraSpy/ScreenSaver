@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
 import GenreFilter from './GenreFilter/GenreFilter';
-import DurationFilter from './DurationFilter/DurationFilter';
-import KeywordFilter from './KeywordFilter/KeywordFilter';
 import s from './styles.module.css';
 import right from '../../images/buttons/right.svg';
 import bottom from '../../images/buttons/bottom.svg';
@@ -12,8 +10,6 @@ const FilterSystem = ({ onFilterChange }) => {
     streamingCinema: 'all',
     viewingStatus: 'all',
     genres: [],
-    duration: { min: 0, max: 300 },
-    keywords: ''
   });
 
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -55,15 +51,6 @@ const FilterSystem = ({ onFilterChange }) => {
             <GenreFilter 
               selectedGenres={filters.genres} 
               onChange={(value) => updateFilters('genres', value)} 
-            />
-            <DurationFilter 
-                value={filters.duration}
-                onChange={(value) => updateFilters('duration', value)}
-                maxDurationLimit={300} 
-            />
-            <KeywordFilter 
-              value={filters.keywords} 
-              onChange={(value) => updateFilters('keywords', value)} 
             />
           </div>
         </div>
