@@ -88,7 +88,6 @@ const fetchData = async (url, cacheKey) => {
 
         // Convertit la réponse en JSON
         const data = await response.json();
-        console.log(`Data received:`, data);
 
         // Vérifie si les données reçues sont valides
         if (!data.results && !data.genres && !data.id) {
@@ -131,7 +130,8 @@ const getAllItems = async (type) => {
 // Fonction pour récupérer les éléments populaires
 export const getPopular = async (type, page = 1) => {
     const url = endpoints.popular(type, page);
-    return fetchData(url, `popular${type}_${page}`);
+    const data = await fetchData(url, `popular${type}_${page}`);
+    return data.results;
 };
 
 // Fonction pour récupérer les éléments tendance
@@ -142,19 +142,14 @@ export const getTrending = async (type) => {
 
 // Fonction pour récupérer les bandes annonces
 export const getVideos = async (type, id) => {
-    console.log(`Fetching videos for ${type} with ID: ${id}`);
     const url = endpoints.videos(type, id);
-    console.log(`Video URL: ${url}`);
     try {
         const data = await fetchData(url, `${type}Videos_${id}`);
-        console.log(`Video data received for ${type} ${id}:`, data);
         if (data.results && data.results.length > 0) {
-            console.log(`Number of videos found: ${data.results.length}`);
             // Cherche une bande annonce en français ou en anglais sur YouTube
             const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube' && (video.iso_639_1 === 'fr' || video.iso_639_1 === 'en')) ||
                 data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
             if (trailer) {
-                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
                 return trailer.key;
             } else {
                 console.log('No trailer found in the video results');
@@ -186,8 +181,6 @@ export const getTrendingWithTrailers = async (type) => {
                 });
             }
         }
-
-        console.log('Items with trailers:', itemsWithTrailers);
         return itemsWithTrailers;
     } catch (error) {
         console.error(`Error fetching trending items with trailers for ${type}:`, error);
@@ -279,39 +272,3 @@ export const searchMoviesByKeyword = async (keywordId, page = 1) => {
     return data.results;
 };
 
-
-// Fonction pour récupérer les films favoris
-export const getFavoriteMovies = async (accountId, sessionId) => {
-    const url = endpoints.favoriteMovies(accountId, sessionId);
-    return fetchData(url, `favoriteMovies_${accountId}`);
-};
-
-// Fonction pour récupérer les séries favorites
-export const getFavoriteTV = async (accountId, sessionId) => {
-    const url = endpoints.favoriteTV(accountId, sessionId);
-    return fetchData(url, `favoriteTV_${accountId}`);
-};
-
-// Fonction pour récupérer les films en liste de suivi
-export const getWatchlistMovies = async (accountId, sessionId) => {
-    const url = endpoints.watchlistMovies(accountId, sessionId);
-    return fetchData(url, `watchlistMovies_${accountId}`);
-};
-
-// Fonction pour récupérer les séries en liste de suivi
-export const getWatchlistTV = async (accountId, sessionId) => {
-    const url = endpoints.watchlistTV(accountId, sessionId);
-    return fetchData(url, `watchlistTV_${accountId}`);
-};
-
-// Fonction pour récupérer les films notés
-export const getRatedMovies = async (accountId, sessionId) => {
-    const url = endpoints.ratedMovies(accountId, sessionId);
-    return fetchData(url, `ratedMovies_${accountId}`);
-};
-
-// Fonction pour récupérer les séries notées
-export const getRatedTV = async (accountId, sessionId) => {
-    const url = endpoints.ratedTV(accountId, sessionId);
-    return fetchData(url, `ratedTV_${accountId}`);
-};
