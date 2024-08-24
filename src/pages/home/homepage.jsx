@@ -4,10 +4,11 @@ import { getPopular, getTrending, getTrendingWithTrailers } from '../../api/api-
 import Sliders from '../../components/sliders/itemSliders/sliders';
 import TrailerSliders from '../../components/sliders/trailerSliders/trailerSliders';
 
+
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
-    const [trendingMovies, setTrendingMovies] = useState([]);
     const [popularTVShows, setPopularTVShows] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
     const [trendingTVShows, setTrendingTVShows] = useState([]);
     const [trendingMoviesWithTrailers, setTrendingMoviesWithTrailers] = useState([]);
 
@@ -15,12 +16,14 @@ const Home = () => {
         const fetchMovies = async () => {
             try {
                 const popularMoviesData = await getPopular('movie');
+                console.log('Popular movies data:', popularMoviesData);
                 setPopularMovies(popularMoviesData.results);
 
                 const trendingMoviesData = await getTrending('movie');
                 setTrendingMovies(trendingMoviesData.results);
 
                 const popularTVShowsData = await getPopular('tv');
+                console.log('Popular TV shows data:', popularTVShowsData);
                 setPopularTVShows(popularTVShowsData.results);
 
                 const trendingTVShowsData = await getTrending('tv');

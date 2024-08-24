@@ -70,7 +70,6 @@ const fetchData = async (url, cacheKey) => {
 
         // Convertit la réponse en JSON
         const data = await response.json();
-        console.log(`Data received:`, data);
 
         // Vérifie si les données reçues sont valides
         if (!data.results && !data.genres && !data.id) {
@@ -113,7 +112,8 @@ const getAllItems = async (type) => {
 // Fonction pour récupérer les éléments populaires
 export const getPopular = async (type, page = 1) => {
     const url = endpoints.popular(type, page);
-    return fetchData(url, `popular${type}_${page}`);
+    const data = await fetchData(url, `popular${type}_${page}`);
+    return data.results;
 };
 
 // Fonction pour récupérer les éléments tendance
@@ -124,19 +124,14 @@ export const getTrending = async (type) => {
 
 // Fonction pour récupérer les bandes annonces
 export const getVideos = async (type, id) => {
-    console.log(`Fetching videos for ${type} with ID: ${id}`);
     const url = endpoints.videos(type, id);
-    console.log(`Video URL: ${url}`);
     try {
         const data = await fetchData(url, `${type}Videos_${id}`);
-        console.log(`Video data received for ${type} ${id}:`, data);
         if (data.results && data.results.length > 0) {
-            console.log(`Number of videos found: ${data.results.length}`);
             // Cherche une bande annonce en français ou en anglais sur YouTube
             const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube' && (video.iso_639_1 === 'fr' || video.iso_639_1 === 'en')) ||
                 data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
             if (trailer) {
-                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
                 return trailer.key;
             } else {
                 console.log('No trailer found in the video results');
@@ -168,8 +163,6 @@ export const getTrendingWithTrailers = async (type) => {
                 });
             }
         }
-
-        console.log('Items with trailers:', itemsWithTrailers);
         return itemsWithTrailers;
     } catch (error) {
         console.error(`Error fetching trending items with trailers for ${type}:`, error);
