@@ -44,7 +44,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         };
 
         fetchGenreItems();
-    }, [selectedGenre, type]);
+    }, [selectedGenre, type]); //selectedGenre ici va s'activer
 
     // Navigation vers la page de détails de l'élément
     const handleItemClick = (itemId) => {
