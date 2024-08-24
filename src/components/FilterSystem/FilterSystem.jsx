@@ -11,8 +11,6 @@ const FilterSystem = ({ onFilterChange }) => {
     streamingCinema: 'all',
     viewingStatus: 'all',
     genres: [],
-    duration: { min: 0, max: 300 },
-    keywords: ''
   });
 
   const [openDropdown, setOpenDropdown] = useState(null);

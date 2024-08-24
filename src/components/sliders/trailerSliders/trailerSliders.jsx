@@ -11,10 +11,8 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
             const videoData = {};
             for (const item of items) {
                 try {
-                    console.log(`Fetching video for ${type} with ID: ${item.id}`);
                     const trailerKey = await getVideos(type, item.id);
                     if (trailerKey) {
-                        console.log(`Trailer found for ${item.id}:`, trailerKey);
                         videoData[item.id] = trailerKey;
                     } else {
                         console.log(`No trailer found for ${item.id}`);
@@ -23,7 +21,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
                     console.error(`Error fetching video for ${item.id}:`, error);
                 }
             }
-            console.log('All video data:', videoData);
             setVideos(videoData);
         };
     
@@ -66,8 +63,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
     
 
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
-
-    console.log('Displayed items:', displayedItems);
 
     return (
         <div className={s.slider}>
