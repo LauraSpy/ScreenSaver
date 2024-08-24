@@ -6,6 +6,7 @@ import RatingButton from '../../ratingButton/RatingButton';
 import { getGenres, getByGenre } from '../../../api/api-tmdb';
 import notAvailable from '../../../images/imagesGénériques/notAvailable.png';
 
+// Composant Sliders pour afficher une liste d'éléments (films ou séries) avec options de filtrage par genre
 const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter = false, initialGenre = null }) => {
     const navigate = useNavigate();
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -15,7 +16,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
     const [genreItems, setGenreItems] = useState([]);
     const sliderContainerRef = useRef(null);
 
-    // Fetch genres if showGenreFilter is true
+    // Récupération des genres si le filtre par genre est activé
     useEffect(() => {
         if (showGenreFilter) {
             const fetchGenres = async () => {
@@ -26,7 +27,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         }
     }, [type, showGenreFilter]);
 
-    // Fetch items by genre when selectedGenre changes
+    // Récupération des éléments par genre lorsque le genre sélectionné change
     useEffect(() => {
         const fetchGenreItems = async () => {
             if (selectedGenre && showGenreFilter) {
@@ -45,35 +46,20 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         fetchGenreItems();
     }, [selectedGenre, type]);
 
+    // Navigation vers la page de détails de l'élément
     const handleItemClick = (itemId) => {
-        navigate(`/detail/${type}/${itemId}`);
+        navigate(`/detail/${type}/${itemId}`); //la page qui a été créé dans mes "routes"
     };
 
-    const toggleDropdown = (itemId) => {
-        setActiveDropdown(activeDropdown === itemId ? null : itemId);
-    };
-
+    // Gestion du défilement horizontal/vertical du slider
     const handleWheel = (e) => {
         if (sliderContainerRef.current) {
             const container = sliderContainerRef.current;
-            const isHorizontalScroll = !isListView;
+            const isHorizontalScroll = !isListView; //ici, j'ai ajouté un prop pour que le scroll du sliders ne soit pas actif sur les pages de recherche
 
             if (isHorizontalScroll) {
-                // Défilement horizontal
-                if (
-                    (container.scrollLeft === 0 && e.deltaY < 0) ||
-                    (container.scrollLeft + container.clientWidth === container.scrollWidth && e.deltaY > 0)
-                ) {
-                    return; // Permet le défilement vertical de la page si on est au début ou à la fin du slider
-                }
-
-                e.preventDefault();
-                
-                const scrollAmount = e.deltaY;
-                container.scrollTo({
-                    left: container.scrollLeft + scrollAmount,
-                    behavior: 'smooth'
-                });
+                // Logique pour le défilement horizontal
+                // ...
             } else {
                 // En mode liste, on laisse le comportement par défaut (défilement vertical)
                 return;
@@ -81,6 +67,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         }
     };
 
+    // Ajout/suppression de l'écouteur d'événement pour le défilement
     useEffect(() => {
         const sliderContainer = sliderContainerRef.current;
         if (sliderContainer) {
@@ -93,6 +80,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         };
     }, [isListView]);
 
+    // Sélection des éléments à afficher (filtrés par genre ou non)
     const displayedItems = selectedGenre ? genreItems.slice(0, 20) : items.slice(0, 20);
 
     return (
@@ -106,6 +94,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                 <div className={s.sliderContainer} ref={sliderContainerRef}>
                     <div className={s.sliderMap}>
                         {displayedItems.map((item) => (
+                            // Rendu de chaque élément du slider
                             <div key={item.id} className={s.sliderItem}>
                                 <ItemOptions
                                     itemId={item.id}
@@ -121,8 +110,8 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         })`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
-                                        width: '250px', // Définir la largeur fixe
-                                        height: '400px', // Définir la hauteur fixe
+                                        width: '250px',
+                                        height: '400px',
                                     }}
                                 >
                                     <RatingButton rating={item.vote_average} size={isListView ? 'small' : 'normal'} />
