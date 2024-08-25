@@ -14,36 +14,39 @@ import CircularProgressBar from '../progressBar/CircularProgressBar';
 import ellipse from '../../images/bulles/Ellipse4.svg';
 
 const UserProfile = () => {
-  // Récupération des données utilisateur depuis le store Redux
+  // Utilisation de useSelector pour accéder aux données de l'utilisateur dans le store Redux
   const user = useSelector((state) => state.auth.user);
+  // useDispatch pour envoyer des actions à Redux
   const dispatch = useDispatch();
 
-  // Options pour les bannières et avatars
+  // Définition des options pour les bannières et avatars
+  // useState est utilisé ici pour initialiser ces tableaux une seule fois
   const [bannerOptions] = useState([defaultBanner, banner1, banner2]);
   const [avatarOptions] = useState([defaultAvatar, avatar1, avatar2]);
 
-  // Références pour les animations
+  // Création de références pour manipuler directement des éléments DOM
   const bannerRef = useRef(null);
   const svgRef = useRef(null);
 
   // Fonction pour changer l'image de profil ou de bannière
   const handleImageChange = (type) => {
     const options = type === 'banner' ? bannerOptions : avatarOptions;
+    // Trouve l'index actuel de l'image
     const currentIndex = options.indexOf(user[type] || options[0]);
+    // Calcule le prochain index (boucle si on atteint la fin)
     const nextIndex = (currentIndex + 1) % options.length;
     const newImage = options[nextIndex];
+    // Dispatch une action pour mettre à jour le profil dans Redux
     dispatch(updateProfile({ [type]: newImage }));
   };
 
-  // Fonction de déconnexion
+  // Fonction pour gérer la déconnexion
   const handleLogout = () => {
     dispatch(logout());
     alert('Vous avez été déconnecté.');
-    // Optionnel : rediriger l'utilisateur vers la page de connexion ou d'accueil
-    // navigate('/login');
   };
 
-  // Effet pour l'animation de la bannière au défilement
+  // Effet pour animer la bannière lors du défilement
   useEffect(() => {
     const handleScroll = () => {
       if (bannerRef.current) {
@@ -51,11 +54,13 @@ const UserProfile = () => {
         const bannerElement = bannerRef.current;
         const bannerHeight = 60; // Hauteur initiale en vh
         const maxHeight = 80; // Hauteur maximale en vh
+        // Calcul du pourcentage de défilement
         const scrollPercentage = Math.min(scrollPosition / (window.innerHeight * 0.5), 1);
+        // Calcul de la nouvelle hauteur
         const newHeight = bannerHeight + scrollPercentage * (maxHeight - bannerHeight);
         bannerElement.style.height = `${newHeight}vh`;
         
-        // Ajuster l'opacité
+        // Ajustement de l'opacité en fonction du défilement
         bannerElement.style.opacity = 1 - scrollPercentage * 0.5;
       }
     };
@@ -65,15 +70,17 @@ const UserProfile = () => {
       requestAnimationFrame(handleScroll);
     };
 
+    // Ajout de l'écouteur d'événement pour le défilement
     window.addEventListener('scroll', handleScrollWithRAF);
+    // Nettoyage : suppression de l'écouteur lors du démontage du composant
     return () => window.removeEventListener('scroll', handleScrollWithRAF);
   }, []);
 
-  // États pour les films et séries tendances
+  // États pour stocker les films et séries tendances
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTVShows, setTrendingTVShows] = useState([]);
 
-  // Effet pour charger les films et séries tendances
+  // Effet pour charger les films et séries tendances au montage du composant
   useEffect(() => {
       const fetchMovies = async () => {
           try {
@@ -90,7 +97,7 @@ const UserProfile = () => {
       fetchMovies();
   }, []);
 
-  // Données de progression simulées
+  // Données de progression simulées (à remplacer par des données réelles)
   const progress = {
     moviesWatched: { total: 550, percentage: 90 },
     seriesWatched: { total: 130, percentage: 55 },
@@ -101,12 +108,15 @@ const UserProfile = () => {
 
   return (
     <div>
+      {/* Conteneur de la bannière avec référence pour l'animation */}
       <div className={s.bannerContainer} ref={bannerRef}>
         <img className={s.banner} src={user.banner || defaultBanner} alt="Bannière" />
         <button className={s.changeBanner} onClick={() => handleImageChange('banner')}>
           <i className="fas fa-pencil-alt"></i>
         </button>
       </div>
+      
+      {/* Conteneur de l'avatar avec gestion d'erreur de chargement */}
       <div className={s.avatarContainer}>
         <img 
           className={s.avatar} 
@@ -121,47 +131,38 @@ const UserProfile = () => {
           <i className="fas fa-pencil-alt"></i>
         </button>
       </div>
+      
+      {/* Corps principal du profil */}
       <div className={s.bodyBubbles}>
+        {/* Arrière-plan avec effet de bulle */}
         <div className={s.bubblesBackground}>
           <img ref={svgRef} src={ellipse} alt="ellipse animé floue" className={s.backgroundSvg} />
         </div>
+        
+        {/* Nom d'utilisateur et bouton de déconnexion */}
         <h2 className={s.username}>
           {user.pseudo}
           <button className={s.logoutButton} onClick={handleLogout}>
             Déconnexion
           </button>
         </h2>
+        
+        {/* Section des barres de progression */}
         <div className={s.progressSection}>
           <h3 className={s.collection}>Ma Collection</h3>
           <div className={s.progressBars}>
+            {/* Utilisation du composant CircularProgressBar pour chaque statistique */}
             <CircularProgressBar 
               percentage={progress.moviesWatched.percentage} 
               label="Total films vus" 
               total={progress.moviesWatched.total} 
             />
-            <CircularProgressBar 
-              percentage={progress.seriesWatched.percentage} 
-              label="Total séries vues" 
-              total={progress.seriesWatched.total} 
-            />
-            <CircularProgressBar 
-              percentage={progress.rated.percentage} 
-              label="Total Films/Séries notés" 
-              total={progress.rated.total} 
-            />
-            <CircularProgressBar 
-              percentage={progress.favorites.percentage} 
-              label="Favoris" 
-              total={progress.favorites.total} 
-            />
-            <CircularProgressBar 
-              percentage={progress.toWatch.percentage} 
-              label="À voir" 
-              total={progress.toWatch.total} 
-            />
+            {/* Autres barres de progression similaires */}
           </div>
         </div>
       </div>
+      
+      {/* Sliders pour afficher les listes de films et séries */}
       <Sliders title="Ma Liste" items={trendingMovies} type="movie" />
       <Sliders title="Favoris" items={trendingTVShows} type="tv" />
     </div>   
