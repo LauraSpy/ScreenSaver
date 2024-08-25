@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ViewingStatusFilter from './ViewingStatusFilter/ViewingStatusFilter';
 import GenreFilter from './GenreFilter/GenreFilter';
-import DurationFilter from './DurationFilter/DurationFilter';
 import KeywordFilter from './KeywordFilter/KeywordFilter';
 import s from './styles.module.css';
 import right from '../../images/buttons/right.svg';
@@ -55,11 +54,6 @@ const FilterSystem = ({ onFilterChange }) => {
             <GenreFilter 
               selectedGenres={filters.genres} 
               onChange={(value) => updateFilters('genres', value)} 
-            />
-            <DurationFilter 
-                value={filters.duration}
-                onChange={(value) => updateFilters('duration', value)}
-                maxDurationLimit={300} 
             />
             <KeywordFilter 
               value={filters.keywords} 

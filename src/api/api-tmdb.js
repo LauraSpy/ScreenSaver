@@ -77,7 +77,7 @@ const fetchData = async (url, cacheKey) => {
     if (cachedData) return cachedData;
 
     try {
-        // Fait une requête HTTP pour récupérer les données
+        // Fait une requête HTTP pour récupérer les données depuis l'API
         const response = await fetch(url);
         console.log(`Fetching: ${url}`);
 

@@ -12,16 +12,21 @@ import { getTrending } from '../../api/api-tmdb';
 import s from './styles.module.css';
 import CircularProgressBar from '../progressBar/CircularProgressBar';
 import ellipse from '../../images/bulles/Ellipse4.svg';
-import TokenKey from '../../auth/TokenKey';
 
 const UserProfile = () => {
+  // Récupération des données utilisateur depuis le store Redux
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+
+  // Options pour les bannières et avatars
   const [bannerOptions] = useState([defaultBanner, banner1, banner2]);
   const [avatarOptions] = useState([defaultAvatar, avatar1, avatar2]);
+
+  // Références pour les animations
   const bannerRef = useRef(null);
   const svgRef = useRef(null);
 
+  // Fonction pour changer l'image de profil ou de bannière
   const handleImageChange = (type) => {
     const options = type === 'banner' ? bannerOptions : avatarOptions;
     const currentIndex = options.indexOf(user[type] || options[0]);
@@ -30,6 +35,7 @@ const UserProfile = () => {
     dispatch(updateProfile({ [type]: newImage }));
   };
 
+  // Fonction de déconnexion
   const handleLogout = () => {
     dispatch(logout());
     alert('Vous avez été déconnecté.');
@@ -37,6 +43,7 @@ const UserProfile = () => {
     // navigate('/login');
   };
 
+  // Effet pour l'animation de la bannière au défilement
   useEffect(() => {
     const handleScroll = () => {
       if (bannerRef.current) {
@@ -53,6 +60,7 @@ const UserProfile = () => {
       }
     };
 
+    // Utilisation de requestAnimationFrame pour optimiser les performances
     const handleScrollWithRAF = () => {
       requestAnimationFrame(handleScroll);
     };
@@ -61,9 +69,11 @@ const UserProfile = () => {
     return () => window.removeEventListener('scroll', handleScrollWithRAF);
   }, []);
 
+  // États pour les films et séries tendances
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTVShows, setTrendingTVShows] = useState([]);
 
+  // Effet pour charger les films et séries tendances
   useEffect(() => {
       const fetchMovies = async () => {
           try {
@@ -80,7 +90,7 @@ const UserProfile = () => {
       fetchMovies();
   }, []);
 
-  // Simuler des données de progression
+  // Données de progression simulées
   const progress = {
     moviesWatched: { total: 550, percentage: 90 },
     seriesWatched: { total: 130, percentage: 55 },
