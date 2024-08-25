@@ -4,23 +4,28 @@ import { useNavigate, Link } from 'react-router-dom';
 import s from './styles.module.css';
 import logoSite from '../../images/logo/logo.svg';
 import logoSearch from '../../images/buttons/bouton-search.svg';
-import logoNotif from '../../images/icon/notif.svg';
 import logoSiteMobile from '../../images/logo/logo_small.svg';
 import defaultAvatar from '../../images/avatar/avatar-default.png';
 import NavBar from '../navbar/navbar';
 
 const Header = () => {
+    // Récupération des informations de l'utilisateur depuis le store Redux
     const user = useSelector((state) => state.auth.user);
+    
+    // États pour gérer la recherche, le style sticky, le menu overlay et la taille de l'écran
     const [searchTerm, setSearchTerm] = useState('');
     const [isSticky, setIsSticky] = useState(false);
     const [showMenuOverlay, setShowMenuOverlay] = useState(false);
     const [screenSize, setScreenSize] = useState('desktop');
+    
     const navigate = useNavigate();
 
+    // Gestion du changement dans la barre de recherche
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
+    // Gestion de la soumission de la recherche
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         if (searchTerm.trim()) {
@@ -29,10 +34,12 @@ const Header = () => {
         }
     };
 
+    // Basculer l'affichage du menu overlay (pour mobile)
     const toggleMenuOverlay = () => {
         setShowMenuOverlay(!showMenuOverlay);
     };
 
+    // Effet pour gérer le redimensionnement de la fenêtre et le défilement
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 640) {
@@ -61,11 +68,13 @@ const Header = () => {
     return (
         <header className={isSticky ? `${s.header} ${s.sticky}` : s.header}>
             <div className={s.headerContent}>
+                {/* Affichage du menu burger pour mobile */}
                 {screenSize === 'mobile' && (
                     <div className={s.menuBurger} onClick={toggleMenuOverlay}>
                         <i className={`${showMenuOverlay ? 'fas fa-times' : 'fas fa-bars'} ${s.iconLarge}`}></i>
                     </div>                
                 )}
+                {/* Logo du site */}
                 <div className={s.logoSite}>
                     <Link to='/'>
                         <img 
@@ -74,6 +83,7 @@ const Header = () => {
                         />
                     </Link>
                 </div>
+                {/* Barre de recherche pour desktop et tablet */}
                 {(screenSize === 'desktop' || screenSize === 'tablet') && (
                     <form className={s.searchbar} onSubmit={handleSearchSubmit}>
                         <input 
@@ -91,11 +101,7 @@ const Header = () => {
                         </button>
                     </form>
                 )}
-                {(screenSize === 'desktop' || screenSize === 'tablet') && (
-                    <div className={s.notif}>
-                        <img src={logoNotif} alt="notif logo" />
-                    </div>
-                )}
+                {/* Avatar de l'utilisateur */}
                 <div className={s.avatar}>
                     <Link to='/profile'>
                         <img 
@@ -109,7 +115,9 @@ const Header = () => {
                     </Link>
                 </div>
             </div>
+            {/* Barre de navigation pour desktop et tablet */}
             {(screenSize === 'desktop' || screenSize === 'tablet') && <NavBar />}
+            {/* Menu overlay pour mobile */}
             {showMenuOverlay && screenSize === 'mobile' && (
                 <div className={s.menuOverlay}>
                     <NavBar isOverlay={true} />
