@@ -3,21 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 import arrowDown from '../../images/buttons/bottom.svg';
 
+// Composant NavBar pour la navigation principale
+// isOverlay est utilisé pour le style en mode responsive sur mobile
 const NavBar = ({ isOverlay = false }) => {
+    // État pour gérer l'ouverture des menus déroulants
     const [dropdownOpen, setDropdownOpen] = useState(null);
     const navigate = useNavigate();
 
+    // Gestion de l'ouverture du menu au survol
     const handleMouseEnter = (menu) => {
         setDropdownOpen(menu);
     };
 
+    // Fermeture du menu lorsque la souris quitte la zone
     const handleMouseLeave = () => {
         setDropdownOpen(null);
     };
 
     return (
+        // Application de la classe overlay si nécessaire (pour le responsive)
         <nav className={isOverlay ? s.navOverlay : ''}>
             <ul className={`${s.navLinks} ${isOverlay ? s.navLinksOverlay : ''}`}>
+                {/* Menu Films */}
                 <li
                     onMouseEnter={() => handleMouseEnter('films')}
                     onMouseLeave={handleMouseLeave}
@@ -25,6 +32,7 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Films <img src={arrowDown} alt="arrow down" />
                     </button>
+                    {/* Sous-menu Films */}
                     {dropdownOpen === 'films' && (
                         <ul className={s.dropdown}>
                             <li onClick={() => navigate('/list/films/popular')}>Films populaires</li>
@@ -35,6 +43,8 @@ const NavBar = ({ isOverlay = false }) => {
                         </ul>
                     )}
                 </li>
+
+                {/* Menu Séries */}
                 <li 
                     onMouseEnter={() => handleMouseEnter('series')}
                     onMouseLeave={handleMouseLeave}
@@ -42,6 +52,7 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Séries <img src={arrowDown} alt="arrow down" />
                     </button>
+                    {/* Sous-menu Séries */}
                     {dropdownOpen === 'series' && (
                         <ul className={s.dropdown}>
                             <li onClick={() => navigate('/list/series/current')}>Séries du moment</li>
@@ -52,6 +63,8 @@ const NavBar = ({ isOverlay = false }) => {
                         </ul>
                     )}
                 </li>
+
+                {/* Menu Ma Liste */}
                 <li
                     onMouseEnter={() => handleMouseEnter('myList')}
                     onMouseLeave={handleMouseLeave}
@@ -59,6 +72,7 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Ma Liste <img src={arrowDown} alt="arrow down" />
                     </button>
+                    {/* Sous-menu Ma Liste */}
                     {dropdownOpen === 'myList' && (
                         <ul className={s.dropdown}>
                             <li onClick={() => navigate('/my-list')}>Ma liste</li>

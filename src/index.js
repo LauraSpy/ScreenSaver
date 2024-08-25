@@ -16,13 +16,19 @@ import ProtectedRoutes from './utils/ProtectedRoutes.jsx';
 import LoginForm from './components/form/LoginForm.jsx';
 import SearchResults from './pages/searchResults/SearchResults.jsx';
 
+// Création du point d'entrée de l'application React
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
+  // React.StrictMode est un outil pour mettre en évidence les problèmes potentiels dans une application
   <React.StrictMode>
+    {/* Provider rend le store Redux disponible pour tous les composants imbriqués */}
     <Provider store={store}>
+      {/* BrowserRouter permet d'utiliser le routage dans l'application */}
       <BrowserRouter>
+        {/* Définition des routes de l'application */}
         <Routes>
+          {/* Route principale qui englobe toutes les autres */}
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="/detail/:type/:id" element={<DetailFilm />} />
@@ -30,6 +36,7 @@ root.render(
             <Route path="/login" element={<LoginForm />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<SearchResults />} />
+            {/* Routes protégées (nécessitant une authentification) */}
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<UserProfilePage />} />
               <Route path="/terms" Component={TermsOfService} />
@@ -41,4 +48,5 @@ root.render(
   </React.StrictMode>
 );
 
+// Mesure des performances de l'application
 reportWebVitals();

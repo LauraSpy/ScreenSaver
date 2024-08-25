@@ -6,6 +6,7 @@ import RatingButton from '../../ratingButton/RatingButton';
 import { getGenres, getByGenre } from '../../../api/api-tmdb';
 import notAvailable from '../../../images/imagesGénériques/notAvailable.png';
 
+// Composant Sliders pour afficher une liste de médias (films ou séries) avec options de filtrage par genre
 const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter = false, initialGenre = null }) => {
     const navigate = useNavigate();
     const [activeDropdown, setActiveDropdown] = useState(null);
@@ -15,7 +16,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
     const [genreItems, setGenreItems] = useState([]);
     const sliderContainerRef = useRef(null);
 
-    // Fetch genres if showGenreFilter is true
+    // Récupération des genres si le filtre par genre est activé
     useEffect(() => {
         if (showGenreFilter) {
             const fetchGenres = async () => {
@@ -26,7 +27,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         }
     }, [type, showGenreFilter]);
 
-    // Fetch items by genre when selectedGenre changes
+    // Récupération des éléments par genre lorsque le genre sélectionné change
     useEffect(() => {
         const fetchGenreItems = async () => {
             if (selectedGenre && showGenreFilter) {
@@ -45,21 +46,24 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         fetchGenreItems();
     }, [selectedGenre, type]);
 
+    // Navigation vers la page de détails du média
     const handleItemClick = (itemId) => {
         navigate(`/detail/${type}/${itemId}`);
     };
 
+    // Gestion de l'ouverture/fermeture du menu déroulant pour chaque item
     const toggleDropdown = (itemId) => {
         setActiveDropdown(activeDropdown === itemId ? null : itemId);
     };
 
+    // Gestion du défilement horizontal/vertical du slider
     const handleWheel = (e) => {
         if (sliderContainerRef.current) {
             const container = sliderContainerRef.current;
             const isHorizontalScroll = !isListView;
 
             if (isHorizontalScroll) {
-                // Défilement horizontal
+                // Logique pour le défilement horizontal
                 if (
                     (container.scrollLeft === 0 && e.deltaY < 0) ||
                     (container.scrollLeft + container.clientWidth === container.scrollWidth && e.deltaY > 0)
@@ -81,6 +85,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         }
     };
 
+    // Ajout/suppression de l'écouteur d'événement pour le défilement
     useEffect(() => {
         const sliderContainer = sliderContainerRef.current;
         if (sliderContainer) {
@@ -93,6 +98,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
         };
     }, [isListView]);
 
+    // Sélection des éléments à afficher (filtrés par genre ou non)
     const displayedItems = selectedGenre ? genreItems.slice(0, 20) : items.slice(0, 20);
 
     return (
@@ -107,12 +113,14 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                     <div className={s.sliderMap}>
                         {displayedItems.map((item) => (
                             <div key={item.id} className={s.sliderItem}>
+                                {/* Composant ItemOptions pour afficher le menu déroulant en ellipse */}
                                 <ItemOptions
                                     itemId={item.id}
                                     onViewDetails={handleItemClick}
                                 />
                                 <div
                                     className={s.itemCard}
+                                    // ajout de l'affiche en style-inline pour pouvoir modifier la taille
                                     style={{
                                         backgroundImage: `url(${
                                             item.poster_path
@@ -121,14 +129,16 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                         })`,
                                         backgroundSize: 'cover',
                                         backgroundPosition: 'center',
-                                        width: '250px', // Définir la largeur fixe
-                                        height: '400px', // Définir la hauteur fixe
+                                        width: '250px',
+                                        height: '400px',
                                     }}
                                 >
+                                    {/* Composant RatingButton pour afficher la note globale du média */}
                                     <RatingButton rating={item.vote_average} size={isListView ? 'small' : 'normal'} />
                                 </div>
                                 <div className={s.itemCardBody}>
-                                    <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2>
+                                    <h2 className={s.itemCardBodyTitle}>{item.title || item.name}</h2> 
+                                    {/* en fonction de si on est dans film ou série, l'appel du "nom" n'est pas tout à fait pareil */}
                                 </div>
                             </div>
                         ))}

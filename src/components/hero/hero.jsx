@@ -8,21 +8,24 @@ import ellipse2 from '../../images/bulles/Ellipse5.svg';
 import ellipse3 from '../../images/bulles/doubleEllipse.svg';
 
 const Hero = () => {
-    const navigate = useNavigate(); //utiliser la navigation pour accéder à la page de détail du film quand on clique dessus
-    const [discoverItems, setDiscoverItems] = useState([]); //notation générique pour "discover", permet ensuite de naviguer soit entre film ou série
+    const navigate = useNavigate();
+    // État pour stocker les éléments à découvrir (films ou séries)
+    const [discoverItems, setDiscoverItems] = useState([]);
+    // Index de l'élément actuellement affiché dans le carrousel
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [itemType, setItemType] = useState('movie'); // permet d'alterner entre 'movie' ou 'tv'
+    // Type d'élément affiché (film ou série)
+    const [itemType, setItemType] = useState('movie');
 
-    //ajout de l'utilisation des "ref" pour créer un effet de parallax pour l'animation au scroll des bulles du fond
+    // Références pour l'effet de parallaxe des bulles de fond
     const svg1Ref = useRef(null);
     const svg2Ref = useRef(null);
     const svg3Ref = useRef(null);
 
-
+    // Effet pour charger les éléments à découvrir
     useEffect(() => {
         const fetchDiscoverItems = async () => {
             try {
-                const data = await getDiscover(itemType); //on inclut itemType pour appeler l'état dans lequel on est, film ou série
+                const data = await getDiscover(itemType);
                 setDiscoverItems(data.results.slice(0, 5)); 
             } catch (error) {
                 console.error(`Erreur lors de la récupération des ${itemType === 'movie' ? 'films' : 'séries'} découverts:`, error);
@@ -32,6 +35,7 @@ const Hero = () => {
         fetchDiscoverItems();
     }, [itemType]);
 
+    // Fonctions pour naviguer dans le carrousel
     const nextSlide = () => {
         setCurrentIndex((prevIndex) => 
             prevIndex === discoverItems.length - 1 ? 0 : prevIndex + 1
@@ -44,22 +48,18 @@ const Hero = () => {
         );
     };
 
+    // Effet pour le défilement automatique du carrousel
     useEffect(() => {
-        const slider = setInterval(() => {
-            setCurrentIndex((prevIndex) => 
-                prevIndex === discoverItems.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 3000);
-    
+        const slider = setInterval(nextSlide, 3000);
         return () => clearInterval(slider);
     }, [discoverItems.length]);
 
-    //bouton pour alterner entre FILMS ou SERIES
+    // Fonction pour alterner entre films et séries
     const toggleItemType = () => {
         setItemType(prevType => prevType === 'movie' ? 'tv' : 'movie');
     };
 
-    //bouton pour accéder aux détails du film présenté en "discover"
+    // Fonction pour naviguer vers la page de détails
     const handleViewDetails = (itemId) => {
         navigate(`/detail/${itemType}/${itemId}`);
     };
@@ -70,7 +70,7 @@ const Hero = () => {
                 <img src={logoSite} alt="logo site" className={s.logoSite} />
                 <h1 className={s.title} data-text="économise tes batteries !">économise tes batteries !</h1>
                 <p className={s.subTitle}>Retrouve tes films et séries préférés, notes-les, gardes les en mémoire et surtout, découvre le film ou la série qui fera de ta soirée une SUPER soirée ! </p>
-                {/* AJOUT DES IMAGES POUR LE FOND ANIME */}
+                {/* Images de fond pour l'animation */}
                 <div className={s.bubblesBackground}>
                     <img ref={svg1Ref} src={ellipse1} alt="ellipse animé floue" className={s.backgroundSvg1} />
                     <img ref={svg2Ref} src={ellipse2} alt="ellipse animé floue" className={s.backgroundSvg2} />
@@ -79,6 +79,7 @@ const Hero = () => {
             </div>
             <div className={s.discoverCarousel}>
                 {discoverItems.map((item, index) => {
+                    // Logique pour déterminer la position de chaque élément dans le carrousel
                     let position = s.nextSlide;
                     if (index === currentIndex) {
                         position = s.activeSlide;
@@ -95,7 +96,6 @@ const Hero = () => {
                                 alt={item.title || item.name}
                                 className={s.backdropImage}
                             />
-                            {/* affichage du titre de deux façons : title pour film et name pour série (les séries utilisent "name" dans l'API) */}
                             <h3 className={s.itemTitle}>{item.title || item.name}</h3> 
                             {index === currentIndex && (
                                 <button
