@@ -61,7 +61,7 @@
     cursor: pointer;
     align-self: flex-start;
     margin-top: 10px;
-    z-index: 2000;
+    z-index: 1990; /* il se place en-desosus de l'overlay qui est à 2000 et au-dessus des autres éléments de la page */
 }
 
 .searchButton:hover {
