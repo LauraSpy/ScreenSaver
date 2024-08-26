@@ -250,6 +250,9 @@ body {
 }
 
 @media screen and (max-width: 450px) {
+  .title {
+    min-width: 25rem;
+  }
   .heroHeader h1 {
     font-size: 15px;
     width: 60%;
