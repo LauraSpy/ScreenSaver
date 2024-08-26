@@ -64,18 +64,18 @@ const NavBar = ({ isOverlay = false }) => {
                     )}
                 </li>
 
-                {/* Menu Ma Liste */}
+                {/* Menu Mes Favoris */}
                 <li
                     onMouseEnter={() => handleMouseEnter('myList')}
                     onMouseLeave={handleMouseLeave}
                 >
                     <button>
-                        Ma Liste <img src={arrowDown} alt="arrow down" />
+                        Mes listes <img src={arrowDown} alt="arrow down" />
                     </button>
-                    {/* Sous-menu Ma Liste */}
+                    {/* Sous-menu Mes Favoris */}
                     {dropdownOpen === 'myList' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/my-list')}>Ma liste</li>
+                            <li onClick={() => navigate('/my-list')}>Mes Favoris</li>
                         </ul>
                     )}
                 </li>
