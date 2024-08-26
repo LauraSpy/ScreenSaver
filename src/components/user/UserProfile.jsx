@@ -97,7 +97,7 @@ const UserProfile = () => {
       fetchMovies();
   }, []);
 
-  // Données de progression simulées (à remplacer par des données réelles)
+  // Données de progression simulées 
   const progress = {
     moviesWatched: { total: 550, percentage: 90 },
     seriesWatched: { total: 130, percentage: 55 },
@@ -157,7 +157,26 @@ const UserProfile = () => {
               label="Total films vus" 
               total={progress.moviesWatched.total} 
             />
-            {/* Autres barres de progression similaires */}
+            <CircularProgressBar 
+              percentage={progress.seriesWatched.percentage} 
+              label="Total séries vues" 
+              total={progress.seriesWatched.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.rated.percentage} 
+              label="Total /séries noté(e)s" 
+              total={progress.rated.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.favorites.percentage} 
+              label="Total films/séries favoris" 
+              total={progress.favorites.total} 
+            />
+            <CircularProgressBar 
+              percentage={progress.toWatch.percentage} 
+              label="Total films/séries à voir" 
+              total={progress.toWatch.total} 
+            />
           </div>
         </div>
       </div>

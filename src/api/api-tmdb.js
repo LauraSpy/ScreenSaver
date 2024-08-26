@@ -104,30 +104,6 @@ const fetchData = async (url, cacheKey) => {
     }
 };
 
-// Fonction pour récupérer tous les éléments (films ou séries) de l'API
-// const getAllItems = async (type) => {
-//     const allItems = [];
-//     let page = 1;
-//     const maxPages = 500; // Nombre maximum de pages à récupérer
-
-//     try {
-//         // Boucle pour récupérer les données page par page
-//         while (page <= maxPages) {
-//             const url = endpoints.discover(type, page);
-//             const data = await fetchData(url, `all${type}_page_${page}`);
-//             allItems.push(...data.results);
-
-//             // Arrête la boucle si toutes les pages ont été récupérées
-//             if (page >= data.total_pages) break;
-//             page++;
-//         }
-//         return allItems;
-//     } catch (error) {
-//         console.error(`Erreur lors de la récupération de tous les ${type}:`, error);
-//         throw error;
-//     }
-// };
-
 // Fonction pour récupérer les éléments populaires
 
 export const getPopular = async (type, page = 1) => {
