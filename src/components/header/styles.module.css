@@ -79,37 +79,17 @@ header {
 
 /* Styles pour la barre de navigation fixe */
 .sticky {
-    position: fixed;
+    position: fixed; /* fixe l'élément sur la page; ne bougera pas, même au scroll */
     top: -1.5%;
     width: 100%;
     height: 12.5%;
-    overflow: hidden;
+    overflow: hidden; /* cache tout contenu qui dépasse les valeurs définies du parent */
     background-color: var(--bg-dark); /* Couleur de fond lorsque la barre est fixe */
     z-index: 5000; /* Assure que la barre de navigation est au-dessus des autres éléments */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre pour donner un effet de profondeur */
 }
 
 /* Styles pour la barre de recherche en overlay */
-.searchOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.searchbarOverlay {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    position: relative;
-}
 
 .menuOverlay {
     position: fixed;
@@ -128,38 +108,24 @@ header {
     margin-top: 20px;
 }
 
-.tabletIcons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.tabletIcons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.expandedSearchBar {
+.searchbarOverlay {
     width: 100%;
-    padding: 10px;
-    background-color: var(--bg-dark);
-    transition: all 0.3s ease;
-}
-
-.expandedSearchBar form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.tabletIcons {
+    display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-.expandedSearchBar .searchbarInput {
-    flex-grow: 1;
-    margin-right: 10px;
-}
-
-.expandedSearchBar .searchLogo {
-    position: static;
+.tabletIcons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .searchLogo {
@@ -218,23 +184,7 @@ header {
         height: auto;
     }
 
-    .tabletIcons {
-        order: 3;
-    }
-
     .avatar {
-        order: 4;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .searchLogo {
-        margin-right: -22%;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .searchLogo {
-        margin-right: -29%;
+        order: 3;
     }
 }

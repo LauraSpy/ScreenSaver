@@ -104,6 +104,10 @@
 }
 
 @media screen and (max-width: 600px) {
+    .Footer {
+        margin-top: 45%;
+    }
+
     .footerBottom {
         display: flex;
         flex-direction: column;
