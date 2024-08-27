@@ -38,17 +38,23 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
         if (sliderContainerRef.current) {
             const container = sliderContainerRef.current;
             const scrollAmount = e.deltaY;
-            container.scrollTo({
-                left: container.scrollLeft + scrollAmount,
-                behavior: 'smooth'
-            });
+            
+            // Défilement horizontal au lieu de vertical
+            container.scrollLeft += scrollAmount;
+
+            // Empêcher le défilement vertical de la page
+            e.preventDefault();
+
+            // Permettre le défilement vertical de la page si on est au début ou à la fin du slider
             if (
                 (container.scrollLeft === 0 && scrollAmount < 0) ||
-                (container.scrollLeft + container.clientWidth === container.scrollWidth && scrollAmount > 0)
+                (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1 && scrollAmount > 0)
             ) {
-                return; // Permet le défilement vertical de la page si on est au début ou à la fin du slider
+                e.currentTarget.removeEventListener('wheel', handleWheel);
+                setTimeout(() => {
+                    e.currentTarget.addEventListener('wheel', handleWheel, { passive: false });
+                }, 50);
             }
-            e.preventDefault();
         }
     };
 
