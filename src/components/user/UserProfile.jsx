@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile, logout } from '../../redux/authSlice';
 import defaultBanner from '../../images/banner/banner-default.png';
@@ -18,6 +19,8 @@ const UserProfile = () => {
   const user = useSelector((state) => state.auth.user);
   // useDispatch pour envoyer des actions à Redux
   const dispatch = useDispatch();
+  // navigate pour naviguer sur les pages du site
+  const navigate = useNavigate();
 
   // Définition des options pour les bannières et avatars
   // useState est utilisé ici pour initialiser ces tableaux une seule fois
@@ -44,6 +47,7 @@ const UserProfile = () => {
   const handleLogout = () => {
     dispatch(logout());
     alert('Vous avez été déconnecté.');
+    navigate('/'); //renvoie à la page d'accueil au moment de la déco
   };
 
   // Effet pour animer la bannière lors du défilement

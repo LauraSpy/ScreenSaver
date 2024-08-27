@@ -30,7 +30,7 @@ const LoginForm = () => {
             // Simuler une connexion réussie
             dispatch(login({ pseudo, avatar: 'default-avatar.png' }));
             localStorage.setItem('user', JSON.stringify({ pseudo, avatar: 'default-avatar.png' }));
-            navigate('/');
+            navigate('/profile');
         }
     };
 
