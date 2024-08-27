@@ -23,7 +23,6 @@
 }
 
 .button:hover {
-    background-color: none;
     transform: scale(1.1);
 }
 
@@ -54,7 +53,6 @@
 }
 
 .message:hover {
-    background-color: none; /* Couleur plus foncée au survol */
     transform: scale(1.1);
 }
 
