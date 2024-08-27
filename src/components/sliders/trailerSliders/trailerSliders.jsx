@@ -37,24 +37,22 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
     const handleWheel = (e) => {
         if (sliderContainerRef.current) {
             const container = sliderContainerRef.current;
-            const scrollAmount = e.deltaY;
-            
-            // Défilement horizontal au lieu de vertical
-            container.scrollLeft += scrollAmount;
 
-            // Empêcher le défilement vertical de la page
-            e.preventDefault();
-
-            // Permettre le défilement vertical de la page si on est au début ou à la fin du slider
+            // Vérifier si on est au début ou à la fin du slider
             if (
-                (container.scrollLeft === 0 && scrollAmount < 0) ||
-                (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1 && scrollAmount > 0)
+                (container.scrollLeft === 0 && e.deltaY < 0) ||
+                (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1 && e.deltaY > 0)
             ) {
-                e.currentTarget.removeEventListener('wheel', handleWheel);
-                setTimeout(() => {
-                    e.currentTarget.addEventListener('wheel', handleWheel, { passive: false });
-                }, 50);
+                return; // Permet le défilement vertical de la page si on est au début ou à la fin du slider
             }
+
+            e.preventDefault();
+            
+            const scrollAmount = e.deltaY;
+            container.scrollTo({
+                left: container.scrollLeft + scrollAmount,
+                behavior: 'smooth'
+            });
         }
     };
 
@@ -70,7 +68,6 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
         };
     }, []);
     
-
     const displayedItems = maxItems ? items.slice(0, maxItems) : items;
 
     console.log('Displayed items:', displayedItems);

@@ -132,9 +132,18 @@ const DetailFilm = () => {
                     </div>
                     <div className={s.trailer}>
                         {videos && videos.results && videos.results.length > 0 ? (
-                            <TrailerButton trailerKey={videos.results[0].key} />
+                            (() => {
+                                const trailer = videos.results.find(
+                                    video => video.type === "Trailer" && (video.iso_639_1 === "fr" || video.iso_639_1 === "en")
+                                );
+                                return trailer ? (
+                                    <TrailerButton trailerKey={trailer.key} title={details.title || details.name} />
+                                ) : (
+                                    <p className={s.notAvailable}>Pas de Bande-Annonce disponible</p>
+                                );
+                            })()
                         ) : (
-                            <p className={s.notAvailable}>Pas de Bande-Annonce</p>
+                            <p className={s.notAvailable}>Pas de Bande-Annonce disponible</p>
                         )}
                     </div>
                 </div>

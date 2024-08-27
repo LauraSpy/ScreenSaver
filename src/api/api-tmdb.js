@@ -49,24 +49,6 @@ const endpoints = {
     // Endpoint pour rechercher des films et série par mots-clés
     searchKeyword: (query) => `${BASE_URL}/search/keyword?api_key=${API_KEY}&query=${encodeURIComponent(query)}`,
     discoverByKeyword: (keywordId, page) => `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_keywords=${keywordId}&page=${page}`,
-
-    // Endpoint pour les films favoris
-    favoriteMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/favorite/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
-
-    // Endpoint pour les séries favorites
-    favoriteTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/favorite/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
-
-    // Endpoint pour les films en liste de suivi
-    watchlistMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/watchlist/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
-
-    // Endpoint pour les séries en liste de suivi
-    watchlistTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/watchlist/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
-
-    // Endpoint pour les films notés
-    ratedMovies: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/rated/movies?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
-
-    // Endpoint pour les séries notées
-    ratedTV: (accountId, sessionId) => `${BASE_URL}/account/${accountId}/rated/tv?api_key=${API_KEY}&session_id=${sessionId}&language=${LANGUAGE}`,
 };
 
 
@@ -79,7 +61,6 @@ const fetchData = async (url, cacheKey) => {
     try {
         // Fait une requête HTTP pour récupérer les données depuis l'API
         const response = await fetch(url);
-        console.log(`Fetching: ${url}`);
 
         // Vérifie si la réponse est correcte
         if (!response.ok) {
@@ -88,7 +69,6 @@ const fetchData = async (url, cacheKey) => {
 
         // Convertit la réponse en JSON
         const data = await response.json();
-        console.log(`Data received:`, data);
 
         // Vérifie si les données reçues sont valides
         if (!data.results && !data.genres && !data.id) {
@@ -119,19 +99,14 @@ export const getTrending = async (type) => {
 
 // Fonction pour récupérer les bandes annonces
 export const getVideos = async (type, id) => {
-    console.log(`Fetching videos for ${type} with ID: ${id}`);
     const url = endpoints.videos(type, id);
-    console.log(`Video URL: ${url}`);
     try {
         const data = await fetchData(url, `${type}Videos_${id}`);
-        console.log(`Video data received for ${type} ${id}:`, data);
         if (data.results && data.results.length > 0) {
-            console.log(`Number of videos found: ${data.results.length}`);
             // Cherche une bande annonce en français ou en anglais sur YouTube
             const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube' && (video.iso_639_1 === 'fr' || video.iso_639_1 === 'en')) ||
                 data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
             if (trailer) {
-                console.log(`Trailer found: ${trailer.key} (Language: ${trailer.iso_639_1})`);
                 return trailer.key;
             } else {
                 console.log('No trailer found in the video results');
@@ -141,7 +116,6 @@ export const getVideos = async (type, id) => {
         }
         return null;
     } catch (error) {
-        console.error(`Error fetching videos for ${type} ${id}:`, error);
         throw error;
     }
 };
@@ -164,10 +138,8 @@ export const getTrendingWithTrailers = async (type) => {
             }
         }
 
-        console.log('Items with trailers:', itemsWithTrailers);
         return itemsWithTrailers;
     } catch (error) {
-        console.error(`Error fetching trending items with trailers for ${type}:`, error);
         throw error;
     }
 };

@@ -3,6 +3,8 @@ import s from './styles.module.css';
 import play from '../../../images/icon/play.svg'; 
 
 export const TrailerButton = ({ trailerKey }) => {
+  if (!trailerKey) return null;
+
   return (
     <a 
       href={`https://www.youtube.com/watch?v=${trailerKey}`}
