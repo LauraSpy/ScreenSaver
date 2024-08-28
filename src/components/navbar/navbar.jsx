@@ -5,7 +5,7 @@ import arrowDown from '../../images/buttons/bottom.svg';
 
 // Composant NavBar pour la navigation principale
 // isOverlay est utilisé pour le style en mode responsive sur mobile
-const NavBar = ({ isOverlay = false }) => {
+const NavBar = ({ isOverlay = false, closeMenuOverlay  }) => {
     // État pour gérer l'ouverture des menus déroulants
     const [dropdownOpen, setDropdownOpen] = useState(null);
     const navigate = useNavigate();
@@ -20,8 +20,16 @@ const NavBar = ({ isOverlay = false }) => {
         setDropdownOpen(null);
     };
 
+    // Pour gérer, au clic d'un lien, la remise à l'état initial du menu burger
+    const handleNavigation = (path) => {
+        navigate(path);
+        // on fait appel au prop 
+        if (isOverlay && closeMenuOverlay) {
+            closeMenuOverlay();
+        }
+    };
+
     return (
-        // Application de la classe overlay si nécessaire (pour le responsive)
         <nav className={isOverlay ? s.navOverlay : ''}>
             <ul className={`${s.navLinks} ${isOverlay ? s.navLinksOverlay : ''}`}>
                 {/* Menu Films */}
@@ -32,14 +40,13 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Films <img src={arrowDown} alt="arrow down" />
                     </button>
-                    {/* Sous-menu Films */}
                     {dropdownOpen === 'films' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/list/films/popular')}>Films populaires</li>
-                            <li onClick={() => navigate('/list/films/top-rated')}>Films les mieux notés</li>
-                            <li onClick={() => navigate('/list/films/now-playing')}>Films à l'affiche</li>
-                            <li onClick={() => navigate('/list/films/to-watch')}>Films à voir</li>
-                            <li onClick={() => navigate('/list/films/already-watched')}>Films déjà vues</li>
+                            <li onClick={() => handleNavigation('/list/films/popular')}>Films populaires</li>
+                            <li onClick={() => handleNavigation('/list/films/top-rated')}>Films les mieux notés</li>
+                            <li onClick={() => handleNavigation('/list/films/now-playing')}>Films à l'affiche</li>
+                            <li onClick={() => handleNavigation('/list/films/to-watch')}>Films à voir</li>
+                            <li onClick={() => handleNavigation('/list/films/already-watched')}>Films déjà vues</li>
                         </ul>
                     )}
                 </li>
@@ -52,14 +59,13 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Séries <img src={arrowDown} alt="arrow down" />
                     </button>
-                    {/* Sous-menu Séries */}
                     {dropdownOpen === 'series' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/list/series/current')}>Séries du moment</li>
-                            <li onClick={() => navigate('/list/series/popular')}>Séries populaires</li>
-                            <li onClick={() => navigate('/list/series/top-rated')}>Séries les mieux notées</li>
-                            <li onClick={() => navigate('/list/series/to-watch')}>Séries à voir</li>
-                            <li onClick={() => navigate('/list/series/already-watched')}>Séries déjà vues</li>
+                            <li onClick={() => handleNavigation('/list/series/current')}>Séries du moment</li>
+                            <li onClick={() => handleNavigation('/list/series/popular')}>Séries populaires</li>
+                            <li onClick={() => handleNavigation('/list/series/top-rated')}>Séries les mieux notées</li>
+                            <li onClick={() => handleNavigation('/list/series/to-watch')}>Séries à voir</li>
+                            <li onClick={() => handleNavigation('/list/series/already-watched')}>Séries déjà vues</li>
                         </ul>
                     )}
                 </li>
@@ -72,10 +78,9 @@ const NavBar = ({ isOverlay = false }) => {
                     <button>
                         Mes listes <img src={arrowDown} alt="arrow down" />
                     </button>
-                    {/* Sous-menu Mes Favoris */}
                     {dropdownOpen === 'myList' && (
                         <ul className={s.dropdown}>
-                            <li onClick={() => navigate('/my-list')}>Mes Favoris</li>
+                            <li onClick={() => handleNavigation('/my-list')}>Mes Favoris</li>
                         </ul>
                     )}
                 </li>

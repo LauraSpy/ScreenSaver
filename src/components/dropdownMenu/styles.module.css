@@ -1,6 +1,7 @@
 .dropdownMenu {
     position: absolute;
     width: 13vw;
+    min-height: 30vh;
     top: 8.5vh;
     padding: 10px;
     z-index: 20;
@@ -43,7 +44,7 @@
 @media screen and (max-width: 800px) {
     .dropdownMenu {
         width: 15vw;
-        height: 25vh;
+        min-height: 35vh;
         padding: 10% 5%;
 
     }

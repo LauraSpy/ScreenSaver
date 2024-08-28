@@ -65,6 +65,10 @@ const Header = () => {
         };
     }, []);
 
+    const closeMenuOverlay = () => {
+        setShowMenuOverlay(false);
+    };
+
     return (
         <header className={isSticky ? `${s.header} ${s.sticky}` : s.header}>
             <div className={s.headerContent}>
@@ -120,7 +124,7 @@ const Header = () => {
             {/* Menu overlay pour mobile */}
             {showMenuOverlay && screenSize === 'mobile' && (
                 <div className={s.menuOverlay}>
-                    <NavBar isOverlay={true} />
+                    <NavBar isOverlay={true} closeMenuOverlay={closeMenuOverlay} />
                     <div className={s.searchbarOverlay}>
                         <form onSubmit={handleSearchSubmit}>
                             <input 
