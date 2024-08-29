@@ -109,7 +109,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
     return (
         <div className={`${s.sliderWrapper} ${isListView ? s.listView : ''}`}>
             <div className={s.sliderTitle}>
-                <h2>{title}</h2>
+                <h2 className={s.sliderTitleHeading}>{title}</h2>
             </div>
             {isLoading ? (
                 <p>Chargement...</p>

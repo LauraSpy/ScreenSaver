@@ -19,12 +19,10 @@
     border-image-slice: 0 0 1 0;
 }
 
-.sliderTitle h2 {
+.sliderTitleHeading {
     color: var(--white-pink);
     margin-bottom: 2%;
-    font-family: "Red Hat Display", sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
+    font: bold 2rem "Red Hat Display", sans-serif;
     text-transform: uppercase;
 }
 
@@ -103,7 +101,7 @@
     position: relative;
 }
 
-.sliderMap p {
+.sliderMapParagraph {
     color: white;
     font-family: "Red Hat Display", sans-serif;
     text-align: left;

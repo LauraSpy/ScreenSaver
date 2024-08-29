@@ -99,8 +99,8 @@ const DetailFilm = () => {
                 <img src={`https://image.tmdb.org/t/p/original${details.poster_path}`} alt={details.title || details.name} className={s.poster} />
             </div>
             <div className={s.bannerTitle}>
-                <h2>{details.title || details.name}</h2>
-                <p>{new Date(details.release_date || details.first_air_date).getFullYear()}</p>
+                <h2 className={s.bannerTitleHeading}>{details.title || details.name}</h2>
+                <p className={s.bannerTitleParagraph}>{new Date(details.release_date || details.first_air_date).getFullYear()}</p>
             </div>
             <div className={s.mainContent}>
                 <div className={s.info}>
@@ -114,7 +114,7 @@ const DetailFilm = () => {
                     <div className={s.streaming}>
                         {watchProviders.results.FR && (
                                 <div className={s.streamingContainer}>
-                                    <h3>Disponible en streaming:</h3>
+                                    <h3 className={s.streamingContainerHeading}>Disponible en streaming:</h3>
                                     {watchProviders.results.FR && watchProviders.results.FR.flatrate ? (
                                         watchProviders.results.FR.flatrate.map(provider => (
                                             <img 
@@ -149,7 +149,7 @@ const DetailFilm = () => {
                 </div>
             </div>
             <div className={s.cast}>
-                <div className={s.castTitle}><h2>Casting</h2></div>
+                <div className={s.castTitle}><h2 className={s.castTitleHeading}>Casting</h2></div>
                 <div className={s.castList} ref={castListRef}>
                     {credits.cast.map(actor => (
                         <div key={actor.id} className={s.castMember}>
@@ -165,7 +165,7 @@ const DetailFilm = () => {
                 </div>
             </div>
             <div className={s.gallery}>
-                <div className={s.galleryTitle}><h2>Galerie</h2></div>
+                <div className={s.galleryTitle}><h2 className={s.galleryTitleHeading}>Galerie</h2></div>
                 <div className={s.imageList}>
                     {images.backdrops.slice(0, 6).map((image, index) => (
                         <div 

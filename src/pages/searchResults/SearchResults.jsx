@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom';
 import Sliders from '../../components/sliders/itemSliders/sliders';
 import { searchItems } from '../../api/api-tmdb'; 
 import Pagination from '../../components/Pagination/Pagination';
-import s from './styles.module.css';
 
 // Nombre maximum d'éléments à afficher par page
 const ITEMS_PER_PAGE = 50;
@@ -50,8 +49,8 @@ const SearchResults = () => {
   };
 
   return (
-    <div className={s.SearchResults}>
-      <div className={s.container}>
+    <>
+      <div>
         {loading ? (
           <p>Chargement...</p>
         ) : (
@@ -75,7 +74,7 @@ const SearchResults = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

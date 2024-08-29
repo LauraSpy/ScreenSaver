@@ -54,9 +54,7 @@
 }
 
 .username {
-    font-family: "Red Hat Display", sans-serif;
-    font-weight: bold;
-    font-size: 1.5rem;
+    font: bold 1.5rem "Red Hat Display", sans-serif;
     color: var(--white-pink);
     margin-left: 30%;
     padding: 2% 5%;
@@ -65,8 +63,7 @@
 }
 
 .logoutButton {
-    font-size: 12px;
-    font-family: "Red Hat Mono", monospace;
+    font: 12px "Red Hat Mono", monospace;
     padding-left: 2%;
     cursor: pointer;
     opacity: 50%;
@@ -80,9 +77,7 @@
 
 .collection {
     color: var(--white-pink);
-    font-family: "Red Hat Display", sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
+    font: bold 2rem "Red Hat Display", sans-serif;
     text-align: left;
     margin-left: 15%;
     margin-top: 5%;

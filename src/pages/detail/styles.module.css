@@ -7,8 +7,6 @@
     height: 80vh;
     position: relative;
     filter: blur(2px) brightness(83%);
-    -webkit-filter: blur(2px) brightness(83%);
-    -moz-filter: blur(2px) brightness(83%);
 }
 
 .posterBanner {
@@ -23,10 +21,9 @@
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
-.bannerTitle h2, .bannerTitle p {
+.bannerTitleHeading, .bannerTitleParagraph {
     position: absolute;
     text-align: left;
-    text-wrap: wrap;
     background-clip: text;
     background-image: var(--linear-gradient);
     font-family: "Red Hat Display", sans-serif;
@@ -34,13 +31,13 @@
     color: transparent;
 }
 
-.bannerTitle h2 {
+.bannerTitleHeading {
     top: 60%;
     left: 30%;
     font-size: 2vmax;
 }
 
-.bannerTitle p {
+.bannerTitleParagraph {
     font-size: 1.1rem;
     font-weight: bold;
     top: 75%;
@@ -57,17 +54,16 @@
 .info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     color: var(--white-pink);
+    font: 14px "Red Hat Text", sans-serif;
     text-align: justify;
     gap: 15%;
     width: 80%;
-    justify-content: center;
-    align-items: flex-start;
     padding: 2%;
     margin-top: 5%;
     order: 2;
-    font-family: "Red Hat Text", sans-serif;
-    font-size: 14px;
 }
 
 .info strong {
@@ -93,18 +89,16 @@
     align-items: center;
 }
 
-.streamingContainer h3 {
+.streamingContainerHeading {
     color: var(--white-pink);
-    font-family: "Red Hat Text", sans-serif;
-    font-size: 14px;
+    font: 14px "Red Hat Text", sans-serif;
     text-align: left;
     width: 50%;
 }
 
 .notAvailable {
     color: var(--white-pink);
-    font-family: "Red Hat Mono", monospace;
-    font-size: 10px;
+    font: 10px "Red Hat Mono", monospace;
     text-wrap: wrap;
 }
 
@@ -132,12 +126,10 @@
     border-image-slice: 0 0 1 0;
 }
 
-.castTitle h2 {
+.castTitleHeading {
     color: var(--white-pink);
     margin-bottom: 2%;
-    font-family: "Red Hat Display", sans-serif;
-    font-weight: bold;
-    font-size: 2rem;
+    font: bold 2rem "Red Hat Display", sans-serif;
     text-transform: uppercase;
     text-align: left;
 }
@@ -149,7 +141,6 @@
     gap: 2%;
     overflow-x: auto;
     scrollbar-width: none;
-    -ms-overflow-style: none;
     width: 100%;
 }
 
@@ -168,8 +159,7 @@
     color: transparent;
     background-clip: text;
     background-image: var(--linear-gradient);
-    font-family: "Red Hat Display", sans-serif;
-    font-size: 13px;
+    font: 13px "Red Hat Display", sans-serif;
 }
 
 .imageContainer {
@@ -201,7 +191,7 @@
     margin: 2% 5%;
 }
 
-.galleryTitle h2 {
+.galleryTitleHeading {
     color: transparent;
     background-clip: text;
     background-image: radial-gradient(circle, rgba(255,232,248,0.9009978991596639) 0%, rgba(206,102,174,1) 100%);
@@ -237,11 +227,11 @@
         padding-bottom: 15%;
     }
 
-    .bannerTitle h2 {
+    .bannerTitleHeading {
         left: 35%;
     }
     
-    .bannerTitle p {
+    .bannerTitleParagraph {
         left: 40%;
     }
 }
@@ -251,12 +241,12 @@
         padding-bottom: 15%;
     }
 
-    .bannerTitle h2 {
+    .bannerTitleHeading {
         left: 45%;
         font-size: 2.5vmax;
     }
     
-    .bannerTitle p {
+    .bannerTitleParagraph {
         left: 50%;
     }
 }
@@ -300,14 +290,7 @@
         height: 40vh;
     }
 
-    .bannerTitle h2 {
-        font-size: 3vmax;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    
-    .bannerTitle h2 {
+    .bannerTitleHeading {
         top: 75%;
         text-align: center;
         left: 15%;
@@ -315,7 +298,7 @@
         max-width: 50%;
     }
 
-    .bannerTitle p {
+    .bannerTitleParagraph {
         top: 88%;
         left: 35%;
     }
@@ -338,14 +321,14 @@
 }
 
 @media screen and (max-width: 350px) {
-    .bannerTitle h2 {
+    .bannerTitleHeading {
         top: 78%;
         left: 15%;
         font-size: 3vmax;
         max-width: 70%;
     }
 
-    .bannerTitle p {
+    .bannerTitleParagraph {
         top: 90%;
         left: 40%;
     }

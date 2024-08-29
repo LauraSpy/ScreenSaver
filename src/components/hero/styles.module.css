@@ -16,10 +16,6 @@ body {
   gap: 30px;
 }
 
-.heroHeader h1 {
-  font-size: 24px;
-}
-
 .bubblesBackground {
   position: absolute; /* Les bulles restent relatives au conteneur */
   top: 0;
@@ -40,9 +36,7 @@ body {
   margin-top: 45%;
   margin-left: -65%;
   box-shadow: rgba(0, 0, 0, 0.25) 5px 5px 2.6px;
-  font-family: "Red Hat Text", sans-serif;
-  font-weight: 600;
-  font-size: 12px;
+  font: 600 12px "Red Hat Text", sans-serif;
   transition: ease-in-out 0.2s;
 }
 
@@ -91,12 +85,8 @@ body {
   text-transform: uppercase;
   background-image: conic-gradient(from 210deg at 43% 10%, #00FFFF 11%, #FF69B4 53%);
   background-clip: text;
-  -webkit-background-clip: text;
   color: transparent;
-  -webkit-text-fill-color: transparent;
-  font-family: "Red Hat Display", sans-serif;
-  font-weight: bold;
-  font-size: 2rem;
+  font: bold 24px "Red Hat Display", sans-serif;
 }
 
 /* avec ajout d'un effet sur le titre (titre flouté et animé de bas en haut à l'infini) */
@@ -108,9 +98,7 @@ body {
   height: 100%;
   background-image: conic-gradient(from 210deg at 43% 10%, #00FFFF 11%, #FF69B4 53%);
   background-clip: text;
-  -webkit-background-clip: text;
   color: transparent;
-  -webkit-text-fill-color: transparent;
   filter: blur(5px); /* Ajustez la valeur du flou selon vos besoins */
   z-index: -1; /* Placez l'élément flou derrière le texte */
   animation: pulseReg 4s ease-in-out 0s infinite normal forwards;
@@ -180,9 +168,7 @@ body {
   background: rgba(23, 2, 32, 0.45);
   padding: 5px 10px;
   border-radius: 4px;
-  font-family: "Red Hat Display", sans-serif;
-  font-weight: bold;
-  font-size: 1.5vw;
+  font: bold 1.5vw "Red Hat Display", sans-serif;
 }
 
 .prevButton, .nextButton {
@@ -207,8 +193,7 @@ body {
 
 .buttonChangeState {
   color: white;
-  font-family: "Red Hat Mono", monospace;
-  font-size: 14px;
+  font: 14px "Red Hat Mono", monospace;
   transition: all ease-in-out 0.3s;
 }
 
