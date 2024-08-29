@@ -21,13 +21,12 @@
 
 .dropdownButton {
     padding: 10px 15px;
-    background-color: none;
-    width: 100%;
+    background-color: var(--bg-dark);
     border: 1px solid var(--light-yellow);
     color: var(--light-yellow);
     font-family: "Red Hat Display", sans-serif;
     border-radius: 4px;
-    width: 15vmax;
+    min-width: 200px;
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -51,15 +50,16 @@
 }
 
 .searchButton {
+    min-width: 200px;
     padding: 10px 20px;
     background-color: var(--light-green);
     color: var(--light-bg);
-    font-family: "Red Hat Mono", monospace;
-    font-weight: bold;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 600;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    align-self: flex-start;
+    align-self: center;
     margin-top: 10px;
     z-index: 1990; /* il se place en-desosus de l'overlay qui est à 2000 et au-dessus des autres éléments de la page */
 }
@@ -76,45 +76,43 @@
     filter: brightness(0) saturate(100%) invert(89%) sepia(19%) saturate(654%) hue-rotate(332deg) brightness(105%) contrast(103%); 
     /* pour changer la couleur du logo SVG pour correspondre à la couleur "light yellow" du texte */
 }
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
     .filterSystem {
         align-items: center;
-        width: 30vmax;
+        min-width: 100px;
+    }
+
+    .filterRow {
+        width: 100%;
     }
 
     .dropdownButton {
-        width: 25vmax;
-        margin-left: -7vmax;
-    }
-
-    .searchButton {
-        margin: auto;
+        margin-left: 0;
     }
 
     .dropdownContent {
-        margin-left: -7vmax;
-        width: 20vmax;
+        width: auto;
     }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 600px) {
     .filterSystem {
-        align-items: center;
-        width: 28vmax;
+        width: 100%;
+        margin-left: 25%;
     }
 
     .dropdownButton {
-        width: 23vmax;
-        margin-left: -8vmax;
-    }
-
-    .searchButton {
-        margin: auto;
+        min-width: 200px;
     }
 
     .dropdownContent {
-        margin-left: -8vmax;
-        width: 20vmax;
+        min-width: 200px;
     }
+}
+
+@media screen and (max-width: 400px) {
+    .filterSystem {
+        margin-left: 15%;
+    }
+
 }
