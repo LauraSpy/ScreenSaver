@@ -8,31 +8,21 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
 
     useEffect(() => {
         const fetchVideos = async () => {
-            const videoData = {};
-            for (const item of items) {
-                try {
-                    console.log(`Fetching video for ${type} with ID: ${item.id}`);
-                    const trailerKey = await getVideos(type, item.id);
-                    if (trailerKey) {
-                        console.log(`Trailer found for ${item.id}:`, trailerKey);
-                        videoData[item.id] = trailerKey;
-                    } else {
-                        console.log(`No trailer found for ${item.id}`);
-                    }
-                } catch (error) {
-                    console.error(`Error fetching video for ${item.id}:`, error);
-                }
+          const videoData = {};
+          const promises = items.map((item) => getVideos(type, item.id));
+          const results = await Promise.all(promises);
+          results.forEach((trailerKey, index) => {
+            if (trailerKey) {
+              videoData[items[index].id] = trailerKey;
             }
-            console.log('All video data:', videoData);
-            setVideos(videoData);
+          });
+          setVideos(videoData);
         };
-    
+      
         if (items.length > 0) {
-            fetchVideos();
-        } else {
-            console.log('No items to fetch videos for.');
+          fetchVideos();
         }
-    }, [items, type]);
+      }, [items, type]);
 
     const handleWheel = (e) => {
         if (sliderContainerRef.current) {
@@ -68,7 +58,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
         };
     }, []);
     
-    const displayedItems = maxItems ? items.slice(0, maxItems) : items;
+    const displayedItems = maxItems ? items.slice(0, 5) : items.slice(0, 5);
 
     console.log('Displayed items:', displayedItems);
 

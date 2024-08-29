@@ -108,8 +108,6 @@ export const getVideos = async (type, id) => {
                 data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
             if (trailer) {
                 return trailer.key;
-            } else {
-                console.log('No trailer found in the video results');
             }
         } else {
             console.log('No video results found');

@@ -104,7 +104,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
     }, [isListView]);
 
     // Sélection des éléments à afficher (filtrés par genre ou non)
-    const displayedItems = selectedGenre ? genreItems.slice(0, 20) : items.slice(0, 20);
+    const displayedItems = selectedGenre ? genreItems.slice(0, 10) : items.slice(0, 10);
 
     return (
         <div className={`${s.sliderWrapper} ${isListView ? s.listView : ''}`}>
