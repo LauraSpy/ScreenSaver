@@ -15,11 +15,26 @@ const Hero = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     // Type d'élément affiché (film ou série)
     const [itemType, setItemType] = useState('movie');
+    // pour charger les images du carousel mieux sur format mobile
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
 
     // Références pour l'effet de parallaxe des bulles de fond
     const svg1Ref = useRef(null);
     const svg2Ref = useRef(null);
     const svg3Ref = useRef(null);
+
+    // je précharge les images du carousel pour une meilleure performance sur mobile
+    useEffect(() => {
+        const loadImage = async () => {
+          const imageUrl = `https://image.tmdb.org/t/p/w780${discoverItems[currentImageIndex].backdrop_path}`;
+          const img = new Image();
+          img.src = imageUrl;
+          await img.decode();
+        };
+        loadImage();
+    }, [currentImageIndex, discoverItems]);
+
 
     // Effet pour charger les éléments à découvrir
     useEffect(() => {
@@ -95,6 +110,11 @@ const Hero = () => {
                                 src={`https://image.tmdb.org/t/p/w780${item.backdrop_path}`}
                                 alt={item.title || item.name}
                                 className={s.backdropImage}
+                                onLoad={() => {
+                                    // Une fois que l'image est chargée, on remplace le placeholder par l'image réelle
+                                    const img = document.querySelector(`.${s.backdropImage}`);
+                                    img.src = `https://image.tmdb.org/t/p/w780${item.backdrop_path}`;
+                                  }}
                             />
                             <h3 className={s.itemTitle}>{item.title || item.name}</h3> 
                             {index === currentIndex && (
