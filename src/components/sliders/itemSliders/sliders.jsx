@@ -48,10 +48,12 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
 
     // Navigation vers la page de détails du média
     const handleItemClick = (itemId) => {
-        navigate(`/detail/${type}/${itemId}`);
-        // const url = 
-        // ouvre dans un nouvel onglet
-        // window.open(url, '_blank');
+        //définition du chemin de navigation relative
+        const relativeUrl = `/detail/${type}/${itemId}`;
+        // appel de useLocation de React-router-dom pour lui donner la base de l'URL actuelle avec l'url relative définie
+        const absoluteUrl = `${window.location.origin}${relativeUrl}`;
+        // et ici, on vient ouvrir l'url relative dans un nouvel onglet
+        window.open(absoluteUrl, '_blank');
     };
 
     // Gestion de l'ouverture/fermeture du menu déroulant pour chaque item
