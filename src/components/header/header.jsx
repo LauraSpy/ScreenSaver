@@ -45,7 +45,7 @@ const Header = () => {
     // Effet pour gérer le redimensionnement de la fenêtre et le défilement
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth <= 640) {
+            if (window.innerWidth <= 740) {
                 setScreenSize('mobile');
             } else if (window.innerWidth <= 1024) {
                 setScreenSize('tablet');
