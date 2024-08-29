@@ -34,6 +34,25 @@ const Footer = () => {
         }, 100);
     };
 
+    const handleContactClick = (e) => {
+        e.preventDefault();
+        navigate('/contact');
+        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    };
+
+    const handleTermsClick = (e) => {
+        e.preventDefault();
+        navigate('/terms');
+        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    };
+
+
     return (
         <div className={s.Footer}>
             <div className={s.footerHeader}>
@@ -81,10 +100,10 @@ const Footer = () => {
                         <h2>Mes Favoris</h2>
                     </div>
                     <div className={s.listBottomRight}>
-                        <Link to='/contact' className={s.contact}>
+                        <Link to='/contact' onClick={handleContactClick} className={s.contact}>
                             <p>Contact</p>
                         </Link>
-                        <Link to='/terms' className={s.cgu}>
+                        <Link to='/terms' onClick={handleTermsClick} className={s.cgu}>
                             <p>CGU</p>
                         </Link>
                     </div>

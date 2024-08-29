@@ -39,8 +39,8 @@ root.render(
             {/* Routes protégées (nécessitant une authentification) */}
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<UserProfilePage />} />
-              <Route path="/terms" Component={TermsOfService} />
             </Route>
+            <Route path="/terms" Component={TermsOfService} />
           </Route>
         </Routes>
       </BrowserRouter>
