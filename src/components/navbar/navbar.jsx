@@ -38,7 +38,7 @@ const NavBar = ({ isOverlay = false, closeMenuOverlay  }) => {
                     onMouseLeave={handleMouseLeave}
                 >
                     <button>
-                        Films <img src={arrowDown} alt="arrow down" />
+                        Films <img src={arrowDown} alt="arrow down" style={{ marginLeft:'15%' }} />
                     </button>
                     {dropdownOpen === 'films' && (
                         <ul className={s.dropdown}>
@@ -57,7 +57,7 @@ const NavBar = ({ isOverlay = false, closeMenuOverlay  }) => {
                     onMouseLeave={handleMouseLeave}
                 >
                     <button>
-                        Séries <img src={arrowDown} alt="arrow down" />
+                        Séries <img src={arrowDown} alt="arrow down" style={{ marginLeft:'15%' }} />
                     </button>
                     {dropdownOpen === 'series' && (
                         <ul className={s.dropdown}>
@@ -76,7 +76,7 @@ const NavBar = ({ isOverlay = false, closeMenuOverlay  }) => {
                     onMouseLeave={handleMouseLeave}
                 >
                     <button>
-                        Mes listes <img src={arrowDown} alt="arrow down" />
+                        Mes listes <img src={arrowDown} alt="arrow down" style={{ marginLeft:'15%' }} />
                     </button>
                     {dropdownOpen === 'myList' && (
                         <ul className={s.dropdown}>

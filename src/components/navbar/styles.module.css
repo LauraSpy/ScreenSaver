@@ -21,6 +21,7 @@
 
 .navLinks button {
     font-size: 14px;
+    min-width: 100px;
 }
 
 .dropdown {
