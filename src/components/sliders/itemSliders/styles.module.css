@@ -34,7 +34,7 @@
     border-image-slice: 0 0 1 0;
 }
 
-.sliderTitle h1, .listView {
+.sliderTitle h2, .listView {
     color: var(--white-pink);
     margin-bottom: 2%;
     font-family: "Red Hat Display", sans-serif;
@@ -131,7 +131,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .sliderTitle h1 {
+    .sliderTitle h2 {
         font-size: 1.3rem;
     }
 }
@@ -142,7 +142,7 @@
         margin-left: 10%;
     }
 
-    .sliderTitle h1 {
+    .sliderTitle h2 {
         font-size: 1.3rem;
     }
 
@@ -166,7 +166,7 @@
         margin-left: 25%;
     }
 
-    .sliderTitle h1 {
+    .sliderTitle h2 {
         font-size: 1.3rem;
     }
 
@@ -178,7 +178,7 @@
         margin-left: 15%;
     }
 
-    .sliderTitle h1 {
+    .sliderTitle h2 {
         font-size: 1.3rem;
     }
 

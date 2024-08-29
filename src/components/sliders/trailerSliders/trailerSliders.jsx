@@ -75,7 +75,7 @@ const TrailerSliders = ({ title, items = [], type, maxItems }) => {
     return (
         <div className={s.slider}>
             <div className={s.sliderTitle}>
-                <h1>{title}</h1>
+                <h2>{title}</h2>
             </div>
             <div className={s.sliderContainer}>    
                 <div className={s.sliderMap}>

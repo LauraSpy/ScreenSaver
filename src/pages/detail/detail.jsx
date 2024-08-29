@@ -99,7 +99,7 @@ const DetailFilm = () => {
                 <img src={`https://image.tmdb.org/t/p/original${details.poster_path}`} alt={details.title || details.name} className={s.poster} />
             </div>
             <div className={s.bannerTitle}>
-                <h1>{details.title || details.name}</h1>
+                <h2>{details.title || details.name}</h2>
                 <p>{new Date(details.release_date || details.first_air_date).getFullYear()}</p>
             </div>
             <div className={s.mainContent}>
