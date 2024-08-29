@@ -82,7 +82,7 @@ header {
     position: fixed; /* fixe l'élément sur la page; ne bougera pas, même au scroll */
     top: -1.5%;
     width: 100%;
-    height: 12.5%;
+    height: 13%;
     overflow: hidden; /* cache tout contenu qui dépasse les valeurs définies du parent */
     background-color: var(--bg-dark); /* Couleur de fond lorsque la barre est fixe */
     z-index: 5000; /* Assure que la barre de navigation est au-dessus des autres éléments */
