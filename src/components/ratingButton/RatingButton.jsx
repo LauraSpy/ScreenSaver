@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 import s from './styles.module.css';
 
 //ajout d'un prop TAILLE pour l'affichage de l'icon sur la page où "listView = true"
@@ -16,7 +18,7 @@ const RatingButton = ({ rating, size = 'normal' }) => {
   return (
     <div className={`${s.ratingButton} ${s[size]} ${isFlipped ? s.flipped : ''}`} onClick={handleClick}>
       <div className={s.front}>
-        <i className="far fa-star"></i>
+        <FontAwesomeIcon icon={farFaStar} style={iconStyle} />
       </div>
       <div className={s.back} style={iconStyle}>
         {rating ? rating.toFixed(1) : 'N/A'}
@@ -26,3 +28,8 @@ const RatingButton = ({ rating, size = 'normal' }) => {
 };
 
 export default RatingButton;
+
+
+
+
+

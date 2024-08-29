@@ -15,33 +15,27 @@ const Home = () => {
     // Effet pour charger les données au montage du composant
     useEffect(() => {
         const fetchMovies = async () => {
-            try {
-                // Récupération des films populaires
-                const popularMoviesData = await getPopular('movie');
-                setPopularMovies(popularMoviesData.results);
-
-                // Récupération des films tendances
-                const trendingMoviesData = await getTrending('movie');
-                setTrendingMovies(trendingMoviesData.results);
-
-                // Récupération des séries populaires
-                const popularTVShowsData = await getPopular('tv');
-                setPopularTVShows(popularTVShowsData.results);
-
-                // Récupération des séries tendances
-                const trendingTVShowsData = await getTrending('tv');
-                setTrendingTVShows(trendingTVShowsData.results);
-
-                // Récupération des films tendances avec leurs bandes-annonces
-                const trendingMoviesWithTrailersData = await getTrendingWithTrailers('movie');
-                setTrendingMoviesWithTrailers(trendingMoviesWithTrailersData);
-            } catch (error) {
-                console.error("Erreur lors de la récupération des films:", error);
-            }
+          try {
+            const [popularMoviesData, trendingMoviesData, popularTVShowsData, trendingTVShowsData, trendingMoviesWithTrailersData] = await Promise.all([
+              getPopular('movie'),
+              getTrending('movie'),
+              getPopular('tv'),
+              getTrending('tv'),
+              getTrendingWithTrailers('movie'),
+            ]);
+      
+            setPopularMovies(popularMoviesData.results);
+            setTrendingMovies(trendingMoviesData.results);
+            setPopularTVShows(popularTVShowsData.results);
+            setTrendingTVShows(trendingTVShowsData.results);
+            setTrendingMoviesWithTrailers(trendingMoviesWithTrailersData);
+          } catch (error) {
+            console.error("Erreur lors de la récupération des films:", error);
+          }
         };
-
+      
         fetchMovies();
-    }, []); // Le tableau vide signifie que cet effet ne s'exécute qu'une fois au montage
+      }, []); // Le tableau vide signifie que cet effet ne s'exécute qu'une fois au montage
 
     return (
         <div className="homepage">

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 import ItemOptions from '../../itemOptions/ItemsOptions';
@@ -28,23 +28,39 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
     }, [type, showGenreFilter]);
 
     // Récupération des éléments par genre lorsque le genre sélectionné change
-    useEffect(() => {
-        const fetchGenreItems = async () => {
-            if (selectedGenre && showGenreFilter) {
-                setIsLoading(true);
-                try {
-                    const genreItemsData = await getByGenre(type, selectedGenre);
-                    setGenreItems(genreItemsData.results);
-                } catch (error) {
-                    console.error("Erreur lors du chargement des éléments par genre:", error);
-                } finally {
-                    setIsLoading(false);
-                }
-            }
+    const fetchGenreItems = async (selectedGenre) => {
+        if (selectedGenre && showGenreFilter) {
+          setIsLoading(true);
+          try {
+            const genreItemsData = await getByGenre(type, selectedGenre);
+            return genreItemsData.results;
+          } catch (error) {
+            console.error("Erreur lors du chargement des éléments par genre:", error);
+          } finally {
+            setIsLoading(false);
+          }
+        }
+      };
+      
+      const cachedGenreItems = useMemo(() => {
+        const cache = {};
+        return async (selectedGenre) => {
+          if (cache[selectedGenre]) {
+            return cache[selectedGenre];
+          }
+          const genreItems = await fetchGenreItems(selectedGenre);
+          cache[selectedGenre] = genreItems;
+          return genreItems;
         };
-
-        fetchGenreItems();
-    }, [selectedGenre, type]);
+      }, [type, showGenreFilter]);
+    
+    useEffect(() => {
+        setIsLoading(true);
+        cachedGenreItems(selectedGenre).then((genreItems) => {
+          setGenreItems(genreItems);
+          setIsLoading(false);
+        });
+    }, [selectedGenre, cachedGenreItems]);
 
     // Navigation vers la page de détails du média
     const handleItemClick = (itemId) => {
@@ -117,11 +133,12 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                 <div className={s.sliderContainer} ref={sliderContainerRef}>
                     <div className={s.sliderMap}>
                         {displayedItems.map((item) => (
-                            <div key={item.id} className={s.sliderItem}>
+                            <div className={s.sliderItem}>
                                 {/* Composant ItemOptions pour afficher le menu déroulant en ellipse */}
                                 <ItemOptions
                                     itemId={item.id}
                                     onViewDetails={handleItemClick}
+                                    key={item.id}
                                 />
                                 <div
                                     className={s.itemCard}
