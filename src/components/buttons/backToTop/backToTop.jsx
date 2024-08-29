@@ -37,6 +37,15 @@ const BackToTop = () => {
         });
     };
 
+    const handleContactClick = (e) => {
+        e.preventDefault();
+        navigate('/contact');
+        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    };
+
     return (
         <div className={s.backToTop}>
             {/* Affiche le bouton "retour en haut" si showButton est true */}
@@ -47,7 +56,7 @@ const BackToTop = () => {
             )}
             {/* Affiche le bouton de contact si showButton est true */}
             {showButton && (
-                <Link to='/contact' className={s.message}>
+                <Link to='/contact' onClick={handleContactClick} className={s.message}>
                     <img src={message} alt="contact" />
                 </Link>
             )}
