@@ -308,7 +308,7 @@
 @media screen and (max-width: 500px) {
     
     .bannerTitle h1 {
-        top: 70%;
+        top: 75%;
         text-align: center;
         left: 15%;
         font-size: 3vmax;
@@ -316,8 +316,12 @@
     }
 
     .bannerTitle p {
-        top: 83%;
+        top: 88%;
         left: 35%;
+    }
+
+    .mainContent {
+        margin-top: 15%;
     }
     
     .posterBanner {
@@ -335,18 +339,18 @@
 
 @media screen and (max-width: 350px) {
     .bannerTitle h1 {
-        top: 72%;
+        top: 78%;
         left: 15%;
         font-size: 3vmax;
         max-width: 70%;
     }
 
     .bannerTitle p {
-        top: 85%;
+        top: 90%;
         left: 40%;
     }
 
     .mainContent {
-        margin-top: 20%;
+        margin-top: 25%;
     }
 }
