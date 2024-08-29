@@ -25,11 +25,20 @@ const Footer = () => {
         { name: 'Twitch', icon: twitch, link: 'https://www.twitch.tv/' },
     ];
 
+    const handleHomeClick = (e) => {
+        e.preventDefault();
+        navigate('/');
+        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    };
+
     return (
         <div className={s.Footer}>
             <div className={s.footerHeader}>
                 <div className={s.logoFooter}>
-                    <Link to="/">
+                    <Link to="/" onClick={handleHomeClick}>
                         <img src={logo} alt="logo site" />
                     </Link>
                 </div>
