@@ -310,12 +310,13 @@
     .bannerTitle h1 {
         top: 70%;
         text-align: center;
-        left: 20%;
+        left: 15%;
         font-size: 3vmax;
+        max-width: 50%;
     }
 
     .bannerTitle p {
-        top: 80%;
+        top: 83%;
         left: 35%;
     }
     
@@ -334,13 +335,18 @@
 
 @media screen and (max-width: 350px) {
     .bannerTitle h1 {
-        top: 70%;
-        left: 12%;
+        top: 72%;
+        left: 15%;
         font-size: 3vmax;
+        max-width: 70%;
     }
 
     .bannerTitle p {
-        top: 82%;
-        left: 45%;
+        top: 85%;
+        left: 40%;
+    }
+
+    .mainContent {
+        margin-top: 20%;
     }
 }
