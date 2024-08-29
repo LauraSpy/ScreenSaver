@@ -25,39 +25,19 @@ const Footer = () => {
         { name: 'Twitch', icon: twitch, link: 'https://www.twitch.tv/' },
     ];
 
-    const handleHomeClick = (e) => {
+    const navigateAndScrollToTop = (path) => (e) => {
         e.preventDefault();
-        navigate('/');
-        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        navigate(path);
         setTimeout(() => {
             window.scrollTo(0, 0);
         }, 100);
     };
-
-    const handleContactClick = (e) => {
-        e.preventDefault();
-        navigate('/contact');
-        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 100);
-    };
-
-    const handleTermsClick = (e) => {
-        e.preventDefault();
-        navigate('/terms');
-        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 100);
-    };
-
 
     return (
         <div className={s.Footer}>
             <div className={s.footerHeader}>
                 <div className={s.logoFooter}>
-                    <Link to="/" onClick={handleHomeClick}>
+                    <Link to="/" onClick={navigateAndScrollToTop('/')}>
                         <img src={logo} alt="logo site" />
                     </Link>
                 </div>
@@ -80,17 +60,17 @@ const Footer = () => {
                     <div className={s.film}>
                     <h3>Films</h3>
                         <ul className={s.filmListMenu}>
-                            <li onClick={() => navigate('/list/films/popular')}>Films populaires</li>
-                            <li onClick={() => navigate('/list/films/top-rated')}>Films les mieux notés</li>
-                            <li onClick={() => navigate('/list/films/now-playing')}>Films à l'affiche</li>
+                            <li onClick={navigateAndScrollToTop('/list/films/popular')}>Films populaires</li>
+                            <li onClick={navigateAndScrollToTop('/list/films/top-rated')}>Films les mieux notés</li>
+                            <li onClick={navigateAndScrollToTop('/list/films/now-playing')}>Films à l'affiche</li>
                         </ul>
                     </div>
                     <div className={s.series}>
                     <h3>Séries</h3>
                         <ul className={s.listSerieMenu}>
-                            <li onClick={() => navigate('/list/series/current')}>Séries du moment</li>
-                            <li onClick={() => navigate('/list/series/popular')}>Séries populaires</li>
-                            <li onClick={() => navigate('/list/series/top-rated')}>Séries les mieux notées</li>
+                            <li onClick={navigateAndScrollToTop('/list/series/current')}>Séries du moment</li>
+                            <li onClick={navigateAndScrollToTop('/list/series/popular')}>Séries populaires</li>
+                            <li onClick={navigateAndScrollToTop('/list/series/top-rated')}>Séries les mieux notées</li>
                         </ul>
                     </div>
                 </div>
@@ -100,10 +80,10 @@ const Footer = () => {
                         <h2>Mes Favoris</h2>
                     </div>
                     <div className={s.listBottomRight}>
-                        <Link to='/contact' onClick={handleContactClick} className={s.contact}>
+                        <Link to='/contact' onClick={navigateAndScrollToTop('/contact')} className={s.contact}>
                             <p>Contact</p>
                         </Link>
-                        <Link to='/terms' onClick={handleTermsClick} className={s.cgu}>
+                        <Link to='/terms' onClick={navigateAndScrollToTop('/terms')} className={s.cgu}>
                             <p>CGU</p>
                         </Link>
                     </div>
