@@ -48,7 +48,9 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
 
     // Navigation vers la page de détails du média
     const handleItemClick = (itemId) => {
-        navigate(`/detail/${type}/${itemId}`);
+        const url = navigate(`/detail/${type}/${itemId}`);
+        // ouvre dans un nouvel onglet
+        window.open(url, '_blank');
     };
 
     // Gestion de l'ouverture/fermeture du menu déroulant pour chaque item
@@ -116,7 +118,7 @@ const Sliders = ({ title, items = [], type, isListView = false, showGenreFilter 
                                 {/* Composant ItemOptions pour afficher le menu déroulant en ellipse */}
                                 <ItemOptions
                                     itemId={item.id}
-                                    onViewDetails={handleItemClick}
+                                    onViewDetails={() => handleItemClick(item.id)}
                                 />
                                 <div
                                     className={s.itemCard}
