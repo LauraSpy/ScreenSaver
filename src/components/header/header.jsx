@@ -31,6 +31,9 @@ const Header = () => {
         if (searchTerm.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
             setSearchTerm('');
+            if (screenSize === 'mobile') {
+                closeMenuOverlay(); // Ferme l'overlay sur mobile après la recherche
+            }
         }
     };
 
