@@ -72,6 +72,15 @@ const Header = () => {
         setShowMenuOverlay(false);
     };
 
+    const handleContactClick = (e) => {
+        e.preventDefault();
+        navigate('/profile');
+        // Utilisation de setTimeout pour s'assurer que la navigation est terminée avant de défiler
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    };
+
     return (
         <header className={isSticky ? `${s.header} ${s.sticky}` : s.header}>
             <div className={s.headerContent}>
@@ -110,7 +119,7 @@ const Header = () => {
                 )}
                 {/* Avatar de l'utilisateur */}
                 <div className={s.avatar}>
-                    <Link to='/profile'>
+                    <Link to='/profile' onClick={handleContactClick}>
                         <img 
                             src={user ? (user.avatar || defaultAvatar) : defaultAvatar} 
                             alt="avatar"
