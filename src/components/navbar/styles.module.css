@@ -45,7 +45,7 @@
     width: 200px;
     text-align: left;
     transition: 0.3s;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .dropdown li:hover {
@@ -63,6 +63,7 @@ button {
     /* Styles spécifiques pour la nav dans l'overlay */
     width: 100%;
     padding: 10%;
+    margin-top: -5%;
 }
 
 .navLinksOverlay {
