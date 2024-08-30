@@ -63,7 +63,7 @@
 }
 
 .sliderContainer.listView .sliderItem {
-    width: 18%; /* Ajustez selon vos besoins, par exemple 5 items par ligne */
+    width: 18%; 
     margin-bottom: 2%;
 }
 
@@ -128,14 +128,8 @@
     pointer-events: none;
 }
 
-@media screen and (max-width: 1024px) {
-    .sliderTitleHeading {
-        font-size: 1.3rem;
-    }
-}
-
 @media screen and (max-width: 900px) {
-    .sliderTitle {
+    .sliderTitle.listView {
         min-width: 60%;
         margin-left: 10%;
     }
@@ -148,44 +142,8 @@
         font-size: smaller;
     }
 
-    .sliderContainer.listView .sliderItem {
-        width: 48%; /* 2 items par ligne sur les petits écrans */
-    }
-
-    .sliderMap {
+    .sliderMap.listView {
         width: 100%; 
         margin-left: 8%;
-    }
-}
-
-@media screen and (max-width:750px) {
-    .sliderTitle {
-        min-width: 30%;
-        margin-left: 25%;
-    }
-
-    .sliderTitleHeading {
-        font-size: 1.3rem;
-    }
-
-}
-
-@media screen and (max-width: 600px) {
-    .sliderTitle {
-        min-width: 50%;
-        margin-left: 15%;
-    }
-
-    .sliderTitleHeading {
-        font-size: 1.3rem;
-    }
-
-    .itemCardBodyTitle {
-        font-size: smaller;
-    }
-
-    .sliderMap {
-        width: 60%; 
-        margin-left: 20%;
     }
 }

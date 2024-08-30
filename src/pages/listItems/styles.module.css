@@ -43,8 +43,9 @@
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     .container {
+        width: 100%;
         top: 150px;
         left: 5%;
     }

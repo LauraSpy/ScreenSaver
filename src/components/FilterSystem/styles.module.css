@@ -76,26 +76,9 @@
     filter: brightness(0) saturate(100%) invert(89%) sepia(19%) saturate(654%) hue-rotate(332deg) brightness(105%) contrast(103%); 
     /* pour changer la couleur du logo SVG pour correspondre à la couleur "light yellow" du texte */
 }
+
+
 @media screen and (max-width: 900px) {
-    .filterSystem {
-        align-items: center;
-        min-width: 100px;
-    }
-
-    .filterRow {
-        width: 100%;
-    }
-
-    .dropdownButton {
-        margin-left: 0;
-    }
-
-    .dropdownContent {
-        width: auto;
-    }
-}
-
-@media screen and (max-width: 600px) {
     .filterSystem {
         width: 100%;
         margin-left: 25%;
