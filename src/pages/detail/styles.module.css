@@ -33,7 +33,7 @@
 
 .bannerTitleHeading {
     top: 60%;
-    left: 30%;
+    left: 40%;
     font-size: 2vmax;
 }
 
@@ -41,7 +41,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     top: 75%;
-    left: 35%;
+    left: 40%;
 }
 
 .mainContent {
@@ -222,38 +222,24 @@
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 1050px) {
-    .streamingContainer {
-        padding-bottom: 15%;
-    }
-
-    .bannerTitleHeading {
-        left: 35%;
-    }
-    
-    .bannerTitleParagraph {
-        left: 40%;
-    }
-}
 
 @media screen and (max-width: 900px) {
     .streamingContainer {
         padding-bottom: 15%;
     }
 
-    .bannerTitleHeading {
+    .bannerTitleHeading, .bannerTitleParagraph {
         left: 45%;
-        font-size: 2.5vmax;
     }
     
-    .bannerTitleParagraph {
-        left: 50%;
+    .bannerTitleHeading {
+        font-size: 2.5vmax;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .bannerTitle {
-        left: 50%;
+    .bannerTitleHeading, .bannerTitleParagraph {
+        left: 55%;
     }
 
     .mainContent {
@@ -293,14 +279,14 @@
     .bannerTitleHeading {
         top: 75%;
         text-align: center;
-        left: 15%;
+        left: 25%;
         font-size: 3vmax;
-        max-width: 50%;
+        max-width: 70%;
     }
 
     .bannerTitleParagraph {
         top: 88%;
-        left: 35%;
+        left: 25%;
     }
 
     .mainContent {
@@ -320,7 +306,7 @@
     }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
     .bannerTitleHeading {
         top: 78%;
         left: 15%;
