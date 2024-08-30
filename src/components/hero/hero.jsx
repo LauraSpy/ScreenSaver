@@ -110,11 +110,6 @@ const Hero = () => {
                                 src={`https://image.tmdb.org/t/p/w780${item.backdrop_path}`}
                                 alt={item.title || item.name}
                                 className={s.backdropImage}
-                                onLoad={() => {
-                                    // Une fois que l'image est chargée, on remplace le placeholder par l'image réelle
-                                    const img = document.querySelector(`.${s.backdropImage}`);
-                                    img.src = `https://image.tmdb.org/t/p/w780${item.backdrop_path}`;
-                                  }}
                             />
                             <h3 className={s.itemTitle}>{item.title || item.name}</h3> 
                             {index === currentIndex && (
