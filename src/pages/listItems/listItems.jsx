@@ -98,7 +98,7 @@ const ListItems = () => {
             }
 
             setItems(data.results.slice(0, ITEMS_PER_PAGE));
-            setTotalPages(Math.min(data.total_pages, 500));
+            setTotalPages(Math.min(data.total_pages, 250));
         } catch (error) {
             console.error("Erreur lors du chargement des éléments:", error);
         }

@@ -1,5 +1,6 @@
 .logoFooter img {
-    width: 15vmax;
+    width: 150px;
+    height: auto;
 }
 
 .Footer {
@@ -25,8 +26,8 @@
 }
 
 .socialIcon img {
-    width: 3vmax;
-    height: 3vh;
+    width: 25px;
+    height: 25px;
     transition: filter 0.6s;
 }
 
@@ -135,7 +136,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .footerHeader {
         display: flex;
         flex-direction: column;

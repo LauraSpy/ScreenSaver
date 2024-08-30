@@ -37,7 +37,8 @@ header {
 }
 
 .searchLogo img {
-    width: 65%;
+    width: 35px;
+    height: 35px;
 }
 
 .searchbar input::placeholder {
