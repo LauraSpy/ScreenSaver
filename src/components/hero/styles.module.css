@@ -16,6 +16,11 @@ body {
   gap: 30px;
 }
 
+.logoSite {
+  width: 350px;
+  height: auto;
+}
+
 .bubblesBackground {
   position: absolute; /* Les bulles restent relatives au conteneur */
   top: 0;
@@ -231,6 +236,11 @@ body {
   .discoverCarousel {
     height: 30vh;
   }
+
+  .logoSite {
+    width: 250px;
+    margin-top: 10%;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -245,11 +255,6 @@ body {
   .heroHeader p {
     font-size: 12px;
     padding-bottom: 5%;
-  }
-
-  .logoSite {
-    width: 60%;
-    margin-top: 10%;
   }
 
   .backgroundSvg3 {

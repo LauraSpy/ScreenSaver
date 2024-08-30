@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import s from './styles.module.css';
-import logoSite from '../../images/logo/logo.svg';
+import logoSite from '../../images/logo/logo-small.png';
 import logoSearch from '../../images/buttons/bouton-search.svg';
-import logoSiteMobile from '../../images/logo/logo_small.svg';
+import logoSiteMobile from '../../images/logo/logo-reduce.png';
 import defaultAvatar from '../../images/avatar/avatar-default.png';
 import NavBar from '../navbar/navbar';
 

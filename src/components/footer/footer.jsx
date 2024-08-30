@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import logo from '../../images/logo/logo.svg';
+import logo from '../../images/logo/logo.png';
 import insta from '../../images/logo/social/instagram-brands-solid.svg';
 import facebook from '../../images/logo/social/facebook-brands-solid.svg';
 import discord from '../../images/logo/social/discord-brands-solid.svg';

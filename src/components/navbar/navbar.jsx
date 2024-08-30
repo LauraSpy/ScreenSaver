@@ -39,7 +39,7 @@ const NavBar = ({ isOverlay = false, closeMenuOverlay }) => {
             onClick={() => toggleDropdown(menuName)}
         >
             <button>
-                {menuName} <img src={arrowDown} alt="arrow down" style={{ marginLeft:'15%' }} />
+                {menuName} <img src={arrowDown} alt="arrow down" style={{ width: '12px', height: '12px', marginLeft:'15%' }} />
             </button>
             {dropdownOpen === menuName && (
                 <ul className={s.dropdown}>

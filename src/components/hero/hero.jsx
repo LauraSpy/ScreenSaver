@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import logoSite from '../../images/logo/logo.svg';
+import logoSite from '../../images/logo/logo.png';
 import { getDiscover } from '../../api/api-tmdb';
 import s from './styles.module.css';
 import ellipse1 from '../../images/bulles/Ellipse4.svg';
